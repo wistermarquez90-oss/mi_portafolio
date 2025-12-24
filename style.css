@@ -1,0 +1,740 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    /* Paleta de Colores: Vinotinto (Economía/ULA) */
+    --primary: #6a040f;       /* Vinotinto principal */
+    --primary-dark: #370617;  /* Vinotinto oscuro (para hover) */
+    --accent: #ffba08;        /* Dorado/Amarillo (para resaltar) */
+    
+    /* Colores Neutros */
+    --bg-light: #f8f9fa;      /* Fondo gris muy claro */
+    --text-dark: #333333;     /* Texto principal */
+    --text-light: #ffffff;    /* Texto blanco */
+    
+    /* Efectos */
+    --card-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth; /* Desplazamiento suave al dar clic en el menú */
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================= */
+.navbar {
+    background: var(--primary);
+    padding: 1rem 0;
+    position: sticky; /* Se queda pegada arriba */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.btn-nav {
+    border: 1px solid var(--text-light);
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.btn-nav:hover {
+    background: var(--text-light);
+    color: var(--primary) !important;
+}
+
+/* =========================================
+   SECCIÓN HERO (INICIO)
+   ========================================= */
+.hero {
+    /* Fondo con degradado vinotinto sobre una imagen de oficina */
+    background: linear-gradient(rgba(106, 4, 15, 0.9), rgba(55, 6, 23, 0.9)), url('https://source.unsplash.com/random/1600x900/?office,finance') no-repeat center center/cover;
+    height: 90vh; /* Ocupa el 90% de la altura de la pantalla */
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.subtitle {
+    color: var(--accent);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.bio {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Imagen de Perfil */
+.hero-img img {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%; /* La hace redonda */
+    object-fit: cover;
+    border: 5px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* =========================================
+   BOTONES
+   ========================================= */
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #333;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #e5a500;
+    transform: translateY(-2px);
+}
+
+.btn-outline-light {
+    display: inline-block;
+    border: 2px solid var(--text-light);
+    color: var(--text-light);
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+    background: var(--text-light);
+    color: var(--primary);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 15px;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* =========================================
+   SECCIONES GENERALES
+   ========================================= */
+section {
+    padding: 5rem 0;
+}
+
+.section-light {
+    background: var(--bg-light);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #666;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =========================================
+   NUEVA SECCIÓN: HABILIDADES (TAGS)
+   ========================================= */
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    border-top: 5px solid var(--primary);
+}
+
+.skill-category h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background: #eee;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.3s;
+    cursor: default;
+}
+
+.tag:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   EXPERIENCIA (TIMELINE VERTICAL)
+   ========================================= */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Línea gris vertical */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #ddd;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 60px;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 0 0 4px white; /* Borde blanco alrededor del círculo */
+}
+
+.timeline-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    border-left: 4px solid var(--primary);
+}
+
+.timeline-content .date {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.timeline-content .company {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.job-details {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #555;
+}
+
+.job-details li {
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   GRID DE PROYECTOS Y TARJETAS
+   ========================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background: var(--primary);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Tarjetas de PDF */
+.pdf-card {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.icon-box {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* Contenedor Power BI */
+.iframe-container {
+    background: #eee;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.placeholder-bi {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+/* =========================================
+   SECCIÓN CONTACTO
+   ========================================= */
+.contact-section {
+    background: var(--primary);
+    color: white;
+}
+
+.white-text {
+    color: white !important;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.info-item i {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    color: var(--accent);
+}
+
+.info-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+.contact-form {
+    flex: 1.5;
+    min-width: 300px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite estirar el cuadro de texto */
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: var(--primary-dark);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #aaa;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+/* =========================================
+   DISEÑO RESPONSIVE (MÓVIL)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Ajuste Hero */
+    .hero-content {
+        flex-direction: column-reverse; /* Foto arriba, texto abajo en móvil */
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Ocultar menú en móvil (por simplicidad) */
+    .nav-links {
+        display: none; 
+    }
+
+    /* Ajuste Contacto */
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+/* =========================================
+   ESTILOS PARA PÁGINAS DE ASIGNATURAS
+   ========================================= */
+
+/* Estructura del Visor PDF (Lado a lado) */
+.pdf-viewer-layout {
+    display: flex;
+    gap: 20px;
+    height: 650px; /* Altura fija para mantener el diseño */
+}
+
+/* Columna Izquierda: Lista de botones */
+.pdf-list {
+    flex: 1; /* Ocupa 1 parte del ancho */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll-box {
+    overflow-y: auto; /* Permite hacer scroll si hay muchos trabajos */
+    flex: 1;
+    margin-top: 15px;
+    padding-right: 5px;
+}
+
+/* Estilo de los botones de la lista */
+.pdf-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.pdf-btn i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.pdf-btn:hover {
+    background: #eee;
+    padding-left: 20px; /* Pequeña animación de movimiento */
+}
+
+/* Botón Activo (El que se está viendo) */
+.pdf-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.pdf-btn.active i {
+    color: var(--accent);
+}
+
+/* Columna Derecha: El PDF en sí */
+.pdf-display {
+    flex: 2.5; /* Ocupa 2.5 veces más espacio que la lista */
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+#visor-pdf {
+    border-radius: 5px;
+    border: none;
+}
+
+/* Responsive para Móviles */
+@media (max-width: 768px) {
+    .pdf-viewer-layout {
+        flex-direction: column; /* Pone la lista arriba y el PDF abajo */
+        height: auto;
+    }
+    .pdf-display {
+        height: 500px; /* Altura fija en móvil */
+    }
+    .scroll-box {
+        max-height: 200px; /* La lista no será muy larga en móvil */
+    }
+}
+/* =========================================
+   ESTILOS PARA MARKMAP (MAPA MENTAL Y BOTONES)
+   ========================================= */
+
+/* Contenedor Principal del Mapa */
+.markmap-container {
+    width: 100%;
+    height: 600px;
+    position: relative; /* Necesario para posicionar los botones dentro */
+    background: #fff;
+    border-radius: 12px;
+    border: 4px solid var(--primary); /* Usa tu variable vinotinto */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden; /* Evita que el mapa se salga de las esquinas redondeadas */
+}
+
+/* El lienzo SVG */
+.markmap-container svg {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+/* --- FORZAR APARICIÓN DE LA BARRA DE HERRAMIENTAS --- */
+/* Esta clase la genera automáticamente la librería, aquí le damos estilo */
+.mm-toolbar {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 100 !important; /* Capa superior */
+    display: flex !important;
+    flex-direction: column; /* Botones uno encima del otro */
+    gap: 5px;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+}
+
+/* Estilo de cada botón individual (+, -, zoom) */
+.mm-toolbar-item {
+    width: 35px;
+    height: 35px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+    background: #f9f9f9;
+    transition: all 0.2s ease;
+}
+
+.mm-toolbar-item:hover {
+    background-color: var(--primary); /* Se pone vinotinto al pasar el mouse */
+    color: white !important;
+}
+
+/* Asegurar que el icono SVG dentro del botón se vea */
+.mm-toolbar-item svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}

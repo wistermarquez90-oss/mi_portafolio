@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Wister Márquez</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS EXCLUSIVOS PARA EL CARRUSEL POWER BI --- */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #6a040f;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        .carousel-btn:hover {
+            opacity: 1;
+            background-color: #370617;
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .carousel-dots {
+            text-align: center;
+            padding: 10px 0;
+            background: #f8f9fa;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .dot.active {
+            background-color: #6a040f;
+            transform: scale(1.2);
+        }
+
+        .card-header-carousel {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #6a040f;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Wister Márquez.</h1>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#powerbi">Power BI</a></li>
+                <li><a href="#economia">Investigación</a></li>
+                <li><a href="#contacto" class="btn-nav">Contáctame</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <p class="subtitle">Economista en Formación | Especialista en E-commerce</p>
+                <h2>Transformando datos en estrategias de mercado.</h2>
+                <p class="bio">
+                    Soy <strong>Wister Márquez</strong>, estudiante de Economía con sólida experiencia en planificación y comercio electrónico.
+                    Me destaco por mis habilidades en <strong>análisis de datos, SQL, Power BI</strong> y gestión de plataformas digitales.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="https://www.linkedin.com/in/wister-marquez-duque" target="_blank" class="btn">
+                        <i class="fab fa-linkedin"></i> Ver LinkedIn
+                    </a>
+                    <a href="cv_wister.pdf" target="_blank" class="btn-outline-light">
+                        <i class="fas fa-file-pdf"></i> Descargar CV
+                    </a>
+                </div>
+            </div>
+            <div class="hero-img">
+               <img src="img/perfil.PNG" alt="Foto de Wister Márquez" onerror="this.src='https://via.placeholder.com/300'">
+            </div>
+        </div>
+    </section>
+
+    <section id="habilidades" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Habilidades y Tecnologías</h2>
+            <p class="section-desc">Herramientas técnicas y soft skills certificadas.</p>
+            
+            <div class="skills-wrapper">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Tecnologías</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Power BI <i class="fas fa-check-circle"></i></span>
+                        <span class="tag">Python (Básico)</span>
+                        <span class="tag">Lenguaje R</span>
+                        <span class="tag">SQL (Básico)</span>
+                        <span class="tag">Excel Avanzado</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Software de Gestión</h3>
+                    <div class="skill-tags">
+                        <span class="tag">ERP Odoo (Intermedio)</span>
+                        <span class="tag">ERP Bsale (Avanzado)</span>
+                        <span class="tag">Shopify</span>
+                        <span class="tag">Mercado Libre Ads</span>
+                        <span class="tag">Amazon Seller</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <div class="container">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <p class="section-desc">Trayectoria destacada en gestión y finanzas.</p>
+            
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                        <span class="date">2022 - Actualidad | México (Remoto)</span>
+                        <h3>Digital Trade Manager</h3>
+                        <span class="company">Morekashop</span>
+                        <p>Gestión integral de E-commerce y Marketplaces.</p>
+                        <ul class="job-details">
+                            <li>Reporte y control del ACOS (Gastos de publicidad) en Mercado Libre, Amazon y Walmart.</li>
+                            <li>Realización de estructura de costos y análisis de mercado para nuevos productos.</li>
+                            <li><strong>Logro:</strong> Automatización de reportes financieros y de inventario ABC mediante Power BI.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-landmark"></i></div>
+                    <div class="timeline-content">
+                        <span class="date">2021 - 2022 | Mérida</span>
+                        <h3>Asistente de Planificación</h3>
+                        <span class="company">Gobernación de Mérida</span>
+                        <p>Dirección de Planificación y Presupuesto.</p>
+                        <ul class="job-details">
+                            <li>Apoyo en la automatización del Plan Operativo Anual (POA).</li>
+                            <li>Registro de decretos en el sistema financiero "Tortuga".</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-users"></i></div>
+                    <div class="timeline-content">
+                        <span class="date">2022 - 2023 | Venezuela y Chile</span>
+                        <h3>Coordinador de Finanzas y Legalidades</h3>
+                        <span class="company">AIESEC</span>
+                        <ul class="job-details">
+                            <li>Creé la herramienta para evaluación de estándares financieros a nivel nacional.</li>
+                            <li>Logré el 100% de cumplimiento en estándares legales y pago de deuda histórica del comité local.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="powerbi" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Portafolio Power BI</h2>
+            <p class="section-desc">Desliza para ver mis 4 proyectos de análisis de datos.</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" onclick="moverCarrusel(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next-btn" onclick="moverCarrusel(1)"><i class="fas fa-chevron-right"></i></button>
+
+                <div class="carousel-track" id="track">
+                    
+                    <div class="carousel-slide">
+                        <div class="card-header-carousel">
+                            <i class="fas fa-chart-bar fa-2x"></i>
+                            <h3>1. Plataformas Digitales</h3>
+                        </div>
+                        <p>Monitorización de KPIs, ventas y publicidad digital (ACOS).</p>
+                        <div class="iframe-container" id="reporte1">
+                            <iframe title="Plataformas Digitales" width="100%" height="350" src="https://app.powerbi.com/view?r=eyJrIjoiODM0YWE2YzktMmE5Ni00NjIxLWE3ZTItNjQ5MTAyZTFkOGY3IiwidCI6IjNjMjg3MGY4LWZjODgtNGQ5My1hYjUwLWZkZWI0NmZlY2FkZiJ9" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                        <button class="btn-outline" onclick="expandirPantalla('reporte1')" style="width: 100%;">
+                            <i class="fas fa-expand"></i> Pantalla Completa
+                        </button>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card-header-carousel">
+                            <i class="fas fa-globe-americas fa-2x"></i>
+                            <h3>2. Dashboard Macroeconómico</h3>
+                        </div>
+                        <p>Comparativa de indicadores globales y tendencias.</p>
+                        <div class="iframe-container" id="reporte2">
+                            <iframe title="Dashboard Macro" width="100%" height="350" src="https://app.powerbi.com/view?r=eyJrIjoiNTMyYWE0YTEtYThlMi00ZWUzLTg1ZDUtYzg0ODA5MDUzMDgzIiwidCI6IjNjMjg3MGY4LWZjODgtNGQ5My1hYjUwLWZkZWI0NmZlY2FkZiJ9" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                        <button class="btn-outline" onclick="expandirPantalla('reporte2')" style="width: 100%;">
+                            <i class="fas fa-expand"></i> Pantalla Completa
+                        </button>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card-header-carousel">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                            <h3>3. Análisis de Finanzas</h3>
+                        </div>
+                        <p>Estudio de rentabilidad y proyecciones financieras.</p>
+                        <div class="iframe-container" id="reporte3">
+                            <div class="placeholder-bi" style="height: 350px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                <p style="color:#777;">Coloca aquí tu 3er Link de Power BI</p>
+                            </div>
+                        </div>
+                        <button class="btn-outline" onclick="expandirPantalla('reporte3')" style="width: 100%;">
+                            <i class="fas fa-expand"></i> Pantalla Completa
+                        </button>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card-header-carousel">
+                            <i class="fas fa-coins fa-2x"></i>
+                            <h3>4. Presupuesto y Gastos</h3>
+                        </div>
+                        <p>Control de ejecución presupuestaria.</p>
+                        <div class="iframe-container" id="reporte4">
+                            <div class="placeholder-bi" style="height: 350px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                <p style="color:#777;">Coloca aquí tu 4to Link de Power BI</p>
+                            </div>
+                        </div>
+                        <button class="btn-outline" onclick="expandirPantalla('reporte4')" style="width: 100%;">
+                            <i class="fas fa-expand"></i> Pantalla Completa
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="irASlide(0)"></span>
+                    <span class="dot" onclick="irASlide(1)"></span>
+                    <span class="dot" onclick="irASlide(2)"></span>
+                    <span class="dot" onclick="irASlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="economia">
+        <div class="container">
+            <h2 class="section-title">Investigación Económica</h2>
+            <p class="section-desc">Detalle de asignaturas, esquemas y biblioteca de trabajos realizados.</p>
+
+            <div class="projects-grid">
+                <div class="card pdf-card">
+                    <div class="icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Política Fiscal</h3>
+                    <p>Análisis del impacto del gasto público y la recaudación.</p>
+                    <a href="paginas/politica_fiscal.html" class="btn-outline">Ver Asignatura <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card pdf-card">
+                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                    <h3>Planificación Económica</h3>
+                    <p>Estrategias de desarrollo y modelos a largo plazo.</p>
+                    <a href="paginas/planificacion.html" class="btn-outline">Ver Asignatura <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card pdf-card">
+                    <div class="icon-box"><i class="fas fa-globe-americas"></i></div>
+                    <h3>Seminario de Integración Económica</h3>
+                    <p>Acuerdos comerciales y bloques regionales (Biblioteca de trabajos).</p>
+                    <a href="paginas/integracion.html" class="btn-outline">Ver Asignatura <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2 class="section-title white-text">Conectemos</h2>
+            <p class="section-desc white-text">Estoy disponible para nuevas oportunidades laborales.</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>wistermarquez90@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-linkedin"></i>
+                        <p><a href="https://www.linkedin.com/in/wister-marquez-duque" target="_blank" style="color: white; text-decoration: underline;">/wister-marquez-duque</a></p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+58 414-5716776</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Mérida, Venezuela</p>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Tu Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="_replyto" placeholder="Tu Correo" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensaje" rows="5" placeholder="Hola Wister, vi tu portafolio y..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Wister Márquez. Hecho en Venezuela.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Pantalla Completa
+        function expandirPantalla(elementId) {
+            var elem = document.getElementById(elementId);
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { 
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { 
+                elem.msRequestFullscreen();
+            }
+        }
+
+        // Carrusel
+        let indiceActual = 0;
+        const track = document.getElementById('track');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 4; // Ajusta si tienes más o menos proyectos
+
+        function actualizarCarrusel() {
+            track.style.transform = `translateX(-${indiceActual * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[indiceActual].classList.add('active');
+        }
+
+        function moverCarrusel(direccion) {
+            indiceActual += direccion;
+            if (indiceActual >= totalSlides) {
+                indiceActual = 0;
+            } else if (indiceActual < 0) {
+                indiceActual = totalSlides - 1;
+            }
+            actualizarCarrusel();
+        }
+
+        function irASlide(indice) {
+            indiceActual = indice;
+            actualizarCarrusel();
+        }
+    </script>
+
+</body>
+</html>
