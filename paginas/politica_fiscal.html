@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política Fiscal | Wister Márquez</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        
+        /* Equipo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+            border-bottom: 3px solid #6a040f;
+        }
+        .team-card:hover { transform: translateY(-5px); }
+        .team-img-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: #eee;
+            position: relative;
+        }
+        .team-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .team-info { padding: 15px; }
+        .team-info h3 { font-size: 1.1rem; color: #333; margin-bottom: 3px; font-weight: bold; }
+        .team-info p { color: #777; font-size: 0.85rem; margin-bottom: 10px; }
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+            padding-top: 10px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .social-icon { color: #666; font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
+        .social-icon:hover { color: #6a040f; transform: scale(1.1); }
+
+        /* Visor PDF */
+        .single-pdf-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        /* Metodología (Diagrama) */
+        .process-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #6a040f;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        /* Caso Venezuela */
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        .case-content { padding: 30px; flex: 1; min-width: 300px; }
+        .case-visual { 
+            background: #6a040f; 
+            color: white; 
+            flex: 1; 
+            min-width: 300px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* --- ESTILOS MARCO LEGAL --- */
+        .legal-carousel {
+            position: relative;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-top: 3px solid #6a040f;
+            overflow: hidden;
+            margin: 0 auto 30px auto;
+            max-width: 900px;
+        }
+        .legal-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .legal-slide { min-width: 100%; box-sizing: border-box; padding: 30px 50px; }
+        
+        .legal-group-title {
+            text-align: center;
+            color: #6a040f;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legal-citation {
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+        .legal-citation:last-child { border-bottom: none; }
+        .legal-citation strong { color: #333; display: block; margin-bottom: 5px; font-size: 1rem; }
+        .legal-citation p { font-style: italic; color: #555; line-height: 1.5; font-size: 0.95rem; margin: 0; }
+
+        .legal-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.7); color: #6a040f; border: none; font-size: 1.5rem;
+            cursor: pointer; z-index: 10; width: 35px; height: 35px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        }
+        .legal-btn:hover { background: #6a040f; color: white; }
+        .prev-l { left: 10px; }
+        .next-l { right: 10px; }
+
+        /* Botones Descarga */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .download-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: white; border: 1px solid #ddd; color: #555;
+            padding: 12px; border-radius: 6px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #6a040f; color: white; border-color: #6a040f; }
+
+        /* --- ESTILOS ANTECEDENTES (TIMELINE) --- */
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-box {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 25px;
+            border-left: 3px solid #ddd;
+        }
+        .timeline-box::before {
+            content: '';
+            position: absolute;
+            left: -9px; top: 5px;
+            width: 15px; height: 15px;
+            background: #6a040f; border-radius: 50%;
+        }
+        .timeline-title { font-weight: bold; color: #333; font-size: 1.1rem; }
+        .timeline-desc { font-size: 0.95rem; color: #666; margin-top: 5px; line-height: 1.5; }
+
+        /* Objetivos */
+        .objectives-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            border-left: 5px solid #6a040f;
+        }
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .objectives-list li {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .objectives-list li i { color: #6a040f; }
+
+        /* --- NUEVO: ESTILOS DEL MENÚ DESPLEGABLE --- */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-top: 3px solid #6a040f;
+            border-radius: 0 0 5px 5px;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content li { display: block; margin: 0; }
+        .dropdown-content li a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dropdown-content li a:hover { background-color: #f9f9f9; color: #6a040f; }
+        /* Flechita del menú */
+        .fa-caret-down { margin-left: 5px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Wister Márquez.</h1>
+            <ul class="nav-links">
+                <li><a href="#asignatura">La Asignatura</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#metodologia">Metodología</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Análisis <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#caso">Caso Venezuela</a></li>
+                        <li><a href="#legal">Marco Legal</a></li>
+                        <li><a href="#antecedentes">Antecedentes</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="../index.html"><i class="fas fa-arrow-left"></i> Portafolio</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="height: 35vh; min-height: 250px;">
+        <div class="container hero-content" style="justify-content: center; text-align: center;">
+            <div class="hero-text">
+                <p class="subtitle">Asignatura de 8vo Semestre</p>
+                <h2>Política Fiscal</h2>
+                <p class="bio">Planificación estratégica, presupuesto público y gestión fiscal del Estado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="asignatura" class="section-light">
+        <div class="container">
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h2 class="section-title" style="text-align: left; font-size: 1.8rem; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                    <i class="fas fa-university"></i> Sobre la Asignatura
+                </h2>
+                <div style="margin-top: 20px;">
+                    <p style="font-size: 1.1rem; color: #444; margin-bottom: 20px; line-height: 1.8;">
+                        En esta cátedra analizamos el papel del Estado en la economía a través del uso de los ingresos y el gasto público.
+                        El enfoque principal fue práctico y propositivo, buscando entender la dinámica fiscal como motor de desarrollo.
+                    </p>
+                    <div style="background: #fff5f5; border-left: 5px solid #6a040f; padding: 20px; border-radius: 5px;">
+                        <h4 style="color: #6a040f; margin-bottom: 10px;">🎯 Enfoque del Curso</h4>
+                        <p>
+                            El reto consistió en diagnosticar la situación actual de Venezuela, proponer objetivos macroeconómicos a mediano plazo y diseñar una estrategia de ingresos y gastos (Presupuesto) necesaria para reactivar la economía y garantizar el bienestar social.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipo">
+        <div class="container">
+            <h2 class="section-title">Equipo de Proyecto</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="../img/perfil.PNG" alt="Wister Márquez">
+                    </div>
+                    <div class="team-info">
+                        <h3>Wister Márquez</h3>
+                        <p>Economista en Formación</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/wister-marquez-duque" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:wistermarquez90@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="../img/Dubly.PNG" alt="Dublymar Gómez">
+                    </div>
+                    <div class="team-info">
+                        <h3>Dublymar Gómez</h3> <p>Economista</p>
+                        <div class="team-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="../img/william.jpeg" alt="William Gutierrez">
+                    </div>
+                    <div class="team-info">
+                        <h3>William Gutierrez</h3> <p>Economista</p>
+                        <div class="team-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="../img/Aguacate.jpg" alt="Ramon Durán">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ramon Durán</h3> <p>Economista en Formación</p>
+                        <div class="team-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Metodología Aplicada</h2>
+            <p class="section-desc">Estructura lógica utilizada para el desarrollo de la Agenda de Reconstrucción Nacional.</p>
+            <div class="process-container">
+                <div class="mermaid" style="text-align: center;">
+                    graph LR
+                        A(<b>1. Diagnóstico</b><br>Político, Social,<br>Económico):::step --> B(<b>2. Formulación</b><br>del Problema):::step
+                        B --> C(<b>3. Definición</b><br>de Objetivos):::step
+                        C --> D(<b>4. Marco</b><br>Legal y Teórico):::step
+                        D --> E(<b>5. Propuesta</b><br>Estratégica):::final
+
+                        classDef step fill:#fff,stroke:#6a040f,stroke-width:2px,rx:5,ry:5,color:#333
+                        classDef final fill:#6a040f,color:#fff,stroke:#333,stroke-width:2px,rx:5,ry:5
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="caso">
+        <div class="container">
+            <h2 class="section-title">Caso de Estudio: Crisis Estructural Venezolana</h2>
+            <div class="case-card">
+                <div class="case-content">
+                    <h3 style="color: #6a040f; margin-bottom: 15px;">Diagnóstico Situacional</h3>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        El proyecto aborda la profunda crisis que afecta a Venezuela, caracterizada por la erosión de las bases productivas e institucionales. Se analizaron ámbitos críticos como:
+                    </p>
+                    <ul style="margin-bottom: 15px; margin-left: 20px; line-height: 1.6; color: #555;">
+                        <li style="margin-bottom: 5px;"><strong>Ámbito Político:</strong> Crisis de gobernabilidad, polarización y fragmentación institucional.</li>
+                        <li style="margin-bottom: 5px;"><strong>Ámbito Económico:</strong> Hiperinflación crónica, contracción severa del PIB y destrucción de la capacidad productiva.</li>
+                        <li><strong>Ámbito Social:</strong> Deterioro del nivel de vida, incremento de la pobreza y colapso de los servicios públicos básicos.</li>
+                    </ul>
+                </div>
+                <div class="case-visual">
+                    <i class="fas fa-chart-line fa-3x" style="margin-bottom: 15px;"></i>
+                    <h3>Variables Macroeconómicas</h3>
+                    <ul style="list-style: none; padding: 0; margin-top: 10px; text-align: left;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-arrow-down"></i> Contracción del PIB</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-arrow-up"></i> Hiperinflación</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-balance-scale-right"></i> Déficit Fiscal</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> Deuda Externa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="legal" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Bases Legales del Proyecto</h2>
+            <p class="section-desc">Fundamentación jurídica en la CRBV y la Ley Orgánica de Planificación Pública.</p>
+            
+            <div class="legal-carousel">
+                <button class="legal-btn prev-l" onclick="moverLegal(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="legal-btn next-l" onclick="moverLegal(1)"><i class="fas fa-chevron-right"></i></button>
+                
+                <div class="legal-track" id="legal-track">
+                    
+                    <div class="legal-slide">
+                        <h4 class="legal-group-title">Derechos y Garantías</h4>
+                        <div class="legal-citation">
+                            <strong>Artículo 112 (CRBV)</strong>
+                            <p>"El Estado promoverá la iniciativa privada, garantizando la creación y justa distribución de la riqueza... sin perjuicio de su facultad para planificar y regular la economía."</p>
+                        </div>
+                        <div class="legal-citation">
+                            <strong>Artículo 86 y 87 (CRBV)</strong>
+                            <p>"Toda persona tiene derecho a la seguridad social como servicio público... y derecho al trabajo. El Estado garantizará medidas para la ocupación productiva."</p>
+                        </div>
+                    </div>
+
+                    <div class="legal-slide">
+                        <h4 class="legal-group-title">Gestión Fiscal</h4>
+                        <div class="legal-citation">
+                            <strong>Artículo 311 (CRBV)</strong>
+                            <p>"La gestión fiscal estará regida por principios de eficiencia, solvencia, transparencia, responsabilidad y equilibrio fiscal."</p>
+                        </div>
+                        <div class="legal-citation">
+                            <strong>Artículo 315 (CRBV)</strong>
+                            <p>"En los presupuestos públicos anuales se establecerá de manera clara el objetivo específico... y los resultados concretos que se espera obtener."</p>
+                        </div>
+                    </div>
+
+                    <div class="legal-slide">
+                        <h4 class="legal-group-title">Planificación Pública</h4>
+                        <div class="legal-citation">
+                            <strong>Artículo 25 (LOPPP)</strong>
+                            <p>"El Proyecto de Ley del marco plurianual del presupuesto... establecerá los límites máximos de gasto y de endeudamiento para un período de tres años."</p>
+                        </div>
+                        <div class="legal-citation">
+                            <strong>Artículo 52 (LOPPP)</strong>
+                            <p>"Los planes operativos tienen la finalidad de concretar los proyectos, recursos, objetivos y metas, trazados en los planes estratégicos."</p>
+                        </div>
+                    </div>
+
+                    <div class="legal-slide">
+                        <h4 class="legal-group-title">Crédito Público</h4>
+                        <div class="legal-citation">
+                            <strong>Artículo 312 (CRBV)</strong>
+                            <p>"La ley fijará límites al endeudamiento público de acuerdo con un nivel prudente en relación con el tamaño de la economía."</p>
+                        </div>
+                        <div class="legal-citation">
+                            <strong>Artículo 80 (LOPPP)</strong>
+                            <p>"El Ejecutivo presentará a la Asamblea Nacional... el monto máximo de las operaciones de crédito público a contratar durante el ejercicio."</p>
+                        </div>
+                    </div>
+
+                    <div class="legal-slide">
+                        <h4 class="legal-group-title">Política Monetaria</h4>
+                        <div class="legal-citation">
+                            <strong>Artículo 318 (CRBV)</strong>
+                            <p>"El objetivo fundamental del BCV es lograr la estabilidad de precios y preservar el valor de la unidad monetaria."</p>
+                        </div>
+                        <div class="legal-citation">
+                            <strong>Artículo 320 (CRBV)</strong>
+                            <p>"El Estado debe promover y defender la estabilidad económica... el BCV no podrá convalidar o financiar políticas fiscales deficitarias."</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="download-grid">
+                <a href="../documentos/constitucion_venezuela.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> Constitución (CRBV)
+                </a>
+                <a href="../documentos/ley_planificacion.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> Ley Orgánica (LOPPP)
+                </a>
+                <a href="../documentos/ley_creacion_corpoandes.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> Ley de Creación
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="antecedentes">
+        <div class="container">
+            <h2 class="section-title">Antecedentes de Planificación</h2>
+            <div class="timeline-container">
+                <div class="timeline-box">
+                    <div class="timeline-title">VIII Plan de la Nación: El Gran Viraje (1990)</div>
+                    <div class="timeline-desc">Intento de reorientación estratégica para convertir la crisis en oportunidad, enfocado en crecimiento sin inflación y competitividad internacional.</div>
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-title">Plan de Desarrollo 2001-2007</div>
+                    <div class="timeline-desc">Enfoque en equilibrios macroeconómicos y sociales, buscando la justicia social.</div>
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-title" style="border: none;">Proyecto Nacional Simón Bolívar (2007-2013)</div>
+                    <div class="timeline-desc">Primer Plan Socialista orientado a la construcción de una nueva ética, suprema felicidad social y democracia protagónica.</div>
+                </div>
+            </div>
+
+            <h4 style="text-align: center; color: #6a040f; margin-top: 30px; margin-bottom: 15px;">Documentos Históricos</h4>
+            <div class="download-grid">
+                <a href="../documentos/plan_viraje.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> VIII Plan Nación
+                </a>
+                <a href="../documentos/plan_2001_2007.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> Plan 2001-2007
+                </a>
+                <a href="../documentos/plan_simon_bolivar.pdf" download class="download-btn">
+                    <i class="fas fa-file-pdf"></i> Plan S. Bolívar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="objetivos" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Objetivos del Programa Económico</h2>
+            <p class="section-desc">Metas establecidas para la Agenda de Reconstrucción Nacional 2025-2030.</p>
+
+            <div class="objectives-container">
+                <h3 style="color: #6a040f; margin-bottom: 10px;">Objetivo General</h3>
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    Diseñar un programa para el desarrollo de la nación garantizando la estabilidad macroeconómica y el crecimiento económico sostenible de Venezuela en el periodo 2025-2030.
+                </p>
+
+                <h3 style="color: #6a040f; margin-top: 30px; margin-bottom: 10px;">Objetivos Específicos</h3>
+                <ul class="objectives-list">
+                    <li><i class="fas fa-search-dollar"></i> Identificar las políticas económicas para estabilizar las variables macroeconómicas.</li>
+                    <li><i class="fas fa-tasks"></i> Ejecutar las estrategias económicas para estabilizar las variables macroeconómicas.</li>
+                    <li><i class="fas fa-balance-scale"></i> Proponer políticas económicas que promuevan la regulación y transparencia de las finanzas públicas.</li>
+                    <li><i class="fas fa-chart-line"></i> Estimular la demanda agregada por medio del gasto público de capital.</li>
+                    <li><i class="fas fa-handshake"></i> Reestructurar la deuda externa para el financiamiento de la nación.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyecto">
+        <div class="container">
+            <h2 class="section-title">Proyecto Final</h2>
+            <p class="section-desc">Documento completo con el diagnóstico, propuestas y marco fiscal.</p>
+
+            <div class="single-pdf-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="color: #6a040f;"><i class="fas fa-file-pdf"></i> Visualizador del Documento</h3>
+                    <a href="../documentos/plan_nacion.pdf" target="_blank" class="btn">
+                        <i class="fas fa-download"></i> Descargar PDF
+                    </a>
+                </div>
+
+                <iframe src="../documentos/plan_nacion.pdf" width="100%" height="700px" style="border: 1px solid #ddd; border-radius: 5px;">
+                    <p>Tu navegador no soporta iframes. <a href="../documentos/plan_nacion.pdf">Descarga el plan aquí</a>.</p>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Wister Márquez. Portafolio Académico - ULA.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { fontFamily: 'Segoe UI', primaryColor: '#6a040f' } });
+    </script>
+
+    <script>
+        // LÓGICA CARRUSEL LEGAL
+        let indiceLegal = 0;
+        const track = document.getElementById('legal-track');
+        const totalSlides = 5; 
+
+        function moverLegal(direccion) {
+            indiceLegal += direccion;
+            if (indiceLegal >= totalSlides) indiceLegal = 0;
+            if (indiceLegal < 0) indiceLegal = totalSlides - 1;
+            track.style.transform = `translateX(-${indiceLegal * 100}%)`;
+        }
+    </script>
+
+</body>
+</html>
