@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS EXCLUSIVOS PARA EL CARRUSEL POWER BI --- */
+        /* --- ESTILOS GENERALES Y EXTRAS --- */
+        
+        /* Ajuste de Carrusel Power BI */
         .carousel-container {
             position: relative;
             max-width: 900px;
@@ -18,19 +20,16 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             background: #fff;
         }
-
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
             width: 100%;
         }
-
         .carousel-slide {
             min-width: 100%;
             box-sizing: border-box;
             padding: 20px;
         }
-
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -50,44 +49,26 @@
             transition: 0.3s;
             opacity: 0.8;
         }
-
-        .carousel-btn:hover {
-            opacity: 1;
-            background-color: #370617;
-        }
-
+        .carousel-btn:hover { opacity: 1; background-color: #370617; }
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
-
         .carousel-dots {
             text-align: center;
             padding: 10px 0;
             background: #f8f9fa;
         }
         .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: 0.3s;
+            height: 12px; width: 12px; margin: 0 5px;
+            background-color: #bbb; border-radius: 50%;
+            display: inline-block; cursor: pointer; transition: 0.3s;
         }
-        .dot.active {
-            background-color: #6a040f;
-            transform: scale(1.2);
-        }
-
+        .dot.active { background-color: #6a040f; transform: scale(1.2); }
         .card-header-carousel {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            color: #6a040f;
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 10px; color: #6a040f;
         }
 
-        /* --- ESTILOS PARA EXPERIENCIA EN 2 COLUMNAS --- */
+        /* Estilos Experiencia 2 Columnas */
         .experience-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -95,80 +76,87 @@
             margin-top: 30px;
             align-items: start;
         }
-
         .exp-column h3.col-title {
-            font-size: 1.4rem;
-            color: #6a040f;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.4rem; color: #6a040f;
+            margin-bottom: 25px; border-bottom: 2px solid #eee;
+            padding-bottom: 10px; display: flex; align-items: center; gap: 10px;
         }
 
-        @media (max-width: 768px) {
-            .experience-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
-
-        /* --- NUEVO: ESTILOS DEL MENÚ DESPLEGABLE (DROPDOWN) --- */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
+        /* --- ESTILOS DEL MENÚ DESPLEGABLE --- */
+        .dropdown { position: relative; display: inline-block; }
         .dropdown-content {
-            display: none; /* Oculto por defecto */
-            position: absolute;
-            background-color: #fff;
-            min-width: 220px;
+            display: none; position: absolute;
+            background-color: #fff; min-width: 220px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            z-index: 1000;
-            border-radius: 8px;
-            top: 100%; /* Justo debajo */
-            left: 0;
-            padding: 10px 0;
-            border-top: 4px solid #6a040f; /* Detalle vinotinto */
+            z-index: 1000; border-radius: 8px;
+            top: 100%; left: 0; padding: 10px 0;
+            border-top: 4px solid #6a040f;
         }
-
-        /* Mostrar al pasar el mouse */
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        /* Estilo de los enlaces dentro del menú */
-        .dropdown-content li {
-            display: block;
-            margin: 0;
-        }
-
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
+        .dropdown-content li { display: block; margin: 0; }
         .dropdown-content li a {
-            color: #444;
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            font-size: 0.95rem;
-            transition: 0.2s;
+            color: #444; padding: 12px 20px;
+            text-decoration: none; display: block;
+            font-size: 0.95rem; transition: 0.2s;
             border-bottom: 1px solid #f9f9f9;
         }
-
-        .dropdown-content li a:hover {
-            background-color: #f8f9fa;
-            color: #6a040f;
-            padding-left: 25px; /* Pequeña animación de desplazamiento */
-        }
-
-        .dropdown-content li:last-child a {
-            border-bottom: none;
-        }
-
+        .dropdown-content li a:hover { background-color: #f8f9fa; color: #6a040f; padding-left: 25px; }
+        .dropdown-content li:last-child a { border-bottom: none; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- OPTIMIZACIÓN MÓVIL (RESPONSIVE) --- */
+        .menu-toggle {
+            display: none; /* Oculto en PC */
+            font-size: 1.8rem; cursor: pointer; color: #333;
+        }
+
+        @media (max-width: 768px) {
+            /* Navegación Móvil */
+            .navbar .container {
+                display: flex; justify-content: space-between; align-items: center; position: relative;
+            }
+            .menu-toggle { display: block; } /* Mostrar hamburguesa */
+            
+            .nav-links {
+                display: none; /* Ocultar menú por defecto */
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                text-align: center;
+                z-index: 2000;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+            
+            /* Ajuste Dropdown en Móvil */
+            .dropdown:hover .dropdown-content { display: none; } /* Desactivar hover */
+            .dropdown.active .dropdown-content { display: block; position: relative; box-shadow: none; border-top: none; background: #f9f9f9; width: 100%; }
+
+            /* Hero Section */
+            .hero-content {
+                flex-direction: column-reverse; /* Imagen arriba, texto abajo o viceversa */
+                text-align: center;
+                padding-top: 20px;
+            }
+            .hero-buttons { justify-content: center; }
+            .hero-img { margin-bottom: 20px; justify-content: center; display: flex; }
+            .hero-img img { max-width: 250px; }
+
+            /* Grid Experiencia */
+            .experience-grid { grid-template-columns: 1fr; gap: 40px; }
+            
+            /* Grid Habilidades y Proyectos */
+            .skills-wrapper { flex-direction: column; }
+            .projects-grid { grid-template-columns: 1fr; }
+            
+            /* Contacto */
+            .contact-wrapper { flex-direction: column; }
         }
     </style>
 </head>
@@ -177,22 +165,27 @@
     <nav class="navbar">
         <div class="container">
             <h1 class="logo">Wister Márquez.</h1>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#powerbi">Power BI</a></li>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+                <li><a href="#habilidades" onclick="toggleMenu()">Habilidades</a></li>
+                <li><a href="#experiencia" onclick="toggleMenu()">Experiencia</a></li>
+                <li><a href="#powerbi" onclick="toggleMenu()">Power BI</a></li>
                 
-                <li class="dropdown">
-                    <a href="#economia" class="dropbtn">Asignaturas <i class="fas fa-caret-down"></i></a>
+                <li class="dropdown" onclick="toggleDropdown(this)">
+                    <a href="javascript:void(0)" class="dropbtn">Asignaturas <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
-                        <li><a href="paginas/politica_fiscal.html"><i class="fas fa-file-invoice-dollar"></i> Política Fiscal</a></li>
-                        <li><a href="paginas/planificacion.html"><i class="fas fa-chart-line"></i> Planificación Económica</a></li>
-                        <li><a href="paginas/integracion.html"><i class="fas fa-globe-americas"></i> Integración Económica</a></li>
+                        <li><a href="paginas/politica_fiscal.html">Política Fiscal</a></li>
+                        <li><a href="paginas/planificacion.html">Planificación Económica</a></li>
+                        <li><a href="paginas/integracion.html">Integración Económica</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#contacto" class="btn-nav">Contáctame</a></li>
+                <li><a href="#contacto" class="btn-nav" onclick="toggleMenu()">Contáctame</a></li>
             </ul>
         </div>
     </nav>
@@ -212,7 +205,7 @@
                         <i class="fab fa-linkedin"></i> Ver LinkedIn
                     </a>
                     <a href="cv_wister.pdf" target="_blank" class="btn-outline-light">
-                        <i class="fas fa-file-pdf"></i> Descargar CV
+                        <i class="fas fa-eye"></i> Ver CV
                     </a>
                 </div>
             </div>
@@ -263,7 +256,6 @@
                 <div class="exp-column">
                     <h3 class="col-title"><i class="fas fa-hands-helping"></i> Voluntariado & Liderazgo</h3>
                     <div class="timeline">
-                        
                         <div class="timeline-item">
                             <div class="timeline-icon"><i class="fas fa-globe"></i></div>
                             <div class="timeline-content">
@@ -271,13 +263,11 @@
                                 <h3>Coord. Finanzas y Legalidades</h3>
                                 <span class="company">AIESEC (Nacional)</span>
                                 <ul class="job-details">
-                                    <li>Creé la herramienta para evaluación de estándares financieros y legales de los comités.</li>
+                                    <li>Creé la herramienta para evaluación de estándares financieros y legales.</li>
                                     <li>Implementé reportes mensuales de control a nivel nacional.</li>
-                                    <li>Apoyé a tres gestiones diferentes de directores del área.</li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="timeline-item">
                             <div class="timeline-icon"><i class="fas fa-user-tie"></i></div>
                             <div class="timeline-content">
@@ -285,13 +275,11 @@
                                 <h3>Director de Finanzas</h3>
                                 <span class="company">AIESEC en Mérida</span>
                                 <ul class="job-details">
-                                    <li>Logré 100% de cumplimiento en estándares financieros y legales.</li>
-                                    <li>Pagué la deuda histórica de AIESEC en Mérida.</li>
-                                    <li>Reestructuré cuentas al nuevo marco financiero nacional.</li>
+                                    <li>Logré 100% de cumplimiento en estándares financieros.</li>
+                                    <li>Gestión de deuda histórica y reestructuración de cuentas.</li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="timeline-item">
                             <div class="timeline-icon"><i class="fas fa-coins"></i></div>
                             <div class="timeline-content">
@@ -301,14 +289,12 @@
                                 <p>Inicio de la gestión financiera y control presupuestario local.</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="exp-column">
                     <h3 class="col-title"><i class="fas fa-briefcase"></i> Experiencia Laboral</h3>
                     <div class="timeline">
-                        
                         <div class="timeline-item">
                             <div class="timeline-icon"><i class="fas fa-laptop-house"></i></div>
                             <div class="timeline-content">
@@ -316,14 +302,12 @@
                                 <h3>Digital Trade Manager</h3>
                                 <span class="company">Morekashop</span>
                                 <ul class="job-details">
-                                    <li>Reporte y control del ACOS (Gastos de publicidad) en <strong>Mercado Libre, Amazon, Aliexpress y Walmart</strong>.</li>
-                                    <li>Realización de reportes financieros y de inventario ABC con <strong>Power BI</strong>.</li>
-                                    <li>Creación de planes de mejora web y plan de inserción para nuevos Marketplaces.</li>
-                                    <li>Estructura de costos y análisis de mercado.</li>
+                                    <li>Control de ACOS en <strong>Mercado Libre, Amazon, Aliexpress</strong>.</li>
+                                    <li>Reportes financieros y de inventario ABC con <strong>Power BI</strong>.</li>
+                                    <li>Estrategias de inserción en nuevos Marketplaces.</li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="timeline-item">
                             <div class="timeline-icon"><i class="fas fa-building"></i></div>
                             <div class="timeline-content">
@@ -331,13 +315,11 @@
                                 <h3>Asistente de Planificación</h3>
                                 <span class="company">Gobernación de Mérida</span>
                                 <ul class="job-details">
-                                    <li>Dirección de Planificación y Presupuesto.</li>
-                                    <li>Apoyo en la automatización del Plan Operativo Anual (POA).</li>
-                                    <li>Registro de decretos en el sistema financiero "Tortuga".</li>
+                                    <li>Apoyo en automatización del Plan Operativo Anual (POA).</li>
+                                    <li>Registro de decretos en sistema financiero "Tortuga".</li>
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -450,8 +432,8 @@
 
                 <div class="card pdf-card">
                     <div class="icon-box"><i class="fas fa-globe-americas"></i></div>
-                    <h3>Seminario de Integración Económica</h3>
-                    <p>Acuerdos comerciales y bloques regionales (Biblioteca de trabajos).</p>
+                    <h3>Seminario de Integración</h3>
+                    <p>Acuerdos comerciales y bloques regionales.</p>
                     <a href="paginas/integracion.html" class="btn-outline">Ver Asignatura <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -506,7 +488,21 @@
     </footer>
 
     <script>
-        // Pantalla Completa
+        // --- MENÚ MÓVIL ---
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- DROPDOWN MÓVIL ---
+        function toggleDropdown(element) {
+            // Solo activar click en móvil
+            if (window.innerWidth <= 768) {
+                element.classList.toggle('active');
+            }
+        }
+
+        // --- PANTALLA COMPLETA ---
         function expandirPantalla(elementId) {
             var elem = document.getElementById(elementId);
             if (elem.requestFullscreen) {
@@ -518,7 +514,7 @@
             }
         }
 
-        // Carrusel
+        // --- CARRUSEL ---
         let indiceActual = 0;
         const track = document.getElementById('track');
         const dots = document.querySelectorAll('.dot');
@@ -547,5 +543,4 @@
     </script>
 
 </body>
-
 </html>
