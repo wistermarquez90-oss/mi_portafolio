@@ -2,13 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política Fiscal | Wister Márquez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Política Fiscal | Wister Márquez</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS GENERALES --- */
+        /* --- ESTILOS GENERALES (PC) --- */
         
         /* Equipo */
         .team-grid {
@@ -66,7 +65,8 @@
             border: 2px solid #6a040f;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             margin: 30px 0;
-            overflow-x: auto;
+            overflow-x: auto; /* Permite scroll horizontal en móvil */
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Caso Venezuela */
@@ -75,7 +75,7 @@
             border-radius: 12px;
             overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Permite que baje en móvil */
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             margin-bottom: 40px;
         }
@@ -132,8 +132,8 @@
             display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
         .legal-btn:hover { background: #6a040f; color: white; }
-        .prev-l { left: 10px; }
-        .next-l { right: 10px; }
+        .prev-l { left: 5px; }
+        .next-l { right: 5px; }
 
         /* Botones Descarga */
         .download-grid {
@@ -202,7 +202,7 @@
         }
         .objectives-list li i { color: #6a040f; }
 
-        /* --- ESTILOS DEL MENÚ DESPLEGABLE (DROPDOWN) --- */
+        /* --- MENÚ DESPLEGABLE (PC) --- */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content {
             display: none;
@@ -227,29 +227,95 @@
         }
         .dropdown-content li a:hover { background-color: #f9f9f9; color: #6a040f; }
         .fa-caret-down { margin-left: 5px; font-size: 0.8em; }
+
+        /* --- ESTILOS RESPONSIVE (MÓVIL) --- */
+        /* Menú Hamburguesa */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                position: relative;
+            }
+
+            .logo { font-size: 1.5rem; }
+
+            .menu-toggle { display: block; position: absolute; right: 20px; top: 20px; }
+
+            .nav-links {
+                display: none; /* Oculto por defecto en móvil */
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #333;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active { display: flex; } /* Clase para mostrar menú */
+
+            .nav-links li { margin: 10px 0; }
+            
+            /* Ajuste del Dropdown en Móvil */
+            .dropdown-content {
+                position: relative;
+                box-shadow: none;
+                background-color: #444;
+                width: 100%;
+                border-top: none;
+            }
+            .dropdown-content li a { color: white; text-align: center; border-bottom: 1px solid #555; }
+            .dropdown:hover .dropdown-content { display: none; } /* Desactiva hover en móvil */
+            .dropdown.active .dropdown-content { display: block; } /* Activa con click */
+
+            /* Ajustes de contenido */
+            .hero h2 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            
+            .case-content, .case-visual { min-width: 100%; } /* Apilar tarjetas */
+            
+            .legal-slide { padding: 20px 30px; } /* Menos padding en carrusel */
+            .legal-btn { width: 30px; height: 30px; font-size: 1.2rem; background: rgba(255,255,255,0.9); }
+            
+            .objectives-container { padding: 20px; }
+            .objectives-list li { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="container">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <h1 class="logo">Wister Márquez.</h1>
-            <ul class="nav-links">
-                <li><a href="#asignatura">La Asignatura</a></li>
-                <li><a href="#equipo">Equipo</a></li>
-                <li><a href="#metodologia">Metodología</a></li>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#asignatura" onclick="toggleMenu()">La Asignatura</a></li>
+                <li><a href="#equipo" onclick="toggleMenu()">Equipo</a></li>
+                <li><a href="#metodologia" onclick="toggleMenu()">Metodología</a></li>
                 
-                <li class="dropdown">
-                    <a href="#" class="dropbtn">Análisis <i class="fas fa-caret-down"></i></a>
+                <li class="dropdown" onclick="toggleDropdown(this)">
+                    <a href="javascript:void(0)" class="dropbtn">Análisis <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
-                        <li><a href="#caso">Caso Venezuela</a></li>
-                        <li><a href="#legal">Marco Legal</a></li>
-                        <li><a href="#antecedentes">Antecedentes</a></li>
+                        <li><a href="#caso" onclick="toggleMenu()">Caso Venezuela</a></li>
+                        <li><a href="#legal" onclick="toggleMenu()">Marco Legal</a></li>
+                        <li><a href="#antecedentes" onclick="toggleMenu()">Antecedentes</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#objetivos">Objetivos</a></li>
-                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="#objetivos" onclick="toggleMenu()">Objetivos</a></li>
+                <li><a href="#proyecto" onclick="toggleMenu()">Proyecto</a></li>
                 <li><a href="../index.html"><i class="fas fa-arrow-left"></i> Portafolio</a></li>
             </ul>
         </div>
@@ -293,7 +359,7 @@
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="../img/perfil.png" alt="Wister Márquez">
+                        <img src="../img/perfil.PNG" alt="Wister Márquez">
                     </div>
                     <div class="team-info">
                         <h3>Wister Márquez</h3>
@@ -306,7 +372,7 @@
                 </div>
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="../img/Dubly.png" alt="Dublymar Gómez">
+                        <img src="../img/Dubly.PNG" alt="Dublymar Gómez">
                     </div>
                     <div class="team-info">
                         <h3>Dublymar Gómez</h3> <p>Economista</p>
@@ -467,13 +533,13 @@
             </div>
 
             <div class="download-grid">
-                <a href="../documentos/constitucion_venezuela.pdf" download class="download-btn">
+                <a href="../documentos/constitucion_venezuela.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> Constitución (CRBV)
                 </a>
-                <a href="../documentos/ley_planificacion.pdf" download class="download-btn">
+                <a href="../documentos/ley_planificacion.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> Ley Orgánica (LOPPP)
                 </a>
-                <a href="../documentos/ley_creacion_corpoandes.pdf" download class="download-btn">
+                <a href="../documentos/ley_creacion_corpoandes.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> Ley de Creación
                 </a>
             </div>
@@ -500,13 +566,13 @@
 
             <h4 style="text-align: center; color: #6a040f; margin-top: 30px; margin-bottom: 15px;">Documentos Históricos</h4>
             <div class="download-grid">
-                <a href="../documentos/plan_viraje.pdf" download class="download-btn">
+                <a href="../documentos/plan_viraje.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> VIII Plan Nación
                 </a>
-                <a href="../documentos/plan_2001_2007.pdf" download class="download-btn">
+                <a href="../documentos/plan_2001_2007.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> Plan 2001-2007
                 </a>
-                <a href="../documentos/plan_simon_bolivar.pdf" download class="download-btn">
+                <a href="../documentos/plan_simon_bolivar.pdf" target="_blank" class="download-btn">
                     <i class="fas fa-file-pdf"></i> Plan S. Bolívar
                 </a>
             </div>
@@ -579,8 +645,21 @@
             if (indiceLegal < 0) indiceLegal = totalSlides - 1;
             track.style.transform = `translateX(-${indiceLegal * 100}%)`;
         }
+
+        // LÓGICA MENÚ MÓVIL
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // LÓGICA DROPDOWN MÓVIL
+        function toggleDropdown(element) {
+            // Solo activar en móvil
+            if (window.innerWidth <= 768) {
+                element.classList.toggle('active');
+            }
+        }
     </script>
 
 </body>
 </html>
-
