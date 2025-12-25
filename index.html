@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS GENERALES Y EXTRAS --- */
-        
+        /* --- ESTILOS GENERALES --- */
+        body { margin: 0; font-family: sans-serif; } /* Asegurar reset básico */
+
         /* Ajuste de Carrusel Power BI */
         .carousel-container {
             position: relative;
@@ -82,7 +83,7 @@
             padding-bottom: 10px; display: flex; align-items: center; gap: 10px;
         }
 
-        /* --- ESTILOS DEL MENÚ DESPLEGABLE --- */
+        /* --- ESTILOS DEL MENÚ DESPLEGABLE (PC) --- */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content {
             display: none; position: absolute;
@@ -107,46 +108,104 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- OPTIMIZACIÓN MÓVIL (RESPONSIVE) --- */
+        /* --- OPTIMIZACIÓN MÓVIL (CORREGIDO) --- */
         .menu-toggle {
             display: none; /* Oculto en PC */
             font-size: 1.8rem; cursor: pointer; color: #333;
         }
 
         @media (max-width: 768px) {
-            /* Navegación Móvil */
+            /* 1. Navbar y Menú Hamburguesa */
+            .navbar {
+                position: relative;
+                z-index: 3000;
+                background: white; /* Fondo sólido para la barra */
+                padding: 15px 20px;
+            }
+            
             .navbar .container {
-                display: flex; justify-content: space-between; align-items: center; position: relative;
+                display: flex; justify-content: space-between; align-items: center;
             }
-            .menu-toggle { display: block; } /* Mostrar hamburguesa */
-            
-            .nav-links {
-                display: none; /* Ocultar menú por defecto */
-                position: absolute;
-                top: 100%; left: 0; width: 100%;
-                background: white;
-                flex-direction: column;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                padding: 20px 0;
-                text-align: center;
-                z-index: 2000;
-            }
-            .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
-            
-            /* Ajuste Dropdown en Móvil */
-            .dropdown:hover .dropdown-content { display: none; } /* Desactivar hover */
-            .dropdown.active .dropdown-content { display: block; position: relative; box-shadow: none; border-top: none; background: #f9f9f9; width: 100%; }
 
-            /* Hero Section */
-            .hero-content {
-                flex-direction: column-reverse; /* Imagen arriba, texto abajo o viceversa */
-                text-align: center;
-                padding-top: 20px;
+            .logo { font-size: 1.5rem; z-index: 3001; }
+            .menu-toggle { display: block; z-index: 3001; color: #333; }
+            
+            /* El contenedor de los enlaces */
+            .nav-links {
+                display: none; /* Oculto por defecto */
+                position: absolute;
+                top: 100%; /* Justo debajo de la barra blanca */
+                left: 0;
+                width: 100%;
+                background-color: #222; /* FONDO OSCURO PARA EL MENÚ */
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
             }
-            .hero-buttons { justify-content: center; }
-            .hero-img { margin-bottom: 20px; justify-content: center; display: flex; }
-            .hero-img img { max-width: 250px; }
+
+            .nav-links.active { display: flex; } /* Se muestra al hacer clic */
+
+            /* Enlaces principales del menú móvil */
+            .nav-links li { margin: 0; width: 100%; }
+            .nav-links li a, .nav-links .dropbtn {
+                color: #fff; /* TEXTO BLANCO */
+                padding: 15px;
+                display: block;
+                border-bottom: 1px solid #333;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* 2. Dropdown Móvil (Asignaturas) */
+            .dropdown:hover .dropdown-content { display: none; } /* Desactiva hover en táctil */
+            
+            .dropdown-content {
+                position: relative;
+                box-shadow: none;
+                background-color: #333; /* Ligeramente más claro que el fondo principal */
+                border-top: none;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .dropdown.active .dropdown-content { display: block; }
+
+            .dropdown-content li a {
+                color: #ccc; /* Gris claro para submenú */
+                padding-left: 30px; /* Indentación */
+                font-size: 0.9rem;
+                background-color: #2a2a2a;
+                border-bottom: 1px solid #333;
+            }
+
+            /* 3. Hero Section (Foto y Texto) */
+            .hero {
+                height: auto; /* Altura automática */
+                min-height: auto;
+                padding-top: 40px; /* Espacio para que no choque */
+                padding-bottom: 40px;
+            }
+
+            .hero-content {
+                flex-direction: column-reverse; /* Foto arriba, texto abajo */
+                text-align: center;
+                gap: 20px;
+            }
+
+            .hero-img {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto; /* Centrar foto */
+            }
+            
+            .hero-img img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%; /* Foto redonda */
+            }
+
+            .hero-text { margin-top: 20px; }
+            .hero-buttons { justify-content: center; margin-bottom: 20px; }
 
             /* Grid Experiencia */
             .experience-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -263,7 +322,7 @@
                                 <h3>Coord. Finanzas y Legalidades</h3>
                                 <span class="company">AIESEC (Nacional)</span>
                                 <ul class="job-details">
-                                    <li>Creé la herramienta para evaluación de estándares financieros y legales.</li>
+                                    <li>Creé la herramienta para evaluación de estándares financieros y legales de los comités.</li>
                                     <li>Implementé reportes mensuales de control a nivel nacional.</li>
                                 </ul>
                             </div>
