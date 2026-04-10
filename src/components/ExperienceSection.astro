@@ -1,0 +1,181 @@
+---
+const experiences = [
+  {
+    id: 'morekashop',
+    period: '2022 - Actualidad',
+    title: 'Digital Trade Manager',
+    company: 'Morekashop',
+    location: 'México (Remoto)',
+    type: 'Tiempo completo',
+    description: 'Gestión integral de operaciones de e-commerce en múltiples marketplaces.',
+    achievements: [
+      'Control y optimización del ACOS en Mercado Libre, Amazon y Aliexpress',
+      'Desarrollo de reportes financieros y de inventario ABC con Power BI',
+      'Diseño e implementación de estrategias de inserción en nuevos Marketplaces',
+      'Análisis de métricas de conversión y comportamiento del consumidor'
+    ],
+    skills: ['Power BI', 'Mercado Libre', 'Amazon', 'Aliexpress', 'Análisis de datos']
+  },
+  {
+    id: 'gobernacion',
+    period: '2021 - 2022',
+    title: 'Asistente de Planificación',
+    company: 'Gobernación de Mérida',
+    location: 'Mérida, Venezuela',
+    type: 'Tiempo completo',
+    description: 'Apoyo en la gestión y automatización de procesos administrativos.',
+    achievements: [
+      'Automatización del Plan Operativo Anual (POA) utilizando herramientas digitales',
+      'Registro y seguimiento de decretos en el sistema financiero "Tortuga"',
+      'Coordinación interdepartamental para la ejecución de proyectos',
+      'Elaboración de informes de gestión para altos directivos'
+    ],
+    skills: ['Planificación', 'Sistemas financieros', 'Automatización', 'Gestión pública']
+  }
+];
+
+const leadership = [
+  {
+    period: 'Feb 2022 - Nov 2023',
+    role: 'Coordinador de Finanzas y Legalidades Nacional',
+    organization: 'AIESEC',
+    location: 'Venezuela y Chile',
+    description: 'Liderazgo nacional de las áreas financiera y legal de la organización.'
+  },
+  {
+    period: 'Ago 2021 - Feb 2022',
+    role: 'Director de Finanzas',
+    organization: 'AIESEC Mérida',
+    location: 'Mérida, Venezuela',
+    description: 'Dirección del área financiera del comité local.'
+  },
+  {
+    period: 'Feb 2021 - Ago 2021',
+    role: 'Coordinador de Finanzas',
+    organization: 'AIESEC Mérida',
+    location: 'Mérida, Venezuela',
+    description: 'Coordinación de operaciones financieras y presupuesto.'
+  }
+];
+---
+
+<section id="experiencia" class="py-20 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-block mb-4 px-4 py-1 bg-gold/10 rounded-full" data-aos="fade-up">
+        <span class="text-wine font-medium text-sm">Trayectoria</span>
+      </div>
+      
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">
+        Experiencia <span class="text-wine">Profesional</span>
+      </h2>
+      
+      <p class="text-gray-600 text-lg" data-aos="fade-up" data-aos-delay="200">
+        Mi recorrido en el mundo del e-commerce, la planificación y el liderazgo
+      </p>
+    </div>
+    
+    <!-- Work Experience Timeline -->
+    <div class="mb-20">
+      <h3 class="font-display text-2xl font-bold text-gray-900 mb-8 flex items-center" data-aos="fade-right">
+        <span class="w-8 h-8 bg-wine rounded-lg flex items-center justify-center mr-3">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </span>
+        Experiencia Laboral
+      </h3>
+      
+      <div class="space-y-8">
+        {experiences.map((job, index) => (
+          <div 
+            class="group relative bg-gray-50 rounded-2xl p-6 lg:p-8 hover:shadow-lg transition-shadow duration-300 border-l-4 border-wine"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="grid lg:grid-cols-4 gap-6">
+              <!-- Period -->
+              <div class="lg:col-span-1">
+                <span class="inline-block px-3 py-1 bg-wine text-white text-sm font-medium rounded-full mb-2">
+                  {job.period}
+                </span>
+                <p class="text-gray-500 text-sm">{job.location}</p>
+              </div>
+              
+              <!-- Details -->
+              <div class="lg:col-span-3">
+                <div class="mb-4">
+                  <h4 class="font-display text-xl font-bold text-gray-900 group-hover:text-wine transition-colors">
+                    {job.title}
+                  </h4>
+                  <p class="text-wine font-medium">{job.company} · {job.type}</p>
+                </div>
+                
+                <p class="text-gray-600 mb-4">{job.description}</p>
+                
+                <!-- Achievements -->
+                <ul class="space-y-2 mb-4">
+                  {job.achievements.map((achievement) => (
+                    <li class="flex items-start space-x-2">
+                      <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-gray-700 text-sm">{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <!-- Skills Tags -->
+                <div class="flex flex-wrap gap-2">
+                  {job.skills.map((skill) => (
+                    <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border border-gray-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Leadership Experience -->
+    <div>
+      <h3 class="font-display text-2xl font-bold text-gray-900 mb-8 flex items-center" data-aos="fade-right">
+        <span class="w-8 h-8 bg-gold rounded-lg flex items-center justify-center mr-3">
+          <svg class="w-4 h-4 text-wine" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </span>
+        Liderazgo & Voluntariado (AIESEC)
+      </h3>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        {leadership.map((role, index) => (
+          <div 
+            class="bg-wine rounded-xl p-6 text-white hover:bg-wine-800 transition-colors duration-300"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="mb-4">
+              <span class="inline-block px-3 py-1 bg-gold text-wine text-xs font-bold rounded-full">
+                {role.period}
+              </span>
+            </div>
+            
+            <h4 class="font-display font-bold text-lg mb-2">{role.role}</h4>
+            
+            <p class="text-gold font-medium text-sm mb-2">{role.organization}</p>
+            
+            <p class="text-wine-200 text-sm mb-3">{role.location}</p>
+            
+            <p class="text-wine-100 text-sm">{role.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

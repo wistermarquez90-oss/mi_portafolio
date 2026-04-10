@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capacitación en Investigación | Wister Márquez">
+  
+  <!-- Hero --
+  <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+      <p class="text-[#ffba08] font-semibold tracking-wider uppercase mb-4">Programa de Formación</p>
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Capacitación en Investigación Económica</h1>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Formación práctica para auxiliares de investigación en Economía Internacional
+      </p>
+    </div>
+  </section>
+
+  <!-- Introducción --
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-[#6a040f]/5 border-l-4 border-[#6a040f] p-8 rounded-r-xl mb-12" data-aos="fade-up">
+          <h2 class="text-2xl font-display font-bold text-[#6a040f] mb-4">Programa de Formación</h2>
+          <p class="text-lg text-gray-700 mb-4">
+            Diseñé un programa de capacitación para estudiantes de <strong>Economía Internacional</strong> que trabajarán como auxiliares de investigación en proyectos de análisis económico.
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div class="text-3xl font-bold text-[#6a040f]">4</div>
+              <p class="text-sm text-gray-600">Módulos</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div class="text-3xl font-bold text-[#6a040f]">6</div>
+              <p class="text-sm text-gray-600">Sesiones</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div class="text-3xl font-bold text-[#6a040f]">13</div>
+              <p class="text-sm text-gray-600">Estudiantes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulos --
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] mb-8" data-aos="fade-up">Módulos del Curso</h3>
+
+        <div class="space-y-8">
+          
+          <!-- Módulo 1 --
+          <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
+            <div class="bg-[#6a040f] px-6 py-4">
+              <h4 class="text-white font-bold text-lg">Módulo 1: Búsqueda de Bases de Datos Económicas</h4>
+            </div>
+            <div class="p-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold text-gray-900 mb-3">Fuentes Oficiales Venezuela:</h5>
+                  <ul class="text-gray-600 space-y-1 text-sm">
+                    <li>• Banco Central de Venezuela (BCV)</li>
+                    <li>• Instituto Nacional de Estadística (INE)</li>
+                    <li>• Gaceta Oficial - Normativas</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h5 class="font-semibold text-gray-900 mb-3">Fuentes Oficiales Colombia:</h5>
+                  <ul class="text-gray-600 space-y-1 text-sm">
+                    <li>• DANE - Estadísticas nacionales</li>
+                    <li>• Banco de la República</li>
+                    <li>• DIAN - Comercio exterior</li>
+                    <li>• Migración Colombia</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="mt-6 pt-6 border-t border-gray-100">
+                <h5 class="font-semibold text-gray-900 mb-3">Organismos Internacionales:</h5>
+                <div class="flex flex-wrap gap-2">
+                  {['Banco Mundial', 'CEPAL', 'FMI', 'UN Comtrade', 'ACNUR', 'OIM'].map(org => (
+                    <span class="px-3 py-1 bg-[#6a040f]/10 text-[#6a040f] rounded-full text-sm">{org}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 2 --
+          <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
+            <div class="bg-[#6a040f] px-6 py-4">
+              <h4 class="text-white font-bold text-lg">Módulo 2: Limpieza de Datos en Excel</h4>
+            </div>
+            <div class="p-6">
+              <div class="grid md:grid-cols-4 gap-4">
+                
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="text-white font-bold">1</span>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Importación</h5>
+                  <p class="text-sm text-gray-600">Revisión inicial de formatos y columnas</p>
+                </div>
+
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="text-white font-bold">2</span>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Limpieza</h5>
+                  <p class="text-sm text-gray-600">Eliminar duplicados, estandarizar fechas</p>
+                </div>
+
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="text-white font-bold">3</span>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Validación</h5>
+                  <p class="text-sm text-gray-600">Verificar rangos y validación cruzada</p>
+                </div>
+
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="text-white font-bold">4</span>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Transformación</h5>
+                  <p class="text-sm text-gray-600">Variables derivadas y agregación</p>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-6 border-t border-gray-100">
+                <h5 class="font-semibold text-gray-900 mb-3">Funciones Avanzadas:</h5>
+                <div class="flex flex-wrap gap-2">
+                  {['BUSCARV/XLOOKUP', 'Tablas Dinámicas', 'Gráficos Avanzados', 'Validación de Datos', 'Formato Condicional'].map(func => (
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">{func}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 3 --
+          <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
+            <div class="bg-[#6a040f] px-6 py-4 flex justify-between items-center">
+              <h4 class="text-white font-bold text-lg">Módulo 3: Normas APA 7ma Edición</h4>
+              <span class="text-white/80 text-sm">4 sesiones de 2 horas</span>
+            </div>
+            <div class="p-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-[#ffba08] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-[#6a040f] font-bold">1</span>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-gray-900">Citas Textuales y Paráfrasis</h5>
+                    <p class="text-sm text-gray-600">Citas directas cortas/largas, parafraseo vs. plagio</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-[#ffba08] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-[#6a040f] font-bold">2</span>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-gray-900">Referencias Bibliográficas</h5>
+                    <p class="text-sm text-gray-600">Libros, artículos, documentos institucionales</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-[#ffba08] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-[#6a040f] font-bold">3</span>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-gray-900">Tablas y Figuras</h5>
+                    <p class="text-sm text-gray-600">Formatos de tablas, notas al pie, numeración</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-[#ffba08] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="text-[#6a040f] font-bold">4</span>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-gray-900">Revisión Final</h5>
+                    <p class="text-sm text-gray-600">Múltiples autores, fuentes secundarias</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 4 --
+          <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
+            <div class="bg-[#6a040f] px-6 py-4">
+              <h4 class="text-white font-bold text-lg">Módulo 4: Metodología de Investigación</h4>
+            </div>
+            <div class="p-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold text-gray-900 mb-3">Diseño de Investigación:</h5>
+                  <ul class="text-gray-600 space-y-2">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Formulación de problemas
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Definición de objetivos
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Marco teórico y antecedentes
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h5 class="font-semibold text-gray-900 mb-3">Análisis de Datos:</h5>
+                  <ul class="text-gray-600 space-y-2">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Estadística descriptiva
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Análisis de tendencias
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-5 h-5 text-[#6a040f] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Conclusiones y recomendaciones
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Tutorial --
+        <div class="mt-12 bg-gradient-to-r from-[#6a040f] to-[#370617] rounded-2xl p-8 text-center" data-aos="fade-up">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[#ffba08]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-display font-bold text-white mb-2">Video Tutorial Próximamente</h3>
+          <p class="text-white/80 mb-4">
+            "Cómo Buscar y Limpiar Bases de Datos Económicas" - Tutorial completo paso a paso
+          </p>
+          
+          <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-white text-sm">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            Publicado en YouTube - Próximamente
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA --
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+      <div data-aos="fade-up">
+        <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-4">
+          ¿Necesitas capacitar a tu equipo?
+        </h2>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          Puedo adaptar este programa de formación para las necesidades específicas de tu institución o proyecto de investigación.
+        </p>
+        <a 
+          href="/contacto" 
+          class="inline-block bg-[#6a040f] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#370617] transition-colors"
+        >
+          Solicitar Información
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

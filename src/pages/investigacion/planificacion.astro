@@ -1,0 +1,134 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Planificación Económica | Investigación Académica">
+  
+  <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+      <p class="text-[#ffba08] font-semibold tracking-wider uppercase mb-4">9no Semestre</p>
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Planificación Económica</h1>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">Formulación del Plan Operativo Anual (POA) y gestión del presupuesto público</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Ficha Académica</h2>
+          
+          <p class="text-gray-600 text-lg mb-6">
+            Esta asignatura se centra en el estudio y aplicación de las herramientas de planificación estratégica en el sector público venezolano. A lo largo del semestre, analizamos el marco jurídico vigente para comprender cómo se estructura el presupuesto nacional.
+          </p>
+          
+          <div class="bg-[#6a040f]/5 border-l-4 border-[#6a040f] p-6 rounded-r-xl">
+            <h3 class="font-bold text-[#6a040f] mb-2">🎯 Objetivo General</h3>
+            <p class="text-gray-700">
+              Desarrollar las competencias necesarias para la formulación del <strong>Plan Operativo Anual (POA)</strong> de una institución pública real. El proceso abarcó desde el análisis situacional (FODA) hasta la asignación de recursos financieros basados en metas cuantificables.
+            </p>
+          </div>
+        </div>
+
+        <!-- Metodología --
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Metodología del POA</h2>
+          
+          <div class="grid md:grid-cols-7 gap-3">
+            {[
+              { num: '01', title: 'Horizonte', desc: '1 Año' },
+              { num: '02', title: 'Principios', desc: 'Corporativos' },
+              { num: '03', title: 'Diagnóstico', desc: 'FODA' },
+              { num: '04', title: 'Direccionamiento', desc: 'Visión/Misión' },
+              { num: '05', title: 'Proyección', desc: 'Estratégica' },
+              { num: '06', title: 'Diseño', desc: 'de Planes' },
+              { num: '07', title: 'Monitoreo', desc: 'y Evaluación' }
+            ].map((item, i) => (
+              <div class={`${i === 6 ? 'bg-[#6a040f] text-white' : 'bg-white border-2 border-[#6a040f] text-[#6a040f]'} rounded-xl p-4 text-center`}>
+                <div class="text-2xl font-bold mb-1">{item.num}</div>
+                <div class="font-semibold text-sm">{item.title}</div>
+                <div class={`text-xs ${i === 6 ? 'text-white/80' : 'text-gray-600'}`}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Caso Corpoandes --
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Caso de Estudio: Corpoandes</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p class="text-gray-600 mb-6">
+                La aplicación práctica de esta metodología se realizó en la <strong>Corporación de los Andes (CORPOANDES)</strong>. El trabajo consistió en analizar a profundidad su Ley de Creación para alinear sus objetivos históricos con las nuevas exigencias de la Planificación Pública.
+              </p>
+              
+              <a 
+                href="/documentos/poa_corpoandes.pdf"
+                target="_blank"
+                class="inline-flex items-center gap-2 bg-[#6a040f] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#370617] transition-colors"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Ver POA Completo
+              </a>
+            </div>
+            
+            <div class="bg-[#6a040f] text-white rounded-2xl p-8">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-3">Enfoque del POA</h3>
+              <p class="text-white/90 italic">
+                "El POA no es solo un requisito legal, es la herramienta de navegación que conecta los recursos actuales (Diagnóstico) con la visión futura (Proyección) a través de acciones medibles (Monitoreo)."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marco Legal --
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Base Jurídica</h2>
+          
+          <div class="space-y-4">
+            
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-[#6a040f] mb-2">Constitución de la República (CRBV)</h3>
+              <blockquote class="text-gray-700 italic border-l-4 border-[#6a040f] pl-4">
+                "En los presupuestos públicos anuales de gastos... se establecerá de manera clara, para cada crédito presupuestario, el objetivo específico a que esté dirigido, los resultados concretos que se espera obtener..."
+              </blockquote>
+              <p class="text-right text-sm text-[#6a040f] mt-2">— Artículo 315</p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-[#6a040f] mb-2">Ley Orgánica de Planificación Pública (LOPPP)</h3>
+              <blockquote class="text-gray-700 italic border-l-4 border-[#6a040f] pl-4">
+                "Los planes operativos son aquellos formulados por los órganos y entes del Poder Público... con la finalidad de concretar los proyectos, recursos, objetivos y metas, trazados en los planes estratégicos."
+              </blockquote>
+              <p class="text-right text-sm text-[#6a040f] mt-2">— Artículo 52</p>
+            </div>
+
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/documentos/constitucion_venezuela.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+              Constitución CRBV
+            </a>
+            <a href="/documentos/ley_planificacion.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+              Ley LOPPP
+            </a>
+            <a href="/documentos/ley_creacion_corpoandes.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+              Ley Corpoandes
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>

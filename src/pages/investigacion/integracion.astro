@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Integración Económica | Investigación Académica">
+  
+  <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+      <p class="text-[#ffba08] font-semibold tracking-wider uppercase mb-4">9no Semestre</p>
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Integración Económica</h1>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">Estudio de bloques económicos y acuerdos comerciales en América Latina</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Sobre la Asignatura</h2>
+          
+          <div class="bg-[#6a040f]/5 border-l-4 border-[#6a040f] p-6 rounded-r-xl mb-8">
+            <p class="text-lg text-gray-700">
+              <strong>Objetivo General:</strong> Estudiar los efectos de la Integración Económica en el desenvolvimiento de las economías de los países que firman acuerdos de comercio preferencial.
+            </p>
+          </div>
+
+          <h3 class="font-bold text-gray-900 mb-4">Contenido Programático</h3>
+          
+          <div class="grid md:grid-cols-2 gap-4">
+            {[
+              { unit: 'I', title: 'Integración Económica', desc: 'Conceptos, fases y teorías fundamentales' },
+              { unit: 'II', title: 'Experiencias Latinoamericanas', desc: 'MCCA, ALALC, ALADI y CARICOM' },
+              { unit: 'III', title: 'Integración Antisistémica', desc: 'Conceptos y el ALBA-TCP' },
+              { unit: 'IV', title: 'Integración en América del Sur', desc: 'Comunidad Andina (CAN) y Mercosur' },
+              { unit: 'V', title: 'Integración y Fronteras', desc: 'Política exterior y fronteras de Venezuela' }
+            ].map(item => (
+              <div class="bg-gray-50 rounded-xl p-4 border-l-4 border-[#6a040f]">
+                <span class="text-[#6a040f] font-bold text-sm">UNIDAD {item.unit}</span>
+                <h4 class="font-bold text-gray-900">{item.title}</h4>
+                <p class="text-sm text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Bloques Económicos --
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Bloques Económicos Latinoamericanos</h2>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { name: 'MCCA', full: 'Mercado Común Centroamericano', region: 'Centroamérica' },
+              { name: 'CAN', full: 'Comunidad Andina', region: 'Países Andinos' },
+              { name: 'MERCOSUR', full: 'Mercado Común del Sur', region: 'Cono Sur' },
+              { name: 'CARICOM', full: 'Comunidad del Caribe', region: 'Caribe' }
+            ].map(bloque => (
+              <div class="bg-[#6a040f] text-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                <div class="text-2xl font-bold mb-2">{bloque.name}</div>
+                <p class="text-sm text-white/80">{bloque.full}</p>
+                <span class="inline-block mt-3 px-3 py-1 bg-white/20 rounded-full text-xs">{bloque.region}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Esquema Conceptual --
+        <div class="mb-16" data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Esquema de Integración Económica</h2>
+          
+          <div class="bg-white border-4 border-[#6a040f] rounded-2xl p-8">
+            <div class="space-y-6">
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">1</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-gray-900">Fundamentos</h3>
+                  <p class="text-gray-600">Pensamiento CEPAL - Raúl Prebisch, Modelo ISI, Desarrollo "hacia adentro", Protección industrial</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">2</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-gray-900">Antecedentes</h3>
+                  <p class="text-gray-600">ALALC (1960) - Fracaso por burocracia y falta de plazos claros</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">3</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-gray-900">Marco Actual</h3>
+                  <p class="text-gray-600">ALADI (1980) - Enfoque pragmático y flexible. Mecanismos PAR y Acuerdos Regionales</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#ffba08] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-[#6a040f] font-bold">4</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-gray-900">Bloques Actuales</h3>
+                  <p class="text-gray-600">MCCA, CAN, MERCOSUR, CARICOM - Sistema de integración latinoamericano</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Documentos --
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Biblioteca de Investigación</h2>
+          
+          <div class="space-y-4">
+            
+            <a href="/documentos/integracion.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-[#6a040f] transition-colors">Trabajo Final: Integración</h3>
+                    <p class="text-sm text-gray-600">Análisis completo de bloques económicos</p>
+                  </div>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+            <a href="/documentos/ensayo_mercosur.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-[#6a040f] transition-colors">Ensayo: Mercosur</h3>
+                    <p class="text-sm text-gray-600">Análisis del Mercado Común del Sur</p>
+                  </div>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+            <a href="/documentos/cartografia.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-[#6a040f] transition-colors">Cartografía</h3>
+                    <p class="text-sm text-gray-600">Mapa de integración económica en alta calidad</p>
+                  </div>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
