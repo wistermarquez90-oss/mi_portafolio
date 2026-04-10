@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <Layout title="Integración Económica | Investigación Académica">
@@ -44,7 +46,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Bloques Económicos --
+        <!-- Bloques Económicos -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Bloques Económicos Latinoamericanos</h2>
           
@@ -64,7 +66,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Esquema Conceptual --
+        <!-- Esquema Conceptual -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Esquema de Integración Económica</h2>
           
@@ -115,13 +117,13 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Documentos --
+        <!-- Documentos -->
         <div data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Biblioteca de Investigación</h2>
           
           <div class="space-y-4">
             
-            <a href="/documentos/integracion.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+            <a href={`${baseUrl}documentos/integracion.pdf`} target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">
@@ -140,7 +142,7 @@ import Layout from '../../layouts/Layout.astro';
               </div>
             </a>
 
-            <a href="/documentos/ensayo_mercosur.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+            <a href={`${baseUrl}documentos/ensayo_mercosur.pdf`} target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">
@@ -159,7 +161,7 @@ import Layout from '../../layouts/Layout.astro';
               </div>
             </a>
 
-            <a href="/documentos/cartografia.pdf" target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
+            <a href={`${baseUrl}documentos/cartografia.pdf`} target="_blank" class="block bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all group">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center">

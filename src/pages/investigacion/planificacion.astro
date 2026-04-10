@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <Layout title="Planificación Económica | Investigación Académica">
@@ -31,7 +33,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Metodología --
+        <!-- Metodología -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Metodología del POA</h2>
           
@@ -54,7 +56,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Caso Corpoandes --
+        <!-- Caso Corpoandes -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Caso de Estudio: Corpoandes</h2>
           
@@ -65,7 +67,7 @@ import Layout from '../../layouts/Layout.astro';
               </p>
               
               <a 
-                href="/documentos/poa_corpoandes.pdf"
+                href={`${baseUrl}documentos/poa_corpoandes.pdf`}
                 target="_blank"
                 class="inline-flex items-center gap-2 bg-[#6a040f] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#370617] transition-colors"
               >
@@ -90,7 +92,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Marco Legal --
+        <!-- Marco Legal -->
         <div data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Base Jurídica</h2>
           
@@ -115,13 +117,13 @@ import Layout from '../../layouts/Layout.astro';
           </div>
 
           <div class="mt-8 flex flex-wrap gap-4">
-            <a href="/documentos/constitucion_venezuela.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+            <a href={`${baseUrl}documentos/constitucion_venezuela.pdf`} target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
               Constitución CRBV
             </a>
-            <a href="/documentos/ley_planificacion.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+            <a href={`${baseUrl}documentos/ley_planificacion.pdf`} target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
               Ley LOPPP
             </a>
-            <a href="/documentos/ley_creacion_corpoandes.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
+            <a href={`${baseUrl}documentos/ley_creacion_corpoandes.pdf`} target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-[#6a040f] text-[#6a040f] rounded-lg hover:bg-[#6a040f] hover:text-white transition-colors">
               Ley Corpoandes
             </a>
           </div>

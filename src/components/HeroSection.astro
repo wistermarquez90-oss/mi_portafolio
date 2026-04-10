@@ -1,18 +1,30 @@
 ---
+import TypeWriter from './TypeWriter.astro';
+import AnimatedCounter from './AnimatedCounter.astro';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
+
+const roles = [
+  'Economista',
+  'Data Analyst',
+  'E-commerce Specialist',
+  'Power BI Developer'
+];
 ---
 
 <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Background Elements -->
   <div class="absolute inset-0 bg-gradient-to-br from-wine via-wine to-wine-900"></div>
   
-  <!-- Decorative Grid Pattern -->
-  <div class="absolute inset-0 opacity-10">
+  <!-- Decorative Grid Pattern with Parallax -->
+  <div class="absolute inset-0 opacity-10 parallax-bg">
     <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,186,8,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,186,8,0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
   </div>
   
   <!-- Animated Circles -->
-  <div class="absolute top-20 left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl animate-pulse"></div>
-  <div class="absolute bottom-20 right-10 w-96 h-96 bg-gold/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+  <div class="absolute top-20 left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl animate-pulse-slow parallax-element" data-speed="0.5"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-gold/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+  <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-white/5 rounded-full blur-2xl animate-pulse-slow" style="animation-delay: 0.5s;"></div>
   
   <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -26,10 +38,16 @@
           </span>
         </div>
         
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
           Wister
           <span class="text-gold">Márquez</span>
         </h1>
+        
+        <!-- TypeWriter Effect -->
+        <div class="text-xl sm:text-2xl mb-6 h-8">
+          <span class="text-white/80">Soy </span>
+          <TypeWriter texts={roles} speed={80} deleteSpeed={40} pauseDuration={1500} />
+        </div>
         
         <p class="text-wine-100 text-lg sm:text-xl mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
           Transformando datos en decisiones estratégicas. Especializado en análisis financiero, 
@@ -38,8 +56,8 @@
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
           <a 
-            href="/proyectos-powerbi" 
-            class="inline-flex items-center justify-center px-8 py-4 bg-gold text-wine font-semibold rounded-lg hover:bg-gold-300 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 group"
+            href={`${baseUrl}powerbi`}
+            class="inline-flex items-center justify-center px-8 py-4 bg-gold text-wine font-semibold rounded-lg hover:bg-gold-300 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 group hover:scale-105"
           >
             Ver Dashboards
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,25 +66,31 @@
           </a>
           
           <a 
-            href="/contacto" 
-            class="inline-flex items-center justify-center px-8 py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold hover:text-wine transition-all duration-300"
+            href={`${baseUrl}contacto`}
+            class="inline-flex items-center justify-center px-8 py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold hover:text-wine transition-all duration-300 hover:scale-105"
           >
             Contactar
           </a>
         </div>
         
-        <!-- Stats -->
+        <!-- Animated Stats -->
         <div class="grid grid-cols-3 gap-6 text-center">
           <div data-aos="fade-up" data-aos-delay="100">
-            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">3+</div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">
+              <AnimatedCounter end={3} suffix="+" duration={2000} />
+            </div>
             <div class="text-wine-200 text-sm">Años Exp.</div>
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">4</div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">
+              <AnimatedCounter end={4} suffix="" duration={1500} />
+            </div>
             <div class="text-wine-200 text-sm">Dashboards</div>
           </div>
           <div data-aos="fade-up" data-aos-delay="300">
-            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">10+</div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-gold">
+              <AnimatedCounter end={10} suffix="+" duration={1800} />
+            </div>
             <div class="text-wine-200 text-sm">Habilidades</div>
           </div>
         </div>
@@ -74,12 +98,14 @@
       
       <!-- Visual Element -->
       <div class="hidden lg:flex justify-center" data-aos="fade-left">
-        <div class="relative">
+        <div class="relative floating-element">
           <!-- Profile Card -->
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
-            <div class="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-gold to-gold-400 rounded-full flex items-center justify-center shadow-lg">
-              <span class="font-display text-6xl font-bold text-wine">W</span>
-            </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl hover:scale-105 transition-transform duration-500">
+            <img 
+              src={`${baseUrl}images/perfil.png`}
+              alt="Wister Márquez"
+              class="w-48 h-48 mx-auto mb-6 rounded-full object-cover border-4 border-gold shadow-lg"
+            />
             
             <div class="text-center space-y-2">
               <p class="text-gold font-medium">Digital Trade Manager</p>
@@ -93,8 +119,23 @@
           </div>
           
           <!-- Floating Badge -->
-          <div class="absolute -top-4 -right-4 bg-gold text-wine px-4 py-2 rounded-lg font-semibold text-sm shadow-lg" data-aos="zoom-in" data-aos-delay="500">
+          <div class="absolute -top-4 -right-4 bg-gold text-wine px-4 py-2 rounded-lg font-semibold text-sm shadow-lg animate-bounce-slow" data-aos="zoom-in" data-aos-delay="500">
             Disponible
+          </div>
+          
+          <!-- Floating Stats Card -->
+          <div class="absolute -bottom-6 -left-6 bg-white/95 dark:bg-gray-800 rounded-xl p-4 shadow-xl" data-aos="fade-up" data-aos-delay="600">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-[#6a040f] rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#ffba08]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">ACOS Promedio</p>
+                <p class="font-bold text-[#6a040f] dark:text-white">-30%</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,4 +151,35 @@
       </svg>
     </a>
   </div>
+  
+  <script>
+    // Parallax effect
+    document.addEventListener('mousemove', (e) => {
+      const elements = document.querySelectorAll('.parallax-element');
+      const x = (window.innerWidth - e.pageX) / 50;
+      const y = (window.innerHeight - e.pageY) / 50;
+      
+      elements.forEach(el => {
+        const speed = el.dataset.speed || 0.5;
+        el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+    
+    // Floating animation
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach((el, index) => {
+      el.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
+    });
+  </script>
+  
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .animate-bounce-slow {
+      animation: bounce 2s infinite;
+    }
+  </style>
 </section>

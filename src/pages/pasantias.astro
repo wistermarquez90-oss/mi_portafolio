@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+const baseUrl = import.meta.env.BASE_URL || '/';
 const pasantiasEntries = await getCollection('pasantias');
 ---
 
@@ -107,7 +108,7 @@ const pasantiasEntries = await getCollection('pasantias');
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <a href={`/pasantias/${entry.slug}`} class="block">
+              <a href={`${baseUrl}pasantias/${entry.slug}`} class="block">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
                     <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#6a040f] transition-colors">

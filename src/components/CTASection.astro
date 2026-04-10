@@ -1,4 +1,5 @@
 ---
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <section class="py-20 lg:py-32 bg-wine relative overflow-hidden">
@@ -25,7 +26,7 @@
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a 
-          href="/contacto"
+          href={`${baseUrl}contacto`}
           class="inline-flex items-center justify-center px-8 py-4 bg-gold text-wine font-bold rounded-lg hover:bg-gold-300 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 group"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,7 +36,7 @@
         </a>
         
         <a 
-          href="/proyectos-powerbi"
+          href={`${baseUrl}powerbi`}
           class="inline-flex items-center justify-center px-8 py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold hover:text-wine transition-all duration-300"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

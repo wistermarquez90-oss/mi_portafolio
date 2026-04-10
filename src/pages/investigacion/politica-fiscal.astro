@@ -1,10 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <Layout title="Política Fiscal | Investigación Académica">
   
-  <!-- Hero --
+  <!-- Hero -->
   <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
     <div class="container mx-auto px-6">
       <div class="text-center" data-aos="fade-up">
@@ -17,12 +19,12 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Contenido --
+  <!-- Contenido -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
         
-        <!-- Sobre la Asignatura --
+        <!-- Sobre la Asignatura -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Sobre la Asignatura</h2>
           
@@ -38,19 +40,25 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Equipo --
+        <!-- Equipo -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Equipo de Proyecto</h2>
           
           <div class="grid md:grid-cols-2 gap-6">
             {[
-              { name: 'Wister Márquez', role: 'Economista en Formación', img: '/img/perfil.png' },
-              { name: 'Dublymar Gómez', role: 'Economista', img: '/img/Dubly.png' },
-              { name: 'William Gutierrez', role: 'Economista', img: '/img/william.jpeg' },
-              { name: 'Ramon Durán', role: 'Economista en Formación', img: '/img/Aguacate.jpg' }
+              { name: 'Wister Márquez', role: 'Economista en Formación', img: `${baseUrl}images/perfil.png` },
+              { name: 'Dublymar Gómez', role: 'Economista', img: `${baseUrl}images/dubly.png` },
+              { name: 'William Gutierrez', role: 'Economista', img: `${baseUrl}images/william.jpeg` },
+              { name: 'Ramon Durán', role: 'Economista en Formación', img: `${baseUrl}images/ramon.jpg` }
             ].map(member => (
               <div class="bg-gray-50 rounded-xl p-6 flex items-center gap-4">
-                <div class="w-16 h-16 bg-[#6a040f] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <img 
+                  src={member.img} 
+                  alt={member.name}
+                  class="w-16 h-16 rounded-full object-cover border-2 border-[#6a040f]"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-16 h-16 bg-[#6a040f] rounded-full flex items-center justify-center text-white font-bold text-xl hidden">
                   {member.name.charAt(0)}
                 </div>
                 <div>
@@ -62,7 +70,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Metodología --
+        <!-- Metodología -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Metodología Aplicada</h2>
           
@@ -90,7 +98,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Caso Venezuela --
+        <!-- Caso Venezuela -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Caso de Estudio: Crisis Estructural Venezolana</h2>
           
@@ -155,7 +163,7 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Objetivos --
+        <!-- Objetivos -->
         <div class="mb-16" data-aos="fade-up">
           <h2 class="text-3xl font-display font-bold text-[#6a040f] mb-6">Objetivos del Programa Económico</h2>
           
@@ -186,13 +194,13 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Documento --
+        <!-- Documento -->
         <div class="bg-gray-50 rounded-2xl p-8 text-center" data-aos="fade-up">
           <h2 class="text-2xl font-display font-bold text-[#6a040f] mb-4">Documento del Proyecto</h2>
           <p class="text-gray-600 mb-6">Agenda de Reconstrucción Nacional 2025-2030</p>
           
           <a 
-            href="/documentos/plan_nacion.pdf" 
+            href={`${baseUrl}documentos/plan_nacion.pdf`}
             target="_blank"
             class="inline-flex items-center gap-2 bg-[#6a040f] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#370617] transition-colors"
           >

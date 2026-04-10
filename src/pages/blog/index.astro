@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import Skeleton from '../../components/Skeleton.astro';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
+
+// Get all blog posts
+const posts = await getCollection('blog');
+
+// Sort by date (newest first)
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Get unique categories
+const categories = [...new Set(posts.map(post => post.data.category))];
+---
+
+<Layout title="Blog | Wister Márquez" description="Artículos sobre economía, análisis de datos, Power BI y e-commerce.">
+  
+  <!-- Hero -->
+  <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+      <p class="text-[#ffba08] font-semibold tracking-wider uppercase mb-4">Blog</p>
+      
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Artículos y Análisis</h1>
+      
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Exploraciones sobre economía, datos y estrategias digitales desde una perspectiva analítica.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Categories Filter -->
+  <section class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap justify-center gap-3">
+        <button class="category-btn active px-4 py-2 rounded-full bg-[#6a040f] text-white text-sm font-medium transition-colors" data-category="all">
+          Todos
+        </button>
+        {categories.map(category => (
+          <button 
+            class="category-btn px-4 py-2 rounded-full bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-[#6a040f] hover:text-white transition-colors"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Blog Posts Grid -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-6">
+      <div id="posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post, index) => (
+          <article 
+            class="blog-card group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            data-category={post.data.category}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <!-- Image Placeholder -->
+            <div class="relative h-48 bg-gradient-to-br from-[#6a040f]/20 to-[#ffba08]/20 overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-6xl opacity-20">📝</span>
+              </div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-[#6a040f] text-white text-xs font-medium rounded-full">
+                  {post.data.category}
+                </span>
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <!-- Meta -->
+              <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {new Date(post.data.date).toLocaleDateString('es-ES', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                  })}
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {post.data.readingTime} min
+                </span>
+              </div>
+              
+              <!-- Title -->
+              <h2 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">
+                <a href={`${baseUrl}blog/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              
+              <!-- Description -->
+              <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                {post.data.description}
+              </p>
+              
+              <!-- Read More -->
+              <a 
+                href={`${baseUrl}blog/${post.slug}`}
+                class="inline-flex items-center gap-2 text-[#6a040f] dark:text-[#ffba08] font-semibold hover:gap-3 transition-all"
+              >
+                Leer artículo
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden text-center py-12">
+        <p class="text-gray-500 dark:text-gray-400 text-lg">No hay artículos en esta categoría.</p>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    // Category filter functionality
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const noResults = document.getElementById('no-results');
+    
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        categoryBtns.forEach(b => {
+          b.classList.remove('bg-[#6a040f]', 'text-white');
+          b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        });
+        btn.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        btn.classList.add('bg-[#6a040f]', 'text-white');
+        
+        // Filter posts
+        const category = btn.dataset.category;
+        let visibleCount = 0;
+        
+        blogCards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        
+        // Show/hide no results message
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,76 @@
+---
+// Skeleton Loading Component
+interface Props {
+  type?: 'card' | 'text' | 'image' | 'profile' | 'stats';
+  count?: number;
+}
+
+const { type = 'card', count = 1 } = Astro.props;
+---
+
+{
+  type === 'card' && (
+    <div class="animate-pulse">
+      {Array.from({ length: count }).map(() => (
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-xl p-6 space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full" />
+            <div class="flex-1 space-y-2">
+              <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4" />
+              <div class="h-3 bg-gray-300 dark:bg-gray-600 rounded w-1/2" />
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="h-3 bg-gray-300 dark:bg-gray-600 rounded" />
+            <div class="h-3 bg-gray-300 dark:bg-gray-600 rounded" />
+            <div class="h-3 bg-gray-300 dark:bg-gray-600 rounded w-5/6" />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+{
+  type === 'text' && (
+    <div class="animate-pulse space-y-3">
+      {Array.from({ length: count }).map(() => (
+        <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-full" />
+      ))}
+      <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-4/5" />
+    </div>
+  )
+}
+
+{
+  type === 'image' && (
+    <div class="animate-pulse">
+      {Array.from({ length: count }).map(() => (
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-xl aspect-video" />
+      ))}
+    </div>
+  )
+}
+
+{
+  type === 'profile' && (
+    <div class="animate-pulse flex flex-col items-center">
+      <div class="w-32 h-32 bg-gray-300 dark:bg-gray-600 rounded-full mb-4" />
+      <div class="h-6 bg-gray-300 dark:bg-gray-600 rounded w-48 mb-2" />
+      <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-32" />
+    </div>
+  )
+}
+
+{
+  type === 'stats' && (
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-pulse">
+      {Array.from({ length: count }).map(() => (
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-xl p-6 text-center">
+          <div class="h-10 bg-gray-300 dark:bg-gray-600 rounded w-16 mx-auto mb-2" />
+          <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-24 mx-auto" />
+        </div>
+      ))}
+    </div>
+  )
+}

@@ -1,0 +1,84 @@
+---
+// TypeWriter Effect Component
+interface Props {
+  texts: string[];
+  speed?: number;
+  deleteSpeed?: number;
+  pauseDuration?: number;
+}
+
+const { 
+  texts, 
+  speed = 100, 
+  deleteSpeed = 50, 
+  pauseDuration = 2000 
+} = Astro.props;
+
+const textsJson = JSON.stringify(texts);
+---
+
+<span 
+  id="typewriter"
+  class="text-[#ffba08]"
+  data-texts={textsJson}
+  data-speed={speed}
+  data-delete-speed={deleteSpeed}
+  data-pause={pauseDuration}
+>
+</span>
+<span class="animate-pulse text-[#ffba08]">|</span>
+
+<script>
+  class TypeWriter {
+    constructor(element, texts, speed, deleteSpeed, pauseDuration) {
+      this.element = element;
+      this.texts = texts;
+      this.speed = speed;
+      this.deleteSpeed = deleteSpeed;
+      this.pauseDuration = pauseDuration;
+      this.textIndex = 0;
+      this.charIndex = 0;
+      this.isDeleting = false;
+      this.type();
+    }
+    
+    type() {
+      const currentText = this.texts[this.textIndex];
+      
+      if (this.isDeleting) {
+        this.element.textContent = currentText.substring(0, this.charIndex - 1);
+        this.charIndex--;
+      } else {
+        this.element.textContent = currentText.substring(0, this.charIndex + 1);
+        this.charIndex++;
+      }
+      
+      let typeSpeed = this.isDeleting ? this.deleteSpeed : this.speed;
+      
+      if (!this.isDeleting && this.charIndex === currentText.length) {
+        typeSpeed = this.pauseDuration;
+        this.isDeleting = true;
+      } else if (this.isDeleting && this.charIndex === 0) {
+        this.isDeleting = false;
+        this.textIndex = (this.textIndex + 1) % this.texts.length;
+        typeSpeed = 500;
+      }
+      
+      setTimeout(() => this.type(), typeSpeed);
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const element = document.getElementById('typewriter');
+    if (element) {
+      const texts = JSON.parse(element.dataset.texts || '[]');
+      const speed = parseInt(element.dataset.speed || '100');
+      const deleteSpeed = parseInt(element.dataset.deleteSpeed || '50');
+      const pause = parseInt(element.dataset.pause || '2000');
+      
+      if (texts.length > 0) {
+        new TypeWriter(element, texts, speed, deleteSpeed, pause);
+      }
+    }
+  });
+</script>

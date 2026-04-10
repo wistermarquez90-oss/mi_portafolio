@@ -1,0 +1,73 @@
+---
+// Animated Counter Component
+interface Props {
+  end: number;
+  suffix?: string;
+  prefix?: string;
+  duration?: number;
+}
+
+const { end, suffix = '', prefix = '', duration = 2000 } = Astro.props;
+---
+
+<span 
+  class="counter"
+  data-end={end}
+  data-suffix={suffix}
+  data-prefix={prefix}
+  data-duration={duration}
+>
+  {prefix}0{suffix}
+</span>
+
+<script>
+  class AnimatedCounter {
+    constructor(element) {
+      this.element = element;
+      this.end = parseInt(element.dataset.end || '0');
+      this.suffix = element.dataset.suffix || '';
+      this.prefix = element.dataset.prefix || '';
+      this.duration = parseInt(element.dataset.duration || '2000');
+      this.startTime = null;
+      this.observer = new IntersectionObserver(this.handleIntersect.bind(this));
+      this.observer.observe(element);
+    }
+    
+    handleIntersect(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.startAnimation();
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }
+    
+    startAnimation() {
+      requestAnimationFrame(this.animate.bind(this));
+    }
+    
+    animate(currentTime) {
+      if (!this.startTime) this.startTime = currentTime;
+      const elapsed = currentTime - this.startTime;
+      const progress = Math.min(elapsed / this.duration, 1);
+      
+      // Easing function (ease-out-quart)
+      const easeOut = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOut * this.end);
+      
+      this.element.textContent = `${this.prefix}${current}${this.suffix}`;
+      
+      if (progress < 1) {
+        requestAnimationFrame(this.animate.bind(this));
+      } else {
+        this.element.textContent = `${this.prefix}${this.end}${this.suffix}`;
+      }
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.counter').forEach(counter => {
+      new AnimatedCounter(counter);
+    });
+  });
+</script>
