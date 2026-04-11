@@ -39,8 +39,10 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   </a>
   
   <!-- Download CV Button -->
-  <button 
-    id="download-cv-btn"
+  <a 
+    href={`${baseUrl}assets/cv.pdf`}
+    target="_blank"
+    download="Wister-Marquez-CV.pdf"
     class="floating-btn group w-12 h-12 bg-[#ffba08] hover:bg-[#6a040f] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
     aria-label="Descargar CV"
     data-aos="fade-left"
@@ -52,7 +54,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
     <span class="absolute right-14 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
       Descargar CV
     </span>
-  </button>
+  </a>
 </div>
 
 <style>
@@ -85,7 +87,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
 <script>
   // CV Download functionality
   document.getElementById('download-cv-btn')?.addEventListener('click', () => {
-    // You can replace this with your actual CV URL
-    alert('CV download coming soon!');
+    const cvUrl = `${import.meta.env.BASE_URL || '/'}assets/cv.pdf`;
+    window.open(cvUrl, '_blank');
   });
 </script>
