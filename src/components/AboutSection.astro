@@ -25,14 +25,14 @@ const highlights = [
 ];
 ---
 
-<section id="sobre-mi" class="py-20 lg:py-32 bg-white">
+<section id="sobre-mi" class="py-20 lg:py-32 bg-white dark:bg-gray-900 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       
       <!-- Image Section -->
       <div class="relative" data-aos="fade-right">
         <div class="relative z-10 bg-gradient-to-br from-wine to-wine-900 rounded-2xl p-8 lg:p-12">
-          <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg transition-colors duration-300">
             <div class="flex items-center space-x-4 mb-6">
               <img 
                 src={`${baseUrl}images/perfil.png`} 
@@ -40,31 +40,31 @@ const highlights = [
                 class="w-16 h-16 rounded-full object-cover border-2 border-wine"
               />
               <div>
-                <h3 class="font-display font-bold text-xl text-gray-900">Wister Márquez</h3>
-                <p class="text-gray-500">Economista | E-commerce</p>
+                <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white">Wister Márquez</h3>
+                <p class="text-gray-500 dark:text-gray-400">Economista | E-commerce</p>
               </div>
             </div>
             
             <div class="space-y-4">
               <div class="flex items-center space-x-3">
                 <div class="w-2 h-2 bg-gold rounded-full"></div>
-                <span class="text-gray-700">3+ años en E-commerce</span>
+                <span class="text-gray-700 dark:text-gray-300">3+ años en E-commerce</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-2 h-2 bg-gold rounded-full"></div>
-                <span class="text-gray-700">Certificado en Power BI</span>
+                <span class="text-gray-700 dark:text-gray-300">Certificado en Power BI</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-2 h-2 bg-gold rounded-full"></div>
-                <span class="text-gray-700">Líder en AIESEC</span>
+                <span class="text-gray-700 dark:text-gray-300">Líder en AIESEC</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-2 h-2 bg-gold rounded-full"></div>
-                <span class="text-gray-700">Mérida, Venezuela</span>
+                <span class="text-gray-700 dark:text-gray-300">Mérida, Venezuela</span>
               </div>
             </div>
             
-            <div class="mt-6 pt-6 border-t border-gray-100">
+            <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
               <div class="flex flex-wrap gap-2">
                 <span class="px-3 py-1 bg-wine/10 text-wine text-sm rounded-full">#DataAnalytics</span>
                 <span class="px-3 py-1 bg-wine/10 text-wine text-sm rounded-full">#PowerBI</span>
@@ -85,12 +85,12 @@ const highlights = [
           <span class="text-wine font-medium text-sm">Sobre Mí</span>
         </div>
         
-        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
           Transformando datos en
           <span class="text-wine">valor estratégico</span>
         </h2>
         
-        <div class="prose prose-lg text-gray-600 mb-8">
+        <div class="prose prose-lg text-gray-600 dark:text-gray-300 mb-8 transition-colors duration-300">
           <p class="mb-4">
             Soy un economista en formación con pasión por el análisis de datos y el comercio electrónico. 
             Mi experiencia combina el rigor académico con la aplicación práctica en entornos empresariales reales.
@@ -125,7 +125,7 @@ const highlights = [
     <div class="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {highlights.map((item, index) => (
         <div 
-          class="group p-6 bg-gray-50 rounded-xl hover:bg-wine transition-colors duration-300"
+          class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-wine transition-colors duration-300"
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >
@@ -135,11 +135,11 @@ const highlights = [
             </div>
           </div>
           
-          <h3 class="font-display font-semibold text-lg text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
+          <h3 class="font-display font-semibold text-lg text-gray-900 dark:text-white group-hover:text-white mb-2 transition-colors duration-300">
             {item.title}
           </h3>
           
-          <p class="text-gray-600 group-hover:text-wine-100 text-sm transition-colors duration-300">
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-wine-100 text-sm transition-colors duration-300">
             {item.description}
           </p>
         </div>

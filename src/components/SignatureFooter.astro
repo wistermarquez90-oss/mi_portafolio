@@ -1,0 +1,156 @@
+---
+// Animated Signature Component - Animated signature/footer element
+const baseUrl = import.meta.env.BASE_URL || '/';
+---
+
+<div class="signature-container" data-aos="fade-up" data-aos-delay="200">
+  <div class="flex flex-col items-center justify-center py-8 space-y-4">
+    <!-- Animated signature line -->
+    <div class="signature-line">
+      <svg viewBox="0 0 300 60" class="w-64 h-16 md:w-80 md:h-20">
+        <defs>
+          <linearGradient id="signature-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#6a040f"/>
+            <stop offset="50%" style="stop-color:#9f0606"/>
+            <stop offset="100%" style="stop-color:#ffba08"/>
+          </linearGradient>
+        </defs>
+        <!-- Signature path - stylized W -->
+        <path 
+          class="signature-path"
+          d="M 10 30 Q 30 10, 50 30 T 90 30 Q 110 50, 130 30 T 170 30 Q 190 10, 210 30 T 250 30 Q 270 50, 290 30"
+          stroke="url(#signature-gradient)"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <!-- Dots decoration -->
+        <circle class="signature-dot" cx="30" cy="30" r="3" fill="#ffba08"/>
+        <circle class="signature-dot" cx="150" cy="30" r="3" fill="#6a040f"/>
+        <circle class="signature-dot" cx="270" cy="30" r="3" fill="#ffba08"/>
+      </svg>
+    </div>
+    
+    <!-- Name with typewriter effect -->
+    <div class="text-center">
+      <p class="signature-text text-lg md:text-xl font-display font-semibold text-[#6a040f] dark:text-[#ffba08]">
+        Wister Márquez
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        Economista en Formación
+      </p>
+    </div>
+    
+    <!-- Back to top button -->
+    <button 
+      id="back-to-top"
+      class="group flex items-center gap-2 px-4 py-2 rounded-full bg-[#6a040f]/10 hover:bg-[#6a040f] text-[#6a040f] hover:text-white transition-all duration-300"
+      aria-label="Volver arriba"
+    >
+      <svg 
+        class="w-4 h-4 transition-transform group-hover:-translate-y-1" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+      <span class="text-sm font-medium">Volver arriba</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .signature-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawSignature 2s ease-out forwards;
+  }
+  
+  @keyframes drawSignature {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .signature-dot {
+    opacity: 0;
+    animation: fadeInDots 0.5s ease-out forwards;
+  }
+  
+  .signature-dot:nth-child(2) {
+    animation-delay: 1.5s;
+  }
+  
+  .signature-dot:nth-child(3) {
+    animation-delay: 1.7s;
+  }
+  
+  .signature-dot:nth-child(4) {
+    animation-delay: 1.9s;
+  }
+  
+  @keyframes fadeInDots {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .signature-text {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.8s ease-out 2s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Back to top functionality
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Re-trigger animation when scrolled into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const path = entry.target.querySelector('.signature-path');
+        const dots = entry.target.querySelectorAll('.signature-dot');
+        const text = entry.target.querySelector('.signature-text');
+        
+        // Reset animations
+        if (path) {
+          path.style.animation = 'none';
+          path.offsetHeight; // Trigger reflow
+          path.style.animation = 'drawSignature 2s ease-out forwards';
+        }
+        
+        dots.forEach((dot, i) => {
+          dot.style.animation = 'none';
+          dot.offsetHeight;
+          dot.style.animation = `fadeInDots 0.5s ease-out ${1.5 + i * 0.2}s forwards`;
+        });
+        
+        if (text) {
+          text.style.animation = 'none';
+          text.offsetHeight;
+          text.style.animation = 'fadeInUp 0.8s ease-out 2s forwards';
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  document.querySelectorAll('.signature-container').forEach(el => {
+    observer.observe(el);
+  });
+</script>

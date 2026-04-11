@@ -1,122 +1,130 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AnimatedCard from '../components/AnimatedCard.astro';
+import SignatureFooter from '../components/SignatureFooter.astro';
 import { getCollection } from 'astro:content';
 
 const baseUrl = import.meta.env.BASE_URL || '/';
 const pasantiasEntries = await getCollection('pasantias');
+
+const stats = [
+  { value: "13", label: "Estudiantes", delay: 0 },
+  { value: "13", label: "Años de Análisis", delay: 100 },
+  { value: "3", label: "Dimensiones", delay: 200 }
+];
+
+const dimensiones = [
+  {
+    title: "Balanza Comercial",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+    items: ["Importaciones/exportaciones", "Análisis sectorial CIIU/HS", "Evolución mensual/trimestral", "Diversificación de productos"],
+    delay: 0
+  },
+  {
+    title: "Flujos Migratorios",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`,
+    items: ["Estadísticas entradas/salidas", "Caracterización poblacional", "Políticas migratorias", "Impacto laboral"],
+    delay: 100
+  },
+  {
+    title: "Marco Normativo",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>`,
+    items: ["Acuerdos comerciales", "Decretos presidenciales", "Tratados de inversión", "Decisiones CAN/ALADI"],
+    delay: 200
+  }
+];
+
+const hitos = [
+  { date: '19 ago 2015', title: 'Cierre de frontera', desc: 'Estado de excepción en Táchira - Colapso comercial formal' },
+  { date: '23 feb 2019', title: 'Ruptura diplomática total', desc: 'Reconocimiento Guaidó - Cierre de embajadas' },
+  { date: '7 ago 2022', title: 'Reapertura oficial', desc: 'Gobierno Petro - Recuperación gradual de relaciones' },
+  { date: '26 sep 2022', title: 'Apertura comercial total', desc: 'Normalización del comercio bilateral' }
+];
+
+const calificaciones = [
+  { range: "88-100", label: "Excelente", color: "green", desc: "Sin correcciones" },
+  { range: "68-88", label: "Bueno", color: "blue", desc: "Correcciones menores" },
+  { range: "60-67", label: "Aceptable", color: "yellow", desc: "Correcciones moderadas" }
+];
 ---
 
 <Layout title="Pasantías en Investigación | Wister Márquez">
   
-  <!-- Hero Section -->
-  <section class="pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617]">
-    <div class="container mx-auto px-6">
-      <div class="text-center" data-aos="fade-up">
-        <p class="text-[#ffba08] font-semibold tracking-wider uppercase mb-4">Experiencia Profesional</p>
-        <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-          Pasantías en Investigación
-        </h1>
-        <p class="text-xl text-white/80 max-w-3xl mx-auto">
-          Coordinación de proyectos de investigación económica y desarrollo de sistemas de estandarización académica
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHeader
+    badge="Experiencia Profesional"
+    title="Pasantías en Investigación"
+    description="Coordinación de proyectos de investigación económica y desarrollo de sistemas de estandarización académica"
+  />
 
   <!-- Proyecto VENCOLECO -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <div class="bg-[#6a040f]/5 border-l-4 border-[#6a040f] p-8 rounded-r-xl mb-12" data-aos="fade-up">
-          <h2 class="text-2xl font-display font-bold text-[#6a040f] mb-4">Proyecto VENCOLECO</h2>
-          <p class="text-lg text-gray-700 mb-4">
-            <strong>Venezuela-Colombia Economic Dynamics</strong> — Investigación sobre la dinámica de la economía internacional entre Venezuela y Colombia (2013-2025).
-          </p>
-          <div class="grid md:grid-cols-3 gap-4 text-center">
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl font-bold text-[#6a040f]">13</div>
-              <p class="text-sm text-gray-600">Estudiantes</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl font-bold text-[#6a040f]">13</div>
-              <p class="text-sm text-gray-600">Años de Análisis</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl font-bold text-[#6a040f]">3</div>
-              <p class="text-sm text-gray-600">Dimensiones</p>
+        <AnimatedCard>
+          <div class="bg-[#6a040f]/5 dark:bg-[#6a040f]/10 border-l-4 border-[#6a040f] p-8 rounded-r-xl">
+            <h2 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+              Proyecto VENCOLECO
+            </h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 transition-colors">
+              <strong>Venezuela-Colombia Economic Dynamics</strong> — Investigación sobre la dinámica de la economía internacional entre Venezuela y Colombia (2013-2025).
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-4">
+              {stats.map((stat) => (
+                <div 
+                  class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
+                  data-aos="zoom-in"
+                  data-aos-delay={stat.delay}
+                >
+                  <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08]">{stat.value}</div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 transition-colors">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Dimensiones de Investigación -->
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] mb-8" data-aos="fade-up">Dimensiones del Proyecto</h3>
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 mt-12" data-aos="fade-up">
+          Dimensiones del Proyecto
+        </h3>
         
         <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow" data-aos="fade-up">
-            <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-            <h4 class="font-bold text-gray-900 mb-2">Balanza Comercial</h4>
-            <ul class="text-gray-600 text-sm space-y-1">
-              <li>• Importaciones/exportaciones</li>
-              <li>• Análisis sectorial CIIU/HS</li>
-              <li>• Evolución mensual/trimestral</li>
-              <li>• Diversificación de productos</li>
-            </ul>
-          </div>
-
-          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
-            <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-            </div>
-            <h4 class="font-bold text-gray-900 mb-2">Flujos Migratorios</h4>
-            <ul class="text-gray-600 text-sm space-y-1">
-              <li>• Estadísticas entradas/salidas</li>
-              <li>• Caracterización poblacional</li>
-              <li>• Políticas migratorias</li>
-              <li>• Impacto laboral</li>
-            </ul>
-          </div>
-
-          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
-            <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
-              </svg>
-            </div>
-            <h4 class="font-bold text-gray-900 mb-2">Marco Normativo</h4>
-            <ul class="text-gray-600 text-sm space-y-1">
-              <li>• Acuerdos comerciales</li>
-              <li>• Decretos presidenciales</li>
-              <li>• Tratados de inversión</li>
-              <li>• Decisiones CAN/ALADI</li>
-            </ul>
-          </div>
+          {dimensiones.map((dim) => (
+            <AnimatedCard delay={dim.delay}>
+              <div class="p-6">
+                <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                  <div class="text-white" set:html={dim.icon} />
+                </div>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2 transition-colors">{dim.title}</h4>
+                <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-1 transition-colors">
+                  {dim.items.map((item) => (
+                    <li>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedCard>
+          ))}
         </div>
 
         <!-- Documentos Markdown -->
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] mb-8" data-aos="fade-up">Documentación del Proyecto</h3>
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8" data-aos="fade-up">
+          Documentación del Proyecto
+        </h3>
 
         <div class="space-y-6">
           {pasantiasEntries.map((entry, index) => (
-            <div 
-              class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer group"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
+            <AnimatedCard delay={index * 100}>
               <a href={`${baseUrl}pasantias/${entry.slug}`} class="block">
-                <div class="flex items-start justify-between">
+                <div class="flex items-start justify-between p-6 group">
                   <div class="flex-1">
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#6a040f] transition-colors">
+                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">
                       {entry.data.title}
                     </h4>
-                    <p class="text-gray-600 mb-4">{entry.data.description}</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors">{entry.data.description}</p>
                     
-                    <div class="flex items-center gap-4 text-sm text-gray-500">
+                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                       <span class="flex items-center gap-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -132,33 +140,34 @@ const pasantiasEntries = await getCollection('pasantias');
                     </div>
                   </div>
                   
-                  <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] transition-colors ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors ml-4 flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </div>
               </a>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
 
         <!-- Hitos Fronterizos -->
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] mt-12 mb-8" data-aos="fade-up">Hitos Documentados</h3>
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mt-12 mb-8" data-aos="fade-up">
+          Hitos Documentados
+        </h3>
 
         <div class="relative" data-aos="fade-up">
-          <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-[#6a040f]/20"></div>
+          <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#6a040f] via-[#ffba08] to-[#6a040f]"></div>
           
-          {[
-            { date: '19 ago 2015', title: 'Cierre de frontera', desc: 'Estado de excepción en Táchira - Colapso comercial formal' },
-            { date: '23 feb 2019', title: 'Ruptura diplomática total', desc: 'Reconocimiento Guaidó - Cierre de embajadas' },
-            { date: '7 ago 2022', title: 'Reapertura oficial', desc: 'Gobierno Petro - Recuperación gradual de relaciones' },
-            { date: '26 sep 2022', title: 'Apertura comercial total', desc: 'Normalización del comercio bilateral' }
-          ].map((hito, index) => (
-            <div class="relative flex items-start mb-8 last:mb-0">
-              <div class="absolute left-2 w-4 h-4 bg-[#6a040f] rounded-full border-4 border-white shadow"></div>
-              <div class="ml-12">
-                <span class="text-sm font-semibold text-[#6a040f]">{hito.date}</span>
-                <h4 class="font-bold text-gray-900 mt-1">{hito.title}</h4>
-                <p class="text-gray-600 text-sm">{hito.desc}</p>
+          {hitos.map((hito, index) => (
+            <div 
+              class="relative flex items-start mb-8 last:mb-0 group"
+              data-aos="fade-left"
+              data-aos-delay={index * 150}
+            >
+              <div class="absolute left-2 w-4 h-4 bg-[#6a040f] rounded-full border-4 border-white dark:border-gray-900 shadow group-hover:scale-125 transition-transform"></div>
+              <div class="ml-12 bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex-1 transition-colors hover:shadow-md transition-all">
+                <span class="text-sm font-semibold text-[#6a040f] dark:text-[#ffba08]">{hito.date}</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mt-1 transition-colors">{hito.title}</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors">{hito.desc}</p>
               </div>
             </div>
           ))}
@@ -169,41 +178,60 @@ const pasantiasEntries = await getCollection('pasantias');
   </section>
 
   <!-- Sistema de Calidad -->
-  <section class="py-20 bg-gray-50">
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] mb-8 text-center" data-aos="fade-up">Sistema de Control de Calidad</h3>
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 text-center" data-aos="fade-up">
+          Sistema de Control de Calidad
+        </h3>
         
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up">
-            <h4 class="font-bold text-gray-900 mb-4">Estructura de Supervisión</h4>
-            <ul class="space-y-2 text-gray-600">
-              <li>• <strong>4 grupos</strong> según complejidad</li>
-              <li>• <strong>Revisiones semanales</strong> individuales</li>
-              <li>• <strong>Revisiones quincenales</strong> grupales</li>
-              <li>• <strong>Matriz de evaluación</strong> de 100 puntos</li>
-            </ul>
-          </div>
+          <AnimatedCard delay={0}>
+            <div class="p-6">
+              <h4 class="font-bold text-gray-900 dark:text-white mb-4 transition-colors">Estructura de Supervisión</h4>
+              <ul class="space-y-2 text-gray-600 dark:text-gray-300 transition-colors">
+                <li class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
+                  <strong>4 grupos</strong> según complejidad
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
+                  <strong>Revisiones semanales</strong> individuales
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
+                  <strong>Revisiones quincenales</strong> grupales
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
+                  <strong>Matriz de evaluación</strong> de 100 puntos
+                </li>
+              </ul>
+            </div>
+          </AnimatedCard>
 
-          <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
-            <h4 class="font-bold text-gray-900 mb-4">Escala de Calificación</h4>
-            <div class="space-y-2">
-              <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                <span class="text-sm">88-100 Excelente</span>
-                <span class="text-xs text-green-700">Sin correcciones</span>
-              </div>
-              <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
-                <span class="text-sm">68-88 Bueno</span>
-                <span class="text-xs text-blue-700">Correcciones menores</span>
-              </div>
-              <div class="flex justify-between items-center p-2 bg-yellow-50 rounded">
-                <span class="text-sm">60-67 Aceptable</span>
-                <span class="text-xs text-yellow-700">Correcciones moderadas</span>
+          <AnimatedCard delay={100}>
+            <div class="p-6">
+              <h4 class="font-bold text-gray-900 dark:text-white mb-4 transition-colors">Escala de Calificación</h4>
+              <div class="space-y-2">
+                {calificaciones.map((cal) => (
+                  <div class={`flex justify-between items-center p-2 bg-${cal.color}-50 dark:bg-${cal.color}-900/20 rounded transition-colors hover:shadow-sm`}>
+                    <span class="text-sm text-gray-900 dark:text-white">{cal.range} {cal.label}</span>
+                    <span class={`text-xs text-${cal.color}-700 dark:text-${cal.color}-400`}>{cal.desc}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          </AnimatedCard>
         </div>
       </div>
+    </div>
+  </section>
+  
+  <!-- Signature Footer -->
+  <section class="py-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <SignatureFooter />
     </div>
   </section>
 

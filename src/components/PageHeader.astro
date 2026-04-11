@@ -1,0 +1,96 @@
+---
+// Page Header Component - Consistent animated headers for all pages
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  badge?: string;
+}
+
+const { title, subtitle, description, badge } = Astro.props;
+---
+
+<section class="page-header pt-32 pb-20 bg-gradient-to-br from-[#6a040f] to-[#370617] relative overflow-hidden">
+  <!-- Animated background elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <!-- Floating circles -->
+    <div class="absolute top-20 left-10 w-64 h-64 bg-[#ffba08]/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-[#9f0606]/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+  
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+      {badge && (
+        <p class="page-badge inline-block text-[#ffba08] font-semibold tracking-wider uppercase mb-4 px-4 py-1 rounded-full border border-[#ffba08]/30 bg-[#ffba08]/10">
+          {badge}
+        </p>
+      )}
+      
+      {subtitle && (
+        <p class="page-subtitle text-white/70 text-lg mb-2" data-aos="fade-up" data-aos-delay="100">
+          {subtitle}
+        </p>
+      )}
+      
+      <h1 class="page-title text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
+        {title}
+      </h1>
+      
+      {description && (
+        <p class="page-description text-xl text-white/80 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          {description}
+        </p>
+      )}
+      
+      <!-- Animated underline -->
+      <div class="mt-8 flex justify-center" data-aos="zoom-in" data-aos-delay="300">
+        <div class="h-1 w-24 bg-gradient-to-r from-[#ffba08] to-[#6a040f] rounded-full animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Wave separator -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-16 md:h-24">
+      <path 
+        d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
+        fill="white" 
+        class="dark:fill-gray-900 transition-colors duration-300"
+      />
+    </svg>
+  </div>
+</section>
+
+<style>
+  .page-badge {
+    animation: badgeGlow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes badgeGlow {
+    from {
+      box-shadow: 0 0 5px rgba(255, 186, 8, 0.3);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(255, 186, 8, 0.6);
+    }
+  }
+  
+  .page-title {
+    background: linear-gradient(135deg, #ffffff 0%, #ffba08 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleShine 3s ease-in-out infinite;
+  }
+  
+  @keyframes titleShine {
+    0%, 100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.1);
+    }
+  }
+</style>

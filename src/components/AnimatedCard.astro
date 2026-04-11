@@ -1,0 +1,105 @@
+---
+// Animated Card Component - Enhanced hover effects for cards
+interface Props {
+  href?: string;
+  class?: string;
+  delay?: number;
+}
+
+const { href, class: className = '', delay = 0 } = Astro.props;
+---
+
+{href ? (
+  <a 
+    href={href}
+    class={`animated-card group block ${className}`}
+    data-aos="fade-up"
+    data-aos-delay={delay}
+  >
+    <div class="card-inner relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500">
+      <div class="card-content relative z-10">
+        <slot />
+      </div>
+      <!-- Hover overlay effect -->
+      <div class="card-overlay absolute inset-0 bg-gradient-to-br from-[#6a040f]/5 to-[#ffba08]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <!-- Corner accent -->
+      <div class="card-accent absolute -top-10 -right-10 w-20 h-20 bg-[#ffba08]/20 rounded-full transform group-hover:scale-150 transition-transform duration-700"></div>
+    </div>
+  </a>
+) : (
+  <div 
+    class={`animated-card group ${className}`}
+    data-aos="fade-up"
+    data-aos-delay={delay}
+  >
+    <div class="card-inner relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500">
+      <div class="card-content relative z-10">
+        <slot />
+      </div>
+      <div class="card-overlay absolute inset-0 bg-gradient-to-br from-[#6a040f]/5 to-[#ffba08]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="card-accent absolute -top-10 -right-10 w-20 h-20 bg-[#ffba08]/20 rounded-full transform group-hover:scale-150 transition-transform duration-700"></div>
+    </div>
+  </div>
+)}
+
+<style>
+  .animated-card {
+    perspective: 1000px;
+  }
+  
+  .card-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  
+  .animated-card:hover .card-inner {
+    transform: translateY(-8px) rotateX(2deg);
+  }
+  
+  /* Shine effect on hover */
+  .card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.7s ease;
+    z-index: 20;
+    pointer-events: none;
+  }
+  
+  .animated-card:hover .card-inner::before {
+    left: 150%;
+  }
+  
+  /* Border glow effect */
+  .card-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #6a040f, #ffba08, #6a040f);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .animated-card:hover .card-inner::after {
+    opacity: 1;
+  }
+</style>
