@@ -39,10 +39,12 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
-  <link rel="apple-touch-icon" href={`${baseUrl}apple-touch-icon.svg`} />
-  <link rel="mask-icon" href={`${baseUrl}favicon.svg`} color="#6a040f" />
+  <!-- Favicons - Multiple formats for compatibility -->
+  <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg?v=2`} />
+  <link rel="icon" type="image/png" sizes="32x32" href={`${baseUrl}favicon-32x32.svg?v=2`} />
+  <link rel="apple-touch-icon" sizes="180x180" href={`${baseUrl}apple-touch-icon.svg?v=2`} />
+  <link rel="mask-icon" href={`${baseUrl}favicon.svg?v=2`} color="#6a040f" />
+  <meta name="msapplication-TileColor" content="#6a040f" />
   <meta name="theme-color" content="#6a040f" />
   
   <title>{title}</title>
