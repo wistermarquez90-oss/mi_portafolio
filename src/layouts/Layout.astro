@@ -49,6 +49,16 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   
   <title>{title}</title>
   
+  <!-- Prefetch para navegación instantánea en móvil -->
+  <link rel="prefetch" href={`${baseUrl}`} />
+  <link rel="prefetch" href={`${baseUrl}investigacion`} />
+  <link rel="prefetch" href={`${baseUrl}pasantias`} />
+  <link rel="prefetch" href={`${baseUrl}blog`} />
+  <link rel="prefetch" href={`${baseUrl}contacto`} />
+  
+  <!-- Preconnect para fuentes -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
   <script is:inline>
     // Dark mode initialization - prevent flash
     const theme = (() => {
@@ -79,18 +89,24 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   <Footer />
   
   <script>
-    import AOS from 'aos';
-    import 'aos/dist/aos.css';
+    // AOS lazy loading - solo carga cuando el usuario no está interactuando con el menú
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
     
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 100,
-        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!isMobile || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      import('aos').then((AOS) => {
+        import('aos/dist/aos.css', { assert: { type: 'css' } }).catch(() => {});
+        
+        requestIdleCallback(() => {
+          AOS.default.init({
+            duration: 600,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50,
+            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          });
+        });
       });
-    });
+    }
   </script>
 </body>
 </html>

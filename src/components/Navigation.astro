@@ -83,7 +83,7 @@ const navItems = [
     </div>
   </div>
   
-  <!-- Mobile Menu -->
+      <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden bg-[#6a040f] border-t border-[#ffba08]/30">
     <div class="px-4 py-3 space-y-1">
       {navItems.map((item) => (
@@ -101,6 +101,7 @@ const navItems = [
               <a 
                 href={item.href}
                 class="block px-3 py-2 text-sm text-white/80 hover:text-[#ffba08] hover:bg-white/5 rounded-md transition-colors"
+                rel="prefetch"
               >
                 Ver todas las asignaturas
               </a>
@@ -108,6 +109,7 @@ const navItems = [
                 <a 
                   href={child.href}
                   class="block px-3 py-2 text-sm text-white/80 hover:text-[#ffba08] hover:bg-white/5 rounded-md transition-colors"
+                  rel="prefetch"
                 >
                   {child.label}
                 </a>
@@ -118,6 +120,7 @@ const navItems = [
           <a 
             href={item.href}
             class="block px-3 py-2.5 text-base font-medium text-white hover:text-[#ffba08] hover:bg-white/10 rounded-md transition-colors"
+            rel="prefetch"
           >
             {item.label}
           </a>
@@ -128,11 +131,11 @@ const navItems = [
 </nav>
 
 <script>
-  // Navbar scroll effect
+  // Navbar scroll effect - usando requestAnimationFrame para mejor rendimiento
   const navbar = document.getElementById('navbar');
-  let lastScroll = 0;
+  let ticking = false;
   
-  window.addEventListener('scroll', () => {
+  function updateNavbar() {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll > 50) {
@@ -142,53 +145,80 @@ const navItems = [
       navbar?.classList.remove('bg-[#6a040f]', 'backdrop-blur-md', 'shadow-sm');
       navbar?.classList.add('bg-transparent');
     }
-    
-    lastScroll = currentScroll;
-  });
+    ticking = false;
+  }
   
-  // Mobile menu toggle
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }, { passive: true });
+  
+  // Mobile menu toggle - optimizado
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   let isMenuOpen = false;
   
-  mobileMenuBtn?.addEventListener('click', () => {
+  // Iconos SVG como strings para evitar reparsing
+  const menuIcon = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+  const closeIcon = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+  
+  function toggleMenu() {
     isMenuOpen = !isMenuOpen;
-    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle('hidden', !isMenuOpen);
     
-    // Change button color based on menu state
     if (isMenuOpen) {
       mobileMenuBtn.classList.remove('text-white', 'hover:text-[#ffba08]', 'hover:bg-white/10');
       mobileMenuBtn.classList.add('text-[#ffba08]');
+      mobileMenuBtn.innerHTML = closeIcon;
     } else {
       mobileMenuBtn.classList.remove('text-[#ffba08]');
       mobileMenuBtn.classList.add('text-white', 'hover:text-[#ffba08]', 'hover:bg-white/10');
+      mobileMenuBtn.innerHTML = menuIcon;
     }
-    
-    mobileMenuBtn.innerHTML = isMenuOpen 
-      ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>'
-      : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
-  });
+  }
   
-  // Close mobile menu on link click
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  mobileLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      isMenuOpen = false;
-      mobileMenu?.classList.add('hidden');
-      mobileMenuBtn.classList.remove('text-[#ffba08]');
-      mobileMenuBtn.classList.add('text-white', 'hover:text-[#ffba08]', 'hover:bg-white/10');
-      mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
-    });
+  function closeMenu() {
+    if (!isMenuOpen) return;
+    isMenuOpen = false;
+    mobileMenu?.classList.add('hidden');
+    mobileMenuBtn.classList.remove('text-[#ffba08]');
+    mobileMenuBtn.classList.add('text-white', 'hover:text-[#ffba08]', 'hover:bg-white/10');
+    mobileMenuBtn.innerHTML = menuIcon;
+  }
+  
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+  
+  // Cerrar menú inmediatamente al hacer clic en cualquier enlace
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
   
   // Mobile dropdown toggle
-  const mobileDropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
-  mobileDropdownBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const content = btn.nextElementSibling;
       const arrow = btn.querySelector('svg');
-      content.classList.toggle('hidden');
-      arrow.classList.toggle('rotate-180');
+      const isHidden = content.classList.contains('hidden');
+      
+      // Cerrar otros dropdowns
+      document.querySelectorAll('.mobile-dropdown-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.mobile-dropdown-btn svg').forEach(a => a.classList.remove('rotate-180'));
+      
+      // Toggle actual
+      if (isHidden) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      }
     });
+  });
+  
+  // Cerrar menú al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (isMenuOpen && !mobileMenu?.contains(e.target) && !mobileMenuBtn?.contains(e.target)) {
+      closeMenu();
+    }
   });
 </script>
