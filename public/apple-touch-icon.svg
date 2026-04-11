@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <linearGradient id="bg180" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a040f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#370617;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="180" height="180" rx="40" fill="url(#bg180)"/>
+  
+  <text x="90" y="125" 
+        font-family="Georgia, serif" 
+        font-size="100" 
+        font-weight="bold" 
+        fill="#ffba08" 
+        text-anchor="middle"
+        style="font-style: italic;">W</text>
+  
+  <polyline points="45,140 65,120 85,130 105,110 125,125 145,100" 
+            fill="none" 
+            stroke="#ffba08" 
+            stroke-width="4" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            opacity="0.7"/>
+</svg>
