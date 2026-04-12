@@ -59,6 +59,17 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   <!-- Preconnect para fuentes -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   
+  <!-- CSS crítico: asegura contenido visible -->
+  <style>
+    /* Fallback: contenido siempre visible */
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    /* Si AOS carga correctamente, removerá estos estilos inline */
+  </style>
+  
   <script is:inline>
     // Dark mode initialization - prevent flash
     const theme = (() => {
@@ -89,24 +100,34 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   <Footer />
   
   <script>
-    // AOS lazy loading - solo carga cuando el usuario no está interactuando con el menú
-    const isMobile = window.matchMedia('(pointer: coarse)').matches;
-    
-    if (!isMobile || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      import('aos').then((AOS) => {
-        import('aos/dist/aos.css', { assert: { type: 'css' } }).catch(() => {});
-        
-        requestIdleCallback(() => {
+    // AOS initialization - asegura que el contenido sea visible incluso si falla
+    (function() {
+      // Primero, hacer todo el contenido visible por defecto
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      
+      // Luego intentar cargar AOS para animaciones suaves
+      try {
+        import('aos').then((AOS) => {
+          import('aos/dist/aos.css').catch(() => {});
+          
           AOS.default.init({
             duration: 600,
             easing: 'ease-out-cubic',
             once: true,
             offset: 50,
-            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches
           });
+        }).catch(() => {
+          // Si AOS falla, el contenido ya es visible
+          console.log('AOS no cargó, contenido visible por defecto');
         });
-      });
-    }
+      } catch(e) {
+        // Contenido ya es visible
+      }
+    })();
   </script>
 </body>
 </html>
