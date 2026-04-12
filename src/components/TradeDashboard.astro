@@ -1,0 +1,391 @@
+---
+// Componente de Dashboard de Comercio Colombia-Venezuela
+const tradeData = {
+  years: ['2022', '2023', '2024'],
+  exports: [457.3, 673.0, 1003.4],  // Colombia → Venezuela (millones USD)
+  imports: [51.0, 130.9, 134.1],    // Venezuela → Colombia (millones USD)
+  total: [508.3, 803.9, 1137.5]
+};
+
+const products2024 = {
+  colombiaExports: [
+    { name: 'Alimentos y Bebidas', percent: 24, value: 240.8, color: '#6a040f' },
+    { name: 'Productos Químicos', percent: 22, value: 220.7, color: '#9d0208' },
+    { name: 'Materias Plásticas', percent: 11, value: 110.4, color: '#d00000' },
+    { name: 'Papel y Cartón', percent: 8, value: 80.3, color: '#e85d04' },
+    { name: 'Textiles y Vestuario', percent: 7, value: 70.2, color: '#f48c06' },
+    { name: 'Otros', percent: 28, value: 281.0, color: '#ffba08' }
+  ],
+  venezuelaExports: [
+    { name: 'Fundición de Hierro y Acero', percent: 25, value: 33.5, color: '#370617' },
+    { name: 'Abonos', percent: 17, value: 22.8, color: '#6a040f' },
+    { name: 'Productos Químicos Orgánicos', percent: 14, value: 18.8, color: '#9d0208' },
+    { name: 'Combustibles y Aceites', percent: 12, value: 16.1, color: '#d00000' },
+    { name: 'Aluminio y Manufacturas', percent: 10, value: 13.4, color: '#e85d04' },
+    { name: 'Otros', percent: 22, value: 29.5, color: '#f48c06' }
+  ]
+};
+
+const growthData = [
+  { period: 'Ene-Mar 2023', value: 189 },
+  { period: 'Abr-Jun 2023', value: 205 },
+  { period: 'Jul-Sep 2023', value: 198 },
+  { period: 'Oct-Dic 2023', value: 212 },
+  { period: 'Ene-Mar 2024', value: 251 },
+  { period: 'Abr-Jun 2024', value: 278 },
+  { period: 'Jul-Sep 2024', value: 298 },
+  { period: 'Oct-Dic 2024', value: 311 }
+];
+---
+
+<div class="trade-dashboard">
+  <!-- Resumen General -->
+  <div class="bg-gradient-to-br from-[#370617] to-[#6a040f] rounded-2xl p-8 mb-8 text-white">
+    <h3 class="text-2xl font-bold mb-2">Comercio Colombia - Venezuela</h3>
+    <p class="text-white/80 mb-6">Recuperación del intercambio comercial tras la reapertura fronteriza</p>
+    
+    <div class="grid md:grid-cols-4 gap-4">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-3xl font-bold text-[#ffba08] counter" data-target="1137.5">0</div>
+        <p class="text-xs text-white/70">Comercio Total 2024 (millones USD)</p>
+        <span class="text-xs text-green-400">↑ 41.5%</span>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-3xl font-bold text-[#ffba08]">1003.4</div>
+        <p class="text-xs text-white/70">Exportaciones COL → VEN</p>
+        <span class="text-xs text-green-400">↑ 49.1%</span>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-3xl font-bold text-[#ffba08]">134.1</div>
+        <p class="text-xs text-white/70">Importaciones VEN → COL</p>
+        <span class="text-xs text-green-400">↑ 2.5%</span>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-3xl font-bold text-[#ffba08]">88%</div>
+        <p class="text-xs text-white/70">Balanza favorable a Colombia</p>
+        <span class="text-xs text-green-400">Superávit: $869M</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparativo Anual -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Evolución del Comercio Bilateral (2022-2024)
+    </h4>
+    
+    <!-- Gráfico de Barras Comparativo -->
+    <div class="space-y-6">
+      {tradeData.years.map((year, yearIndex) => (
+        <div class="trade-year-container">
+          <div class="flex items-center gap-4 mb-2">
+            <span class="w-12 font-bold text-gray-700 dark:text-gray-300">{year}</span>
+            <div class="flex-1">
+              <div class="h-8 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden flex">
+                <!-- Exportaciones COL -->
+                <div 
+                  class="h-full bg-[#6a040f] flex items-center justify-center text-white text-xs font-semibold trade-bar transition-all duration-1000"
+                  style={`width: 0%;`}
+                  data-width={`${(tradeData.exports[yearIndex] / 1200) * 100}%`}
+                  data-delay={yearIndex * 200}
+                  title={`Exportaciones: $${tradeData.exports[yearIndex]}M`}
+                >
+                  {tradeData.exports[yearIndex] > 200 && `$${tradeData.exports[yearIndex]}M`}
+                </div>
+                
+                <!-- Importaciones VEN -->
+                <div 
+                  class="h-full bg-[#ffba08] flex items-center justify-center text-[#370617] text-xs font-semibold trade-bar transition-all duration-1000"
+                  style={`width: 0%;`}
+                  data-width={`${(tradeData.imports[yearIndex] / 1200) * 100}%`}
+                  data-delay={yearIndex * 200 + 100}
+                  title={`Importaciones: $${tradeData.imports[yearIndex]}M`}
+                >
+                  {tradeData.imports[yearIndex] > 80 && `$${tradeData.imports[yearIndex]}M`}
+                </div>
+              </div>
+            </div>
+            
+            <span class="w-20 text-right font-bold text-[#6a040f] dark:text-[#ffba08]">${tradeData.total[yearIndex]}M</span>
+          </div>
+          
+          <div class="flex gap-4 text-xs text-gray-500 dark:text-gray-400 ml-16">
+            <span class="flex items-center gap-1">
+              <span class="w-3 h-3 bg-[#6a040f] rounded"></span>
+              Exportaciones COL: ${tradeData.exports[yearIndex]}M
+            </span>
+            <span class="flex items-center gap-1">
+              <span class="w-3 h-3 bg-[#ffba08] rounded"></span>
+              Importaciones VEN: ${tradeData.imports[yearIndex]}M
+            </span>
+          </div>
+        </div฾
+      ))}
+    </div>
+
+    <!-- Evolución Trimestral 2024 -->
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <h5 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Comercio Trimestral 2024 (millones USD)</h5>
+      
+      <div class="grid grid-cols-4 gap-2">
+        {growthData.map((item, index) => (
+          <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">{item.period}</div>
+            <div class="text-lg font-bold text-[#6a040f] dark:text-[#ffba08]">${item.value}M</div>
+            <div class="text-xs text-green-500 mt-1">
+              {index > 0 && `+${Math.round((item.value - growthData[index-1].value) / growthData[index-1].value * 100)}%`}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos Principales -->
+  <div class="grid md:grid-cols-2 gap-8 mb-8">
+    <!-- Colombia Exporta -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+      <h4 class="text-lg font-bold text-[#6a040f] dark:text-[#ffba08] mb-2">
+        Colombia Exporta a Venezuela
+      </h4>      
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Total: $1,003.4 millones USD (2024)</p>
+      
+      <div class="space-y-3">
+        {products2024.colombiaExports.map((product, index) => (
+          <div class="product-bar">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-sm text-gray-700 dark:text-gray-300">{product.name}</span>
+              <span class="text-sm font-semibold text-[#6a040f] dark:text-[#ffba08]">{product.percent}%</span>
+            </div>
+            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div 
+                class="h-full rounded-full transition-all duration-700 product-fill"
+                style={`width: 0%; background-color: ${product.color};`}
+                data-width={`${product.percent}%`}
+                data-delay={index * 80}
+              />
+            </div>
+            <div class="text-xs text-gray-500 mt-1">${product.value.toFixed(1)}M USD</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Venezuela Exporta -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+      <h4 class="text-lg font-bold text-[#6a040f] dark:text-[#ffba08] mb-2">
+        Venezuela Exporta a Colombia
+      </h4>
+      
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Total: $134.1 millones USD (2024)</p>
+      
+      <div class="space-y-3">
+        {products2024.venezuelaExports.map((product, index) => (
+          <div class="product-bar">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-sm text-gray-700 dark:text-gray-300">{product.name}</span>
+              <span class="text-sm font-semibold text-[#6a040f] dark:text-[#ffba08]">{product.percent}%</span>
+            </div>
+            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div 
+                class="h-full rounded-full transition-all duration-700 product-fill"
+                style={`width: 0%; background-color: ${product.color};`}
+                data-width={`${product.percent}%`}
+                data-delay={index * 80 + 400}
+              />
+            </div>
+            <div class="text-xs text-gray-500 mt-1">${product.value.toFixed(1)}M USD</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Flujo Comercial -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg mb-8">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Flujo de Comercio Bilateral
+    </h4>
+    
+    <div class="relative flex items-center justify-between py-8 px-4">
+      <!-- Colombia -->
+      <div class="text-center">
+        <div class="w-24 h-24 rounded-full bg-[#6a040f] flex items-center justify-center mx-auto mb-2">
+          <span class="text-white font-bold text-sm">Colombia</span>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Exporta manufacturas y alimentos</p>
+      </div>
+      
+      <!-- Flujo principal -->
+      <div class="flex-1 px-4 relative">
+        <!-- Línea principal -->
+        <div class="h-4 bg-gradient-to-r from-[#6a040f] to-[#ffba08] rounded-full relative overflow-hidden">
+          <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+        </div>
+        
+        <!-- Etiqueta -->
+        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-[#6a040f] text-white px-3 py-1 rounded-full text-xs font-semibold">
+          $1,003.4M (88%)
+        </div>
+        
+        <!-- Flecha -->
+        <div class="absolute top-0 right-1/4 text-[#6a040f]">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Venezuela -->
+      <div class="text-center">
+        <div class="w-24 h-24 rounded-full bg-[#ffba08] flex items-center justify-center mx-auto mb-2">
+          <span class="text-[#370617] font-bold text-sm">Venezuela</span>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Exporta materias primas</p>
+      </div>
+    </div>
+    
+    <!-- Flujo inverso (pequeño) -->
+    <div class="relative flex items-center justify-center mt-4">
+      <div class="w-1/3 h-2 bg-[#ffba08]/50 rounded-full"></div>
+      <div class="mx-2 text-xs text-gray-500">$134.1M (12%)</div>
+    </div>
+  </div>
+
+  <!-- Perspectivas 2025 -->
+  <div class="bg-gradient-to-r from-[#6a040f]/10 to-[#ffba08]/10 rounded-2xl p-6">
+    <h4 class="text-lg font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Perspectivas 2025
+    </h4>
+    
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-xl">
+        <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">$1,300-1,500M</div>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Proyección de comercio total</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-xl">
+        <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">2,000+</div>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Empresas participando activamente</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-xl">
+        <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">82%</div>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Transporte terrestre (principal vía)</p>
+      </div>
+    </div>
+    
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+      <strong>Factores clave 2025:</strong> Acuerdo Binacional de Transporte, complementación económica privada, 
+      reducción del comercio informal, perspectivas económicas favorables.
+    </p>
+  </div>
+
+  <!-- Fuentes -->
+  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm">
+    <h5 class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Fuentes de Información:</h5>
+    <ul class="space-y-1 text-gray-600 dark:text-gray-400">
+      <li>• <strong>DANE</strong> (Departamento Administrativo Nacional de Estadística) - Estadísticas oficiales Colombia</li>
+      <li>• <strong>Cámara Colombo Venezolana (Cavecol)</strong> - Reportes de comercio bilateral 2024-2025</li>
+      <li>• <strong>OEC.world</strong> - Observatory of Economic Complexity</li>
+      <li>• <strong>ANIF</strong> (Análisis de Economía y Finanzas) - Balanza comercial Colombia</li>
+      <li>• <strong>ANALDEX</strong> (Asociación Nacional de Comercio Exterior) - Estudios sectoriales</li>
+      <li>• <strong>Contexto Ganadero</strong> - Análisis sector agropecuario bilateral</li>
+    </ul>
+    
+    <p class="mt-3 text-xs text-gray-500">
+      <em>Nota: Datos 2024 corresponden al período enero-diciembre. Cifras en millones de USD FOB. 
+      La información está sujeta a actualización por parte de las entidades estadísticas.</em>
+    </p>
+  </div>
+</div>
+
+<style>
+  .trade-bar {
+    transition: width 1s ease-out;
+  }
+  
+  .product-fill {
+    transition: width 0.8s ease-out;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+</style>
+
+<script>
+  // Animación de barras de comercio
+  function animateTradeBars() {
+    const bars = document.querySelectorAll('.trade-bar');
+    bars.forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      const delay = parseInt(bar.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        bar.style.width = width;
+      }, delay);
+    });
+  }
+
+  // Animación de productos
+  function animateProductBars() {
+    const fills = document.querySelectorAll('.product-fill');
+    fills.forEach(fill => {
+      const width = fill.getAttribute('data-width');
+      const delay = parseInt(fill.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        fill.style.width = width;
+      }, delay);
+    });
+  }
+
+  // Animación de contadores
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = current.toFixed(1);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+
+  // Iniciar animaciones
+  if (typeof window !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateTradeBars();
+          animateProductBars();
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const dashboard = document.querySelector('.trade-dashboard');
+    if (dashboard) {
+      observer.observe(dashboard);
+    }
+  }
+</script>

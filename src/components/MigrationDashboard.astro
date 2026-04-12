@@ -1,0 +1,381 @@
+---
+// Componente de Mapa de Migración Venezolana
+const migrationData = {
+  countries: [
+    { name: 'Colombia', count: 2828195, percent: 40.9, color: '#6a040f' },
+    { name: 'Perú', count: 1662889, percent: 24.0, color: '#9d0208' },
+    { name: 'Brasil', count: 732272, percent: 10.6, color: '#d00000' },
+    { name: 'Chile', count: 669408, percent: 9.7, color: '#e85d04' },
+    { name: 'Ecuador', count: 440450, percent: 6.4, color: '#f48c06' },
+    { name: 'Rep. Dominicana', count: 99692, percent: 1.4, color: '#faa307' },
+    { name: 'México', count: 106015, percent: 1.5, color: '#ffba08' },
+    { name: 'Argentina', count: 174796, percent: 2.5, color: '#3d0066' },
+    { name: 'Otros', count: 195240, percent: 2.8, color: '#5a189a' }
+  ],
+  total: 6911757
+};
+
+const evolutionData = [
+  { year: '2015', count: 700000, label: '700K' },
+  { year: '2017', count: 1200000, label: '1.2M' },
+  { year: '2018', count: 2000000, label: '2.0M' },
+  { year: '2019', count: 3200000, label: '3.2M' },
+  { year: '2020', count: 4000000, label: '4.0M' },
+  { year: '2021', count: 4800000, label: '4.8M' },
+  { year: '2022', count: 5500000, label: '5.5M' },
+  { year: '2023', count: 6200000, label: '6.2M' },
+  { year: '2024', count: 6800000, label: '6.8M' },
+  { year: '2025', count: 6911757, label: '6.9M' }
+];
+
+const colombiaEvolution = [
+  { year: '2015', count: 30000 },
+  { year: '2016', count: 50000 },
+  { year: '2017', count: 200000 },
+  { year: '2018', count: 550000 },
+  { year: '2019', count: 1200000 },
+  { year: '2020', count: 1700000 },
+  { year: '2021', count: 1950000 },
+  { year: '2022', count: 2500000 },
+  { year: '2023', count: 2650000 },
+  { year: '2024', count: 2800000 },
+  { year: '2025', count: 2828195 }
+];
+---
+
+<div class="migration-dashboard">
+  <!-- Resumen General -->
+  <div class="bg-gradient-to-br from-[#6a040f] to-[#370617] rounded-2xl p-8 mb-8 text-white">
+    <h3 class="text-2xl font-bold mb-2">Crisis Migratoria Venezolana</h3>
+    <p class="text-white/80 mb-6">La mayor crisis de desplazamiento en la historia reciente de América Latina</p>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-4xl font-bold text-[#ffba08] counter" data-target="7910000">0</div>
+        <p class="text-sm text-white/70">Total de migrantes en el mundo</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-4xl font-bold text-[#ffba08] counter" data-target="6911757">0</div>
+        <p class="text-sm text-white/70">En América Latina y el Caribe</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+        <div class="text-4xl font-bold text-[#ffba08]">17</div>
+        <p class="text-sm text-white/70">Países de la Plataforma R4V</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mapa de Distribución Regional -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Distribución por País de Acogida (2025)
+    </h4>
+    <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
+      Total: 6,9 millones de refugiados y migrantes venezolanos en la región
+    </p>
+
+    <!-- Barras Animadas -->
+    <div class="space-y-3" id="migration-bars">
+      {migrationData.countries.map((country, index) => (
+        <div class="migration-bar-container">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-medium text-gray-700 dark:text-gray-300 text-sm">{country.name}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              <span class="font-bold text-[#6a040f] dark:text-[#ffba08]">{country.count.toLocaleString()}</span>
+              <span class="ml-1">({country.percent}%)</span>
+            </span>
+          </div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div 
+              class="h-full rounded-full transition-all duration-1000 ease-out migration-bar"
+              style={`width: 0%; background-color: ${country.color};`}
+              data-width={`${country.percent}%`}
+              data-delay={index * 100}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Visualización de Mapa SVG Estilizado -->
+    <div class="mt-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+      <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4 text-center">Mapa Conceptual de Distribución</h5>
+      <svg viewBox="0 0 800 400" class="w-full h-auto">
+        <!-- Venezuela (origen) -->
+        <circle cx="250" cy="200" r="25" fill="#370617" stroke="#ffba08" stroke-width="3" />
+        <text x="250" y="205" text-anchor="middle" fill="#ffba08" font-size="12" font-weight="bold">VEN</text>
+        
+        <!-- Líneas de flujo -->
+        <path d="M 275 185 Q 400 100 550 150" stroke="#6a040f" stroke-width="8" fill="none" opacity="0.6">
+          <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="2s" />
+        </path>
+        <path d="M 275 200 Q 450 200 580 200" stroke="#9d0208" stroke-width="5" fill="none" opacity="0.5" />
+        <path d="M 275 215 Q 400 300 550 280" stroke="#d00000" stroke-width="4" fill="none" opacity="0.4" />
+        <path d="M 275 190 Q 350 50 550 80" stroke="#e85d04" stroke-width="3" fill="none" opacity="0.4" />
+        
+        <!-- Colombia -->
+        <circle cx="550" cy="150" r="35" fill="#6a040f" />
+        <text x="550" y="145" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Colombia</text>
+        <text x="550" y="160" text-anchor="middle" fill="#ffba08" font-size="14" font-weight="bold">2.8M</text>
+        
+        <!-- Perú -->
+        <circle cx="580" cy="200" r="28" fill="#9d0208" />
+        <text x="580" y="195" text-anchor="middle" fill="white" font-size="9">Perú</text>
+        <text x="580" y="208" text-anchor="middle" fill="#ffba08" font-size="11" font-weight="bold">1.7M</text>
+        
+        <!-- Brasil -->
+        <circle cx="650" cy="280" r="22" fill="#d00000" />
+        <text x="650" y="275" text-anchor="middle" fill="white" font-size="9">Brasil</text>
+        <text x="650" y="286" text-anchor="middle" fill="#ffba08" font-size="10" font-weight="bold">732K</text>
+        
+        <!-- Chile -->
+        <circle cx="550" cy="80" r="20" fill="#e85d04" />
+        <text x="550" y="76" text-anchor="middle" fill="white" font-size="8">Chile</text>
+        <text x="550" y="86" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">669K</text>
+        
+        <!-- Ecuador -->
+        <circle cx="520" cy="220" r="18" fill="#f48c06" />
+        <text x="520" y="217" text-anchor="middle" fill="white" font-size="8">Ecuador</text>
+        <text x="520" y="226" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">440K</text>
+        
+        <!-- Argentina -->
+        <circle cx="600" y="340" r="16" fill="#3d0066" />
+        <text x="600" y="336" text-anchor="middle" fill="white" font-size="8">Argentina</text>
+        <text x="600" y="345" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">175K</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Evolución Temporal -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Evolución del Éxodo Venezolano (2015-2025)
+    </h4>
+    <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
+      Crecimiento acumulado de migrantes y refugiados en la región
+    </p>
+
+    <!-- Línea de Tiempo Horizontal -->
+    <div class="relative">
+      <div class="flex items-end justify-between h-48 md:h-64 gap-2">
+        {evolutionData.map((item, index) => (
+          <div class="flex-1 flex flex-col items-center group">
+            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              {item.label}
+            </div>
+            <div 
+              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar"
+              style={`height: 0%;`}
+              data-height={`${(item.count / 8000000) * 100}%`}
+              data-delay={index * 100}
+            />
+            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">{item.year}</div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Línea base -->
+      <div class="absolute bottom-8 left-0 right-0 h-0.5 bg-gray-200 dark:bg-gray-700" />
+    </div>
+
+    <div class="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+      Fuente: Plataforma R4V, ACNUR, OIM - Noviembre 2025
+    </div>
+  </div>
+
+  <!-- Colombia: Evolución Específica -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+      Migración Venezuela → Colombia (Evolución Anual)
+    </h4>
+    <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
+      Colombia es el principal país de acogida con el 41% del total migratorio
+    </p>
+
+    <!-- Gráfico de Área -->
+    <div class="relative h-64">
+      <svg viewBox="0 0 600 200" class="w-full h-full" preserveAspectRatio="none">
+        <!-- Gradiente -->
+        <defs>
+          <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#6a040f;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#6a040f;stop-opacity:0.1" />
+          </linearGradient>
+        </defs>
+        
+        <!-- Área -->
+        <path 
+          class="area-path"
+          fill="url(#areaGradient)"
+          d="M 0,200 L 0,200 L 55,200 L 110,200 L 165,200 L 220,200 L 275,200 L 330,200 L 385,200 L 440,200 L 495,200 L 550,200 L 600,200 Z"
+          data-points="M 0,192 L 55,191 L 110,178 L 165,140 L 220,91 L 275,65 L 330,49 L 385,28 L 440,23 L 495,15 L 550,11 L 600,10"
+        />
+        
+        <!-- Línea -->
+        <path 
+          class="line-path"
+          fill="none"
+          stroke="#6a040f"
+          stroke-width="3"
+          d="M 0,192 L 55,191 L 110,178 L 165,140 L 220,91 L 275,65 L 330,49 L 385,28 L 440,23 L 495,15 L 550,11 L 600,10"
+          stroke-dasharray="1000"
+          stroke-dashoffset="1000"
+        />
+        
+        <!-- Puntos -->
+        {colombiaEvolution.map((item, index) => {
+          const x = index * 55;
+          const y = 200 - ((item.count / 3000000) * 190);
+          return (
+            <circle cx={x} cy={y} r="4" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="data-point" opacity="0" />
+          );
+        })}
+      </svg>
+      
+      <!-- Etiquetas del eje Y -->
+      <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-400 -ml-8">
+        <span>3M</span>
+        <span>2M</span>
+        <span>1M</span>
+        <span>0</span>
+      </div>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="flex justify-between items-center mt-4 text-sm text-gray-500 dark:text-gray-400">
+      <span>2015</span>
+      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold">2.8M en 2025</span>
+      <span>2025</span>
+    </div>
+  </div>
+
+  <!-- Fuentes -->
+  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm">
+    <h5 class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Fuentes de Información:</h5>
+    <ul class="space-y-1 text-gray-600 dark:text-gray-400">
+      <li>• <strong>Plataforma R4V</strong> (ACNUR/OIM) - Noviembre 2025: 6,9 millones en ALC</li>
+      <li>• <strong>ACNUR</strong> - Tendencias Globales 2024: Mayor crisis de desplazamiento mundial</li>
+      <li>• <strong>DANE Colombia</strong> - Estadísticas migratorias</li>
+      <li>• <strong>OIM</strong> - Reportes de movimientos trimestrales 2024-2025</li>
+      <li>• <strong>Bloomberg Línea</strong> - Reportes diarios de crisis migratoria</li>
+    </ul>
+    <p class="mt-3 text-xs text-gray-500">
+      <em>Nota: Estas cifras son estimaciones oficiales de los gobiernos de acogida y pueden incluir un grado de estimación según la metodología de cada país. Datos actualizados a noviembre 2025.</em>
+    </p>
+  </div>
+</div>
+
+<style>
+  .migration-bar {
+    transition: width 1s ease-out;
+  }
+  
+  .evolution-bar {
+    transition: height 0.8s ease-out;
+  }
+  
+  .line-path {
+    animation: drawLine 2s ease-out forwards;
+  }
+  
+  @keyframes drawLine {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .data-point {
+    animation: fadeIn 0.3s ease-out forwards;
+    animation-delay: 2s;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+
+<script>
+  // Animación de barras de migración
+  function animateMigrationBars() {
+    const bars = document.querySelectorAll('.migration-bar');
+    bars.forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      const delay = parseInt(bar.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        bar.style.width = width;
+      }, delay);
+    });
+  }
+
+  // Animación de barras de evolución
+  function animateEvolutionBars() {
+    const bars = document.querySelectorAll('.evolution-bar');
+    bars.forEach(bar => {
+      const height = bar.getAttribute('data-height');
+      const delay = parseInt(bar.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        bar.style.height = height;
+      }, delay);
+    });
+  }
+
+  // Animación de contadores
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = Math.floor(current).toLocaleString();
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+
+  // Animación del área de Colombia
+  function animateAreaChart() {
+    const areaPath = document.querySelector('.area-path');
+    if (areaPath) {
+      const finalPoints = areaPath.getAttribute('data-points');
+      setTimeout(() => {
+        areaPath.setAttribute('d', `${finalPoints} L 600,200 Z`);
+      }, 500);
+    }
+  }
+
+  // Iniciar animaciones cuando el componente es visible
+  if (typeof window !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateMigrationBars();
+          animateEvolutionBars();
+          animateCounters();
+          animateAreaChart();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const dashboard = document.querySelector('.migration-dashboard');
+    if (dashboard) {
+      observer.observe(dashboard);
+    }
+  }
+</script>

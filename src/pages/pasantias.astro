@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import AnimatedCard from '../components/AnimatedCard.astro';
 import SignatureFooter from '../components/SignatureFooter.astro';
+import MigrationDashboard from '../components/MigrationDashboard.astro';
+import TradeDashboard from '../components/TradeDashboard.astro';
 import { getCollection } from 'astro:content';
 
 const baseUrl = import.meta.env.BASE_URL || '/';
@@ -108,7 +110,7 @@ const calificaciones = [
           ))}
         </div>
 
-        <!-- Documentos Markdown -->
+        <!-- Documentos del Proyecto -->
         <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8" data-aos="fade-up">
           Documentación del Proyecto
         </h3>
@@ -177,7 +179,45 @@ const calificaciones = [
     </div>
   </section>
 
-  <!-- Sistema de Calidad -->
+  <!-- Dashboard de Migración -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Crisis Migratoria Venezolana
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Análisis visual de la distribución de migrantes venezolanos en la región y su evolución temporal.
+            Datos actualizados de la Plataforma R4V (ACNUR/OIM).
+          </p>
+        </div>
+
+        <MigrationDashboard />
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard de Comercio -->
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Comercio Bilateral Colombia - Venezuela
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Análisis del intercambio comercial tras la reapertura fronteriza en 2022. 
+            Exportaciones, importaciones y principales productos comercializados.
+          </p>
+        </div>
+
+        <TradeDashboard />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sistema de Control de Calidad -->
   <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
