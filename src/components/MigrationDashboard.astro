@@ -167,7 +167,7 @@ const colombiaEvolution = [
     </div>
   </div>
 
-  <!-- Colombia: Evolución Específica -->
+  <!-- Colombia: Evolución Específica - GRÁFICA PLOTLY -->
   <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
     <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,64 +179,14 @@ const colombiaEvolution = [
       Colombia es el principal país de acogida con el 41% del total migratorio (2.8 millones)
     </p>
 
-    <!-- Gráfico de Área -->
-    <div class="relative h-64">
-      <svg viewBox="0 0 600 200" class="w-full h-full" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#6a040f;stop-opacity:0.8" />
-            <stop offset="100%" style="stop-color:#6a040f;stop-opacity:0.1" />
-          </linearGradient>
-        </defs>
-        
-        <!-- Área -->
-        <path 
-          class="area-path"
-          fill="url(#areaGradient)"
-          d="M 0,200 L 0,200 L 55,200 L 110,200 L 165,200 L 220,200 L 275,200 L 330,200 L 385,200 L 440,200 L 495,200 L 550,200 L 600,200 Z"
-          data-points="M 0,192 L 55,191 L 110,178 L 165,140 L 220,91 L 275,65 L 330,49 L 385,28 L 440,23 L 495,15 L 550,11 L 600,10"
-        />
-        
-        <!-- Línea -->
-        <path 
-          class="line-path"
-          fill="none"
-          stroke="#6a040f"
-          stroke-width="3"
-          d="M 0,192 L 55,191 L 110,178 L 165,140 L 220,91 L 275,65 L 330,49 L 385,28 L 440,23 L 495,15 L 550,11 L 600,10"
-          stroke-dasharray="1000"
-          stroke-dashoffset="1000"
-        />
-        
-        <!-- Puntos interactivos -->
-        {colombiaEvolution.map((item, index) => {
-          const x = index * 55;
-          const y = 200 - ((item.count / 3000000) * 190);
-          return (
-            <g class="data-point-group cursor-pointer">
-              <circle cx={x} cy={y} r="6" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="transition-all duration-300 hover:r-10" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="0.3s" begin={`${2 + index * 0.1}s`} fill="freeze" />
-              </circle>
-              <title>{item.year}: {item.count.toLocaleString()} migrantes</title>
-            </g>
-          );
-        })}
-      </svg>
-      
-      <!-- Etiquetas del eje Y -->
-      <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-400 -ml-8">
-        <span>3M</span>
-        <span>2M</span>
-        <span>1M</span>
-        <span>0</span>
-      </div>
-    </div>
-
-    <!-- Leyenda -->
-    <div class="flex justify-between items-center mt-4 text-sm text-gray-500 dark:text-gray-400">
-      <span>2015</span>
-      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold bg-gradient-to-r from-[#6a040f]/10 to-[#ffba08]/10 dark:from-[#ffba08]/20 dark:to-[#6a040f]/20 px-4 py-2 rounded-full shadow-sm">2.8 millones en 2025</span>
-      <span>2025</span>
+    <!-- GRÁFICA PLOTLY -->
+    <div class="relative bg-white rounded-xl overflow-hidden shadow-inner border border-gray-200">
+      <img 
+        src={`${baseUrl}images/evolucion-colombia-venezuela.png`}
+        alt="Evolución Migración Venezuela a Colombia 2015-2025"
+        class="w-full h-auto"
+        loading="lazy"
+      />
     </div>
   </div>
 
