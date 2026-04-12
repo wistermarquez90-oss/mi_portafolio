@@ -63,46 +63,55 @@ const calificaciones = [
   <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <AnimatedCard>
-          <div class="bg-[#6a040f]/5 dark:bg-[#6a040f]/10 border-l-4 border-[#6a040f] p-8 rounded-r-xl">
-            <h2 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
-              Proyecto VENCOLECO
-            </h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 transition-colors">
-              <strong>Venezuela-Colombia Economic Dynamics</strong> — Investigación sobre la dinámica de la economía internacional entre Venezuela y Colombia (2013-2025).
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-4">
-              {stats.map((stat) => (
-                <div 
-                  class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                  data-aos="zoom-in"
-                  data-aos-delay={stat.delay}
-                >
-                  <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08]">{stat.value}</div>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 transition-colors">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+        
+        <!-- Header con icono -->
+        <div class="text-center mb-12" data-aos="fade-up">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-2xl shadow-xl mb-6">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
           </div>
-        </AnimatedCard>
+          <h2 class="text-4xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Proyecto VENCOLECO
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <strong class="text-[#6a040f] dark:text-[#ffba08]">Venezuela-Colombia Economic Dynamics</strong> — Investigación sobre la dinámica de la economía internacional entre Venezuela y Colombia (2013-2025).
+          </p>
+        </div>
+        
+        <!-- Stats destacados -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          {stats.map((stat) => (
+            <div 
+              class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              data-aos="zoom-in"
+              data-aos-delay={stat.delay}
+            >
+              <div class="text-4xl font-bold bg-gradient-to-r from-[#6a040f] to-[#ffba08] bg-clip-text text-transparent mb-2">{stat.value}</div>
+              <p class="text-gray-600 dark:text-gray-400 font-medium">{stat.label}</p>
+            </div>
+          ))}
+        </div>
 
         <!-- Dimensiones de Investigación -->
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 mt-12" data-aos="fade-up">
+        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 text-center" data-aos="fade-up">
           Dimensiones del Proyecto
         </h3>
         
         <div class="grid md:grid-cols-3 gap-6 mb-12">
           {dimensiones.map((dim) => (
             <AnimatedCard delay={dim.delay}>
-              <div class="p-6">
-                <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <div class="p-6 group hover:bg-gradient-to-br hover:from-[#6a040f]/5 hover:to-transparent transition-all duration-500">
+                <div class="w-14 h-14 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                   <div class="text-white" set:html={dim.icon} />
                 </div>
-                <h4 class="font-bold text-gray-900 dark:text-white mb-2 transition-colors">{dim.title}</h4>
-                <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-1 transition-colors">
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{dim.title}</h4>
+                <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-1">
                   {dim.items.map((item) => (
-                    <li>• {item}</li>
+                    <li class="flex items-start gap-2">
+                      <span class="w-1.5 h-1.5 bg-[#ffba08] rounded-full mt-1.5 flex-shrink-0"></span>
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -115,115 +124,173 @@ const calificaciones = [
   </section>
 
   <!-- Crisis Migratoria Venezolana -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+  <section class="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300 overflow-hidden">
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
-        <AnimatedCard>
-          <div class="bg-[#6a040f]/5 dark:bg-[#6a040f]/10 border-l-4 border-[#6a040f] p-8 rounded-r-xl">
-            <h2 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
-              Crisis Migratoria Venezolana
-            </h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 transition-colors">
-              Análisis de la mayor crisis de desplazamiento en la historia reciente de América Latina. 
-              Datos de la Plataforma R4V (ACNUR/OIM) actualizados a noviembre 2025.
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-4 mb-8">
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="0"
-              >
-                <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08]">6.9M</div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Migrantes en ALC</p>
-              </div>
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="100"
-              >
-                <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08]">2.8M</div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">En Colombia</p>
-              </div>
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="200"
-              >
-                <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08]">17</div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Países R4V</p>
-              </div>
-            </div>
-
-            <MigrationDashboard />
+        
+        <!-- Header elegante -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#6a040f] via-[#9d0208] to-[#d00000] rounded-2xl shadow-2xl mb-6 transform hover:scale-105 transition-transform duration-500">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
           </div>
-        </AnimatedCard>
+          <h2 class="text-4xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Crisis Migratoria Venezolana
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Análisis de la mayor crisis de desplazamiento en la historia reciente de América Latina
+          </p>
+        </div>
+        
+        <!-- Stats con diseño flotante -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div 
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            data-aos="fade-up" 
+            data-aos-delay="0"
+          >
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#6a040f] rounded-full flex items-center justify-center shadow-lg">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div class="text-center pt-4">
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#6a040f] to-[#d00000] bg-clip-text text-transparent mb-2 counter" data-target="6.9">6.9M</div>
+              <p class="text-gray-600 dark:text-gray-400 font-medium">Migrantes en ALC</p>
+              <span class="text-xs text-[#ffba08] font-semibold">Fuente: R4V Nov 2025</span>
+            </div>
+          </div>
+          
+          <div 
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            data-aos="fade-up" 
+            data-aos-delay="150"
+          >
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#9d0208] rounded-full flex items-center justify-center shadow-lg">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="text-center pt-4">
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#9d0208] to-[#d00000] bg-clip-text text-transparent mb-2">2.8M</div>
+              <p class="text-gray-600 dark:text-gray-400 font-medium">En Colombia</p>
+              <span class="text-xs text-[#ffba08] font-semibold">40.9% del total</span>
+            </div>
+          </div>
+          
+          <div 
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            data-aos="fade-up" 
+            data-aos-delay="300"
+          >
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#ffba08] rounded-full flex items-center justify-center shadow-lg">
+              <svg class="w-4 h-4 text-[#370617]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="text-center pt-4">
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#ffba08] to-[#f48c06] bg-clip-text text-transparent mb-2">17</div>
+              <p class="text-gray-600 dark:text-gray-400 font-medium">Países R4V</p>
+              <span class="text-xs text-[#ffba08] font-semibold">Plataforma ACNUR/OIM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard sin contenedor pesado -->
+        <div data-aos="fade-up" data-aos-delay="400">
+          <MigrationDashboard />
+        </div>
+        
       </div>
     </div>
   </section>
 
   <!-- Comercio Bilateral Colombia - Venezuela -->
-  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
-        <AnimatedCard>
-          <div class="bg-[#6a040f]/5 dark:bg-[#6a040f]/10 border-l-4 border-[#6a040f] p-8 rounded-r-xl">
-            <h2 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
-              Comercio Bilateral Colombia - Venezuela
-            </h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 transition-colors">
-              Recuperación del intercambio comercial tras la reapertura fronteriza en agosto 2022. 
-              Análisis de exportaciones, importaciones y principales productos comercializados.
-            </p>
-            
-            <div class="grid md:grid-cols-4 gap-4 mb-8">
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="0"
-              >
-                <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">$1,137M</div>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Comercio Total 2024</p>
-                <span class="text-xs text-green-500">↑ 41.5%</span>
-              </div>
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="50"
-              >
-                <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">$1,003M</div>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Exportaciones COL→VEN</p>
-                <span class="text-xs text-green-500">↑ 49.1%</span>
-              </div>
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="100"
-              >
-                <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">$134M</div>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Importaciones VEN→COL</p>
-                <span class="text-xs text-green-500">↑ 2.5%</span>
-              </div>
-              <div 
-                class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm text-center transition-colors hover:shadow-md hover:scale-105 transition-all duration-300"
-                data-aos="zoom-in" data-aos-delay="150"
-              >
-                <div class="text-2xl font-bold text-[#6a040f] dark:text-[#ffba08]">88%</div>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Balanza favorable</p>
-                <span class="text-xs text-green-500">Superávit</span>
-              </div>
-            </div>
-
-            <TradeDashboard />
+        
+        <!-- Header elegante -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#6a040f] to-[#ffba08] rounded-2xl shadow-2xl mb-6 transform hover:scale-105 transition-transform duration-500">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
           </div>
-        </AnimatedCard>
+          <h2 class="text-4xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Comercio Bilateral Colombia - Venezuela
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Recuperación del intercambio comercial tras la reapertura fronteriza en agosto 2022
+          </p>
+        </div>
+        
+        <!-- Stats con diseño flotante -->
+        <div class="grid md:grid-cols-4 gap-6 mb-16">
+          <div 
+            class="relative bg-gradient-to-br from-[#6a040f] to-[#9d0208] p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group text-white"
+            data-aos="zoom-in" 
+            data-aos-delay="0"
+          >
+            <div class="text-3xl font-bold mb-1">$1,137M</div>
+            <p class="text-white/80 text-sm mb-2">Comercio Total 2024</p>
+            <span class="inline-block px-2 py-1 bg-white/20 rounded text-xs font-semibold">↑ 41.5%</span>
+          </div>
+          
+          <div 
+            class="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border-2 border-[#6a040f]/20"
+            data-aos="zoom-in" 
+            data-aos-delay="100"
+          >
+            <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-1">$1,003M</div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">Exportaciones COL→VEN</p>
+            <span class="inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded text-xs font-semibold">↑ 49.1%</span>
+          </div>
+          
+          <div 
+            class="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border-2 border-[#ffba08]/20"
+            data-aos="zoom-in" 
+            data-aos-delay="200"
+          >
+            <div class="text-3xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-1">$134M</div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">Importaciones VEN→COL</p>
+            <span class="inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded text-xs font-semibold">↑ 2.5%</span>
+          </div>
+          
+          <div 
+            class="relative bg-gradient-to-br from-[#ffba08] to-[#f48c06] p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
+            data-aos="zoom-in" 
+            data-aos-delay="300"
+          >
+            <div class="text-3xl font-bold text-[#370617] mb-1">88%</div>
+            <p class="text-[#370617]/80 text-sm mb-2">Balanza favorable</p>
+            <span class="inline-block px-2 py-1 bg-[#370617]/20 text-[#370617] rounded text-xs font-semibold">Superávit $869M</span>
+          </div>
+        </div>
+
+        <!-- Dashboard sin contenedor pesado -->
+        <div data-aos="fade-up" data-aos-delay="400">
+          <TradeDashboard />
+        </div>
+        
       </div>
     </div>
   </section>
 
   <!-- Documentación del Proyecto -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+  <section class="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
+        
+        <!-- Header con icono -->
         <div class="text-center mb-12" data-aos="fade-up">
-          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center justify-center gap-3">
-            <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center shadow-lg">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            </div>
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl shadow-lg mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
             Documentación del Proyecto
           </h3>
           <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -235,27 +302,29 @@ const calificaciones = [
           {pasantiasEntries.map((entry, index) => (
             <AnimatedCard delay={index * 100}>
               <a href={`${baseUrl}pasantias/${entry.slug}`} class="block group">
-                <div class="flex items-start justify-between p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="flex items-start justify-between p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
                   <div class="flex items-start gap-4">
                     <!-- Icono del documento -->
-                    <div class="w-14 h-14 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                      </svg>
                     </div>
                     
                     <div class="flex-1">
                       <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">
                         {entry.data.title}
                       </h4>
-                      <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors">{entry.data.description}</p>
+                      <p class="text-gray-600 dark:text-gray-300 mb-4">{entry.data.description}</p>
                       
                       <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded-full">
                           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                           </svg>
                           {entry.data.date}
                         </span>
-                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded-full">
                           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                           </svg>
@@ -275,12 +344,14 @@ const calificaciones = [
         </div>
 
         <!-- Hitos Fronterizos -->
-        <div class="mt-16" data-aos="fade-up">
+        <div class="mt-20" data-aos="fade-up">
           <div class="text-center mb-12">
-            <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center justify-center gap-3">
-              <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center shadow-lg">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl shadow-lg mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
               Hitos Documentados
             </h3>
             <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -299,12 +370,12 @@ const calificaciones = [
                 data-aos-delay={index * 150}
               >
                 <!-- Punto en la línea -->
-                <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-6 h-6 bg-[#6a040f] rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10 group-hover:scale-125 transition-transform"></div>
+                <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-6 h-6 bg-gradient-to-br from-[#6a040f] to-[#ffba08] rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10"></div>
                 
                 <!-- Contenido -->
                 <div class={`ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right md:w-1/2' : 'md:pl-12 md:w-1/2'}`}>
-                  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                    <span class="inline-block px-3 py-1 bg-[#6a040f] text-white text-sm font-semibold rounded-full mb-3">{hito.date}</span>
+                  <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group border border-gray-100 dark:border-gray-700">
+                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-[#6a040f] to-[#9d0208] text-white text-sm font-semibold rounded-full mb-3 shadow-md">{hito.date}</span>
                     <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{hito.title}</h4>
                     <p class="text-gray-600 dark:text-gray-300">{hito.desc}</p>
                   </div>
@@ -325,43 +396,70 @@ const calificaciones = [
   <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 text-center" data-aos="fade-up">
-          Sistema de Control de Calidad
-        </h3>
         
-        <div class="grid md:grid-cols-2 gap-6">
+        <!-- Header con icono -->
+        <div class="text-center mb-12" data-aos="fade-up">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl shadow-lg mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Sistema de Control de Calidad
+          </h3>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
           <AnimatedCard delay={0}>
-            <div class="p-6">
-              <h4 class="font-bold text-gray-900 dark:text-white mb-4 transition-colors">Estructura de Supervisión</h4>
-              <ul class="space-y-2 text-gray-600 dark:text-gray-300 transition-colors">
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
-                  <strong>4 grupos</strong> según complejidad
+            <div class="p-8 group hover:bg-gradient-to-br hover:from-[#6a040f]/5 hover:to-transparent transition-all duration-500">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-lg flex items-center justify-center shadow-md">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <h4 class="font-bold text-gray-900 dark:text-white text-lg">Estructura de Supervisión</h4>
+              </div>
+              <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                <li class="flex items-center gap-3 group/item">
+                  <span class="w-2 h-2 bg-gradient-to-r from-[#6a040f] to-[#ffba08] rounded-full group-hover/item:scale-150 transition-transform"></span>
+                  <strong class="text-[#6a040f] dark:text-[#ffba08]">4 grupos</strong> según complejidad
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
-                  <strong>Revisiones semanales</strong> individuales
+                <li class="flex items-center gap-3 group/item">
+                  <span class="w-2 h-2 bg-gradient-to-r from-[#6a040f] to-[#ffba08] rounded-full group-hover/item:scale-150 transition-transform"></span>
+                  <strong class="text-[#6a040f] dark:text-[#ffba08]">Revisiones semanales</strong> individuales
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
-                  <strong>Revisiones quincenales</strong> grupales
+                <li class="flex items-center gap-3 group/item">
+                  <span class="w-2 h-2 bg-gradient-to-r from-[#6a040f] to-[#ffba08] rounded-full group-hover/item:scale-150 transition-transform"></span>
+                  <strong class="text-[#6a040f] dark:text-[#ffba08]">Revisiones quincenales</strong> grupales
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-[#6a040f] rounded-full"></span>
-                  <strong>Matriz de evaluación</strong> de 100 puntos
+                <li class="flex items-center gap-3 group/item">
+                  <span class="w-2 h-2 bg-gradient-to-r from-[#6a040f] to-[#ffba08] rounded-full group-hover/item:scale-150 transition-transform"></span>
+                  <strong class="text-[#6a040f] dark:text-[#ffba08]">Matriz de evaluación</strong> de 100 puntos
                 </li>
               </ul>
             </div>
           </AnimatedCard>
 
           <AnimatedCard delay={100}>
-            <div class="p-6">
-              <h4 class="font-bold text-gray-900 dark:text-white mb-4 transition-colors">Escala de Calificación</h4>
-              <div class="space-y-2">
+            <div class="p-8 group hover:bg-gradient-to-br hover:from-[#ffba08]/5 hover:to-transparent transition-all duration-500">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#ffba08] to-[#f48c06] rounded-lg flex items-center justify-center shadow-md">
+                  <svg class="w-5 h-5 text-[#370617]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  </svg>
+                </div>
+                <h4 class="font-bold text-gray-900 dark:text-white text-lg">Escala de Calificación</h4>
+              </div>
+              <div class="space-y-3">
                 {calificaciones.map((cal) => (
-                  <div class={`flex justify-between items-center p-2 bg-${cal.color}-50 dark:bg-${cal.color}-900/20 rounded transition-colors hover:shadow-sm`}>
-                    <span class="text-sm text-gray-900 dark:text-white">{cal.range} {cal.label}</span>
-                    <span class={`text-xs text-${cal.color}-700 dark:text-${cal.color}-400`}>{cal.desc}</span>
+                  <div class={`flex justify-between items-center p-3 bg-${cal.color}-50 dark:bg-${cal.color}-900/20 rounded-xl transition-all hover:shadow-md group/item`}>
+                    <div class="flex items-center gap-3">
+                      <span class={`w-3 h-3 rounded-full bg-${cal.color}-500`}></span>
+                      <span class="font-semibold text-gray-900 dark:text-white">{cal.range}</span>
+                      <span class="text-sm text-gray-600 dark:text-gray-400">{cal.label}</span>
+                    </div>
+                    <span class={`text-xs px-2 py-1 bg-${cal.color}-100 dark:bg-${cal.color}-800 text-${cal.color}-700 dark:text-${cal.color}-300 rounded-full`}>{cal.desc}</span>
                   </div>
                 ))}
               </div>
@@ -373,7 +471,7 @@ const calificaciones = [
   </section>
   
   <!-- Signature Footer -->
-  <section class="py-12 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+  <section class="py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <SignatureFooter />
     </div>
