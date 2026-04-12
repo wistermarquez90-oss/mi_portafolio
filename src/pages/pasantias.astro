@@ -143,57 +143,60 @@ const calificaciones = [
           </p>
         </div>
         
-        <!-- Stats con diseño flotante -->
+        <!-- Stats con diseño flotante y animaciones mejoradas -->
         <div class="grid md:grid-cols-3 gap-8 mb-16">
           <div 
-            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group cursor-pointer border-2 border-transparent hover:border-[#6a040f]/30 dark:hover:border-[#ffba08]/30"
             data-aos="fade-up" 
             data-aos-delay="0"
           >
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#6a040f] rounded-full flex items-center justify-center shadow-lg">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-full flex items-center justify-center shadow-lg group-hover:scale-125 transition-transform duration-300">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
             </div>
             <div class="text-center pt-4">
-              <div class="text-5xl font-bold bg-gradient-to-r from-[#6a040f] to-[#d00000] bg-clip-text text-transparent mb-2 counter" data-target="6.9">6.9M</div>
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#6a040f] to-[#d00000] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">6.9M</div>
               <p class="text-gray-600 dark:text-gray-400 font-medium">Migrantes en ALC</p>
-              <span class="text-xs text-[#ffba08] font-semibold">Fuente: R4V Nov 2025</span>
+              <span class="text-xs text-[#ffba08] font-semibold block mt-2 opacity-0 group-hover:opacity-100 transition-opacity">6.9 millones de personas</span>
             </div>
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#6a040f]/0 via-[#6a040f]/0 to-[#ffba08]/0 group-hover:from-[#6a040f]/10 group-hover:via-[#ffba08]/5 group-hover:to-[#6a040f]/10 transition-all duration-500 -z-10 blur-xl"></div>
           </div>
           
           <div 
-            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group cursor-pointer border-2 border-transparent hover:border-[#9d0208]/30 dark:hover:border-[#ffba08]/30"
             data-aos="fade-up" 
             data-aos-delay="150"
           >
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#9d0208] rounded-full flex items-center justify-center shadow-lg">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-[#9d0208] to-[#d00000] rounded-full flex items-center justify-center shadow-lg group-hover:scale-125 transition-transform duration-300">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
             <div class="text-center pt-4">
-              <div class="text-5xl font-bold bg-gradient-to-r from-[#9d0208] to-[#d00000] bg-clip-text text-transparent mb-2">2.8M</div>
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#9d0208] to-[#d00000] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">2.8M</div>
               <p class="text-gray-600 dark:text-gray-400 font-medium">En Colombia</p>
-              <span class="text-xs text-[#ffba08] font-semibold">40.9% del total</span>
+              <span class="text-xs text-[#ffba08] font-semibold block mt-2 opacity-0 group-hover:opacity-100 transition-opacity">2.8 millones - 40.9% del total</span>
             </div>
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#9d0208]/0 via-[#ffba08]/0 to-[#9d0208]/0 group-hover:from-[#9d0208]/10 group-hover:via-[#ffba08]/5 group-hover:to-[#9d0208]/10 transition-all duration-500 -z-10 blur-xl"></div>
           </div>
           
           <div 
-            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group"
+            class="relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group cursor-pointer border-2 border-transparent hover:border-[#ffba08]/30 dark:hover:border-[#ffba08]/50"
             data-aos="fade-up" 
             data-aos-delay="300"
           >
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#ffba08] rounded-full flex items-center justify-center shadow-lg">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-[#ffba08] to-[#f48c06] rounded-full flex items-center justify-center shadow-lg group-hover:scale-125 transition-transform duration-300">
               <svg class="w-4 h-4 text-[#370617]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
             <div class="text-center pt-4">
-              <div class="text-5xl font-bold bg-gradient-to-r from-[#ffba08] to-[#f48c06] bg-clip-text text-transparent mb-2">17</div>
+              <div class="text-5xl font-bold bg-gradient-to-r from-[#ffba08] to-[#f48c06] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">17</div>
               <p class="text-gray-600 dark:text-gray-400 font-medium">Países R4V</p>
-              <span class="text-xs text-[#ffba08] font-semibold">Plataforma ACNUR/OIM</span>
+              <span class="text-xs text-[#ffba08] font-semibold block mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Plataforma ACNUR/OIM</span>
             </div>
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#ffba08]/0 via-[#6a040f]/0 to-[#ffba08]/0 group-hover:from-[#ffba08]/10 group-hover:via-[#6a040f]/5 group-hover:to-[#ffba08]/10 transition-all duration-500 -z-10 blur-xl"></div>
           </div>
         </div>
 

@@ -2,15 +2,15 @@
 // Componente de Mapa de Migración Venezolana
 const migrationData = {
   countries: [
-    { name: 'Colombia', count: 2828195, percent: 40.9, color: '#6a040f' },
-    { name: 'Perú', count: 1662889, percent: 24.0, color: '#9d0208' },
-    { name: 'Brasil', count: 732272, percent: 10.6, color: '#d00000' },
-    { name: 'Chile', count: 669408, percent: 9.7, color: '#e85d04' },
-    { name: 'Ecuador', count: 440450, percent: 6.4, color: '#f48c06' },
-    { name: 'Rep. Dominicana', count: 99692, percent: 1.4, color: '#faa307' },
-    { name: 'México', count: 106015, percent: 1.5, color: '#ffba08' },
-    { name: 'Argentina', count: 174796, percent: 2.5, color: '#3d0066' },
-    { name: 'Otros', count: 195240, percent: 2.8, color: '#5a189a' }
+    { name: 'Colombia', count: 2828195, percent: 40.9, color: '#6a040f', code: 'COL' },
+    { name: 'Perú', count: 1662889, percent: 24.0, color: '#9d0208', code: 'PER' },
+    { name: 'Brasil', count: 732272, percent: 10.6, color: '#d00000', code: 'BRA' },
+    { name: 'Chile', count: 669408, percent: 9.7, color: '#e85d04', code: 'CHL' },
+    { name: 'Ecuador', count: 440450, percent: 6.4, color: '#f48c06', code: 'ECU' },
+    { name: 'Argentina', count: 174796, percent: 2.5, color: '#3d0066', code: 'ARG' },
+    { name: 'México', count: 106015, percent: 1.5, color: '#ffba08', code: 'MEX' },
+    { name: 'Rep. Dominicana', count: 99692, percent: 1.4, color: '#faa307', code: 'DOM' },
+    { name: 'Otros', count: 195240, percent: 2.8, color: '#5a189a', code: 'OTR' }
   ],
   total: 6911757
 };
@@ -41,44 +41,304 @@ const colombiaEvolution = [
   { year: '2024', count: 2800000 },
   { year: '2025', count: 2828195 }
 ];
+
+// Coordenadas aproximadas para el mapa
+const worldMapData = {
+  venezuela: { x: 280, y: 220, r: 12 },
+  colombia: { x: 260, y: 235, r: 18, count: '2.8M' },
+  peru: { x: 230, y: 280, r: 15, count: '1.7M' },
+  brasil: { x: 320, y: 300, r: 14, count: '732K' },
+  chile: { x: 240, y: 350, r: 13, count: '669K' },
+  ecuador: { x: 235, y: 250, r: 12, count: '440K' },
+  argentina: { x: 270, y: 380, r: 11, count: '175K' },
+  mexico: { x: 150, y: 180, r: 10, count: '106K' },
+  dominicana: { x: 310, y: 190, r: 9, count: '100K' },
+  usa: { x: 180, y: 150, r: 10, count: '100K' },
+  panama: { x: 265, y: 215, r: 8, count: '80K' }
+};
 ---
 
 <div class="migration-dashboard">
+  
   <!-- Resumen General -->
-  <div class="bg-gradient-to-br from-[#6a040f] to-[#370617] rounded-2xl p-8 mb-8 text-white shadow-2xl" data-aos="fade-up">
-    <h3 class="text-2xl font-bold mb-2">Crisis Migratoria Venezolana</h3>
-    <p class="text-white/80 mb-6">La mayor crisis de desplazamiento en la historia reciente de América Latina</p>
+  <div class="bg-gradient-to-br from-[#6a040f] to-[#370617] rounded-2xl p-8 mb-8 text-white shadow-2xl relative overflow-hidden" data-aos="fade-up">
+    <!-- Decoración de fondo -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-[#ffba08]/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
     
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="0">
-        <div class="text-4xl font-bold text-[#ffba08] counter" data-target="7910000">0</div>
-        <p class="text-sm text-white/70">Total de migrantes en el mundo</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="100">
-        <div class="text-4xl font-bold text-[#ffba08] counter" data-target="6911757">0</div>
-        <p class="text-sm text-white/70">En América Latina y el Caribe</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="200">
-        <div class="text-4xl font-bold text-[#ffba08]">17</div>
-        <p class="text-sm text-white/70">Países de la Plataforma R4V</p>
+    <div class="relative z-10">
+      <h3 class="text-2xl font-bold mb-2">Crisis Migratoria Venezolana</h3>
+      <p class="text-white/80 mb-6">La mayor crisis de desplazamiento en la historia reciente de América Latina</p>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div 
+          class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 hover:bg-white/20 transition-all duration-300 cursor-pointer group"
+          data-aos="zoom-in" data-aos-delay="0"
+        >
+          <div class="text-4xl font-bold text-[#ffba08] counter" data-target="7910000">0</div>
+          <p class="text-sm text-white/70">Total migrantes en el mundo</p>
+          <div class="mt-2 text-xs text-[#ffba08] opacity-0 group-hover:opacity-100 transition-opacity">↑ 7.9 millones</div>
+        </div>
+        
+        <div 
+          class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 hover:bg-white/20 transition-all duration-300 cursor-pointer group"
+          data-aos="zoom-in" data-aos-delay="100"
+        >
+          <div class="text-4xl font-bold text-[#ffba08] counter" data-target="6911757">0</div>
+          <p class="text-sm text-white/70">En América Latina y el Caribe</p>
+          <div class="mt-2 text-xs text-[#ffba08] opacity-0 group-hover:opacity-100 transition-opacity">↑ 6.9 millones</div>
+        </div>
+        
+        <div 
+          class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 hover:bg-white/20 transition-all duration-300 cursor-pointer group"
+          data-aos="zoom-in" data-aos-delay="200"
+        >
+          <div class="text-4xl font-bold text-[#ffba08]">17</div>
+          <p class="text-sm text-white/70">Países de la Plataforma R4V</p>
+          <div class="mt-2 text-xs text-[#ffba08] opacity-0 group-hover:opacity-100 transition-opacity">ACNUR / OIM</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Mapa de Distribución Regional -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      Distribución por País de Acogida (2025)
+  <!-- Mapa Mundial de Distribución -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-2 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      Mapa Mundial de Distribución Migratoria
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
-      Total: 6,9 millones de refugiados y migrantes venezolanos en la región
+      Flujo de migrantes venezolanos hacia los principales países de acogida (2025)
     </p>
 
-    <!-- Barras Animadas -->
-    <div class="space-y-3" id="migration-bars">
+    <!-- Mapa Mundial Profesional -->
+    <div class="relative bg-gradient-to-b from-blue-50 to-blue-100 dark:from-slate-800 dark:to-slate-900 rounded-xl overflow-hidden" style="min-height: 400px;">
+      <svg viewBox="0 0 500 300" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- Gradiente para los países -->
+          <linearGradient id="grad-colombia" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6a040f" />
+            <stop offset="100%" style="stop-color:#9d0208" />
+          </linearGradient>
+          <linearGradient id="grad-peru" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9d0208" />
+            <stop offset="100%" style="stop-color:#d00000" />
+          </linearGradient>
+          <linearGradient id="grad-brasil" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#d00000" />
+            <stop offset="100%" style="stop-color:#e85d04" />
+          </linearGradient>
+          <linearGradient id="grad-chile" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e85d04" />
+            <stop offset="100%" style="stop-color:#f48c06" />
+          </linearGradient>
+          <linearGradient id="grad-ecuador" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f48c06" />
+            <stop offset="100%" style="stop-color:#ffba08" />
+          </linearGradient>
+          
+          <!-- Filtro de brillo -->
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          <!-- Patrón de pulso -->
+          <radialGradient id="pulse-gradient">
+            <stop offset="0%" stop-color="#ffba08" stop-opacity="0.8"/>
+            <stop offset="50%" stop-color="#ffba08" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#ffba08" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        
+        <!-- Silueta simplificada de América -->
+        <g class="continent" opacity="0.3">
+          <!-- Norteamérica -->
+          <path d="M 80,60 L 150,50 L 200,80 L 180,120 L 120,110 Z" fill="#94a3b8" />
+          <!-- Centroamérica -->
+          <path d="M 150,130 L 180,140 L 175,170 L 160,165 Z" fill="#94a3b8" />
+          
+          <!-- Sudamérica -->
+          <path d="M 200,180 L 280,170 L 320,200 L 300,280 L 250,290 L 220,250 L 190,220 Z" fill="#94a3b8" />
+        </g>
+        
+        <!-- Líneas de flujo animadas desde Venezuela -->
+        <g class="flow-lines">
+          <!-- A Colombia -->
+          <path class="flow-line" d="M 280,220 Q 270,228 260,235" stroke="url(#grad-colombia)" stroke-width="3" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="1.5s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A Perú -->
+          <path class="flow-line" d="M 275,225 Q 252,252 230,280" stroke="url(#grad-peru)" stroke-width="2.5" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="1.8s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A Brasil -->
+          <path class="flow-line" d="M 290,225 Q 305,262 320,300" stroke="url(#grad-brasil)" stroke-width="2" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A Chile -->
+          <path class="flow-line" d="M 275,230 Q 257,290 240,350" stroke="url(#grad-chile)" stroke-width="2" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.2s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A Ecuador -->
+          <path class="flow-line" d="M 272,222 Q 253,236 235,250" stroke="url(#grad-ecuador)" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="1.6s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A Argentina -->
+          <path class="flow-line" d="M 285,235 Q 277,307 270,380" stroke="#3d0066" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A México -->
+          <path class="flow-line" d="M 270,215 Q 210,197 150,180" stroke="#ffba08" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="3s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- A USA -->
+          <path class="flow-line" d="M 275,210 Q 227,180 180,150" stroke="#faa307" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6">
+            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="3.2s" repeatCount="indefinite" />
+          </path>
+        </g>
+        
+        <!-- Círculos de pulso en los destinos -->
+        <g class="pulse-circles">
+          <!-- Colombia -->
+          <circle cx="260" cy="235" r="25" fill="url(#pulse-gradient)" opacity="0.6">
+            <animate attributeName="r" values="18;30;18" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" />
+          </circle>
+          
+          <!-- Perú -->
+          <circle cx="230" cy="280" r="20" fill="url(#pulse-gradient)" opacity="0.5">
+            <animate attributeName="r" values="15;25;15" dur="2.3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.5;0;0.5" dur="2.3s" repeatCount="indefinite" />
+          </circle>
+          
+          <!-- Brasil -->
+          <circle cx="320" cy="300" r="18" fill="url(#pulse-gradient)" opacity="0.5">
+            <animate attributeName="r" values="14;22;14" dur="2.5s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" />
+          </circle>
+        </g>
+        
+        
+        <!-- Venezuela (Origen) -->
+        <g class="origin-country cursor-pointer">
+          <circle cx="280" cy="220" r="15" fill="#370617" stroke="#ffba08" stroke-width="3" filter="url(#glow)" class="hover:r-18 transition-all">
+            <animate attributeName="r" values="15;17;15" dur="1.5s" repeatCount="indefinite" />
+          </circle>
+          <text x="280" y="225" text-anchor="middle" fill="#ffba08" font-size="10" font-weight="bold" class="pointer-events-none">VEN</text>
+          <text x="280" y="205" text-anchor="middle" fill="#370617" font-size="8" font-weight="bold" class="pointer-events-none dark:fill-white">Origen</text>
+        </g>
+        
+        
+        <!-- Países destino con círculos proporcionales -->
+        <g class="destination-countries">
+          <!-- Colombia - Mayor destino -->
+          <g class="country-node cursor-pointer group" data-country="Colombia" data-count="2828195">
+            <circle cx="260" cy="235" r="20" fill="url(#grad-colombia)" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-24 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="260" y="232" text-anchor="middle" fill="white" font-size="9" font-weight="bold" class="pointer-events-none">Colombia</text>
+            <text x="260" y="242" text-anchor="middle" fill="#ffba08" font-size="11" font-weight="bold" class="pointer-events-none">2.8M</text>
+            <text x="260" y="265" text-anchor="middle" fill="#6a040f" font-size="10" font-weight="bold" opacity="0" class="pointer-events-none group-hover:opacity-100 transition-opacity dark:fill-white">40.9%</text>
+          </g>
+          
+          <!-- Perú -->
+          <g class="country-node cursor-pointer group" data-country="Perú" data-count="1662889">
+            <circle cx="230" cy="280" r="16" fill="url(#grad-peru)" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-20 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="230" y="277" text-anchor="middle" fill="white" font-size="8" font-weight="bold" class="pointer-events-none">Perú</text>
+            <text x="230" y="286" text-anchor="middle" fill="#ffba08" font-size="10" font-weight="bold" class="pointer-events-none">1.7M</text>
+            <text x="230" y="305" text-anchor="middle" fill="#9d0208" font-size="9" font-weight="bold" opacity="0" class="pointer-events-none group-hover:opacity-100 transition-opacity dark:fill-white">24.0%</text>
+          </g>
+          
+          <!-- Brasil -->
+          <g class="country-node cursor-pointer group" data-country="Brasil" data-count="732272">
+            <circle cx="320" cy="300" r="14" fill="url(#grad-brasil)" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-18 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="320" y="297" text-anchor="middle" fill="white" font-size="8" font-weight="bold" class="pointer-events-none">Brasil</text>
+            <text x="320" y="305" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold" class="pointer-events-none">732K</text>
+          </g>
+          
+          <!-- Chile -->
+          <g class="country-node cursor-pointer group" data-country="Chile" data-count="669408">
+            <circle cx="240" cy="350" r="13" fill="url(#grad-chile)" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-17 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="240" y="347" text-anchor="middle" fill="white" font-size="8" font-weight="bold" class="pointer-events-none">Chile</text>
+            <text x="240" y="355" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold" class="pointer-events-none">669K</text>
+          </g>
+          
+          <!-- Ecuador -->
+          <g class="country-node cursor-pointer group" data-country="Ecuador" data-count="440450">
+            <circle cx="235" cy="250" r="12" fill="url(#grad-ecuador)" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-16 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="235" y="247" text-anchor="middle" fill="white" font-size="7" font-weight="bold" class="pointer-events-none">Ecuador</text>
+            <text x="235" y="255" text-anchor="middle" fill="#ffba08" font-size="8" font-weight="bold" class="pointer-events-none">440K</text>
+          </g>
+          
+          <!-- Argentina -->
+          <g class="country-node cursor-pointer group" data-country="Argentina" data-count="174796">
+            <circle cx="270" cy="380" r="10" fill="#3d0066" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-14 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="270" y="377" text-anchor="middle" fill="white" font-size="7" font-weight="bold" class="pointer-events-none">Argentina</text>
+            <text x="270" y="385" text-anchor="middle" fill="#ffba08" font-size="8" font-weight="bold" class="pointer-events-none">175K</text>
+          </g>
+          
+          <!-- México -->
+          <g class="country-node cursor-pointer group" data-country="México" data-count="106015">
+            <circle cx="150" cy="180" r="9" fill="#ffba08" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-13 group-hover:stroke-[#6a040f] group-hover:stroke-4"></circle>
+            <text x="150" y="178" text-anchor="middle" fill="#370617" font-size="7" font-weight="bold" class="pointer-events-none">México</text>
+            <text x="150" y="186" text-anchor="middle" fill="#370617" font-size="8" font-weight="bold" class="pointer-events-none">106K</text>
+          </g>
+          
+          <!-- USA -->
+          <g class="country-node cursor-pointer group" data-country="USA" data-count="100000">
+            <circle cx="180" cy="150" r="8" fill="#faa307" stroke="white" stroke-width="2" class="transition-all duration-300 group-hover:r-12 group-hover:stroke-[#ffba08] group-hover:stroke-4"></circle>
+            <text x="180" y="148" text-anchor="middle" fill="#370617" font-size="7" font-weight="bold" class="pointer-events-none">USA</text>
+            <text x="180" y="156" text-anchor="middle" fill="#370617" font-size="7" font-weight="bold" class="pointer-events-none">~100K</text>
+          </g>
+        </g>
+      </svg>
+      
+      <!-- Leyenda flotante -->
+      <div class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-[#370617] border-2 border-[#ffba08]"></span>
+            <span class="text-gray-700 dark:text-gray-300">Venezuela (Origen)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-[#6a040f] to-[#9d0208]"></span>
+            <span class="text-gray-700 dark:text-gray-300">>1M migrantes</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-[#d00000] to-[#f48c06]"></span>
+            <span class="text-gray-700 dark:text-gray-300">100K-1M</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#ffba08]"></span>
+            <span class="text-gray-700 dark:text-gray-300"><100K</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-gray-500">Líneas animadas = Flujo migratorio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barras de distribución -->
+    <div class="mt-8 space-y-3">
+      <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4">Distribución detallada por país</h5>
       {migrationData.countries.map((country, index) => (
-        <div class="migration-bar-container group cursor-pointer" data-aos="fade-right" data-aos-delay={index * 50}>
+        <div 
+          class="migration-bar-container group cursor-pointer" 
+          data-aos="fade-right" 
+          data-aos-delay={index * 50}
+        >
           <div class="flex justify-between items-center mb-1">
             <span class="font-medium text-gray-700 dark:text-gray-300 text-sm group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{country.name}</span>
             <span class="text-sm text-gray-500 dark:text-gray-400">
@@ -86,10 +346,10 @@ const colombiaEvolution = [
               <span class="ml-1">({country.percent}%)</span>
             </span>
           </div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div 
-              class="h-full rounded-full transition-all duration-1000 ease-out migration-bar group-hover:brightness-110"
-              style={`width: 0%; background-color: ${country.color};`}
+              class="h-full rounded-full transition-all duration-1000 ease-out migration-bar group-hover:brightness-125"
+              style={`width: 0%; background: linear-gradient(90deg, ${country.color}, ${country.color}dd);`}
               data-width={`${country.percent}%`}
               data-delay={index * 100}
             />
@@ -97,81 +357,41 @@ const colombiaEvolution = [
         </div>
       ))}
     </div>
-
-    <!-- Visualización de Mapa SVG Estilizado -->
-    <div class="mt-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl" data-aos="zoom-in" data-aos-delay="300">
-      <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4 text-center">Mapa Conceptual de Distribución</h5>
-      <svg viewBox="0 0 800 400" class="w-full h-auto">
-        <!-- Venezuela (origen) -->
-        <circle cx="250" cy="200" r="25" fill="#370617" stroke="#ffba08" stroke-width="3" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="250" y="205" text-anchor="middle" fill="#ffba08" font-size="12" font-weight="bold">VEN</text>
-        
-        <!-- Líneas de flujo -->
-        <path d="M 275 185 Q 400 100 550 150" stroke="#6a040f" stroke-width="8" fill="none" opacity="0.6">
-          <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="2s" />
-        </path>
-        <path d="M 275 200 Q 450 200 580 200" stroke="#9d0208" stroke-width="5" fill="none" opacity="0.5" />
-        <path d="M 275 215 Q 400 300 550 280" stroke="#d00000" stroke-width="4" fill="none" opacity="0.4" />
-        <path d="M 275 190 Q 350 50 550 80" stroke="#e85d04" stroke-width="3" fill="none" opacity="0.4" />
-        
-        <!-- Colombia -->
-        <circle cx="550" cy="150" r="35" fill="#6a040f" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="550" y="145" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Colombia</text>
-        <text x="550" y="160" text-anchor="middle" fill="#ffba08" font-size="14" font-weight="bold">2.8M</text>
-        
-        <!-- Perú -->
-        <circle cx="580" cy="200" r="28" fill="#9d0208" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="580" y="195" text-anchor="middle" fill="white" font-size="9">Perú</text>
-        <text x="580" y="208" text-anchor="middle" fill="#ffba08" font-size="11" font-weight="bold">1.7M</text>
-        
-        <!-- Brasil -->
-        <circle cx="650" cy="280" r="22" fill="#d00000" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="650" y="275" text-anchor="middle" fill="white" font-size="9">Brasil</text>
-        <text x="650" y="286" text-anchor="middle" fill="#ffba08" font-size="10" font-weight="bold">732K</text>
-        
-        <!-- Chile -->
-        <circle cx="550" cy="80" r="20" fill="#e85d04" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="550" y="76" text-anchor="middle" fill="white" font-size="8">Chile</text>
-        <text x="550" y="86" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">669K</text>
-        
-        <!-- Ecuador -->
-        <circle cx="520" cy="220" r="18" fill="#f48c06" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="520" y="217" text-anchor="middle" fill="white" font-size="8">Ecuador</text>
-        <text x="520" y="226" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">440K</text>
-        
-        <!-- Argentina -->
-        <circle cx="600" cy="340" r="16" fill="#3d0066" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
-        <text x="600" y="336" text-anchor="middle" fill="white" font-size="8">Argentina</text>
-        <text x="600" y="345" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">175K</text>
-      </svg>
-    </div>
   </div>
 
   <!-- Evolución Temporal -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="150">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="150">
     <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+      </svg>
       Evolución del Éxodo Venezolano (2015-2025)
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
-      Crecimiento acumulado de migrantes y refugiados en la región
+      Crecimiento acumulado de migrantes y refugiados en la región - de 700K a 6.9 millones
     </p>
 
     <!-- Línea de Tiempo Horizontal -->
     <div class="relative">
       <div class="flex items-end justify-between h-48 md:h-64 gap-2">
         {evolutionData.map((item, index) => (
-          <div class="flex-1 flex flex-col items-center group cursor-pointer" data-aos="fade-up" data-aos-delay={index * 80}>
-            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
+          <div 
+            class="flex-1 flex flex-col items-center group cursor-pointer" 
+            data-aos="fade-up" 
+            data-aos-delay={index * 80}
+          >
+            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity font-semibold bg-[#6a040f]/10 dark:bg-[#ffba08]/20 px-2 py-1 rounded">
               {item.label}
             </div>
             <div 
-              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar group-hover:brightness-110"
+              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar group-hover:brightness-110 relative overflow-hidden"
               style={`height: 0%;`}
               data-height={`${(item.count / 8000000) * 100}%`}
               data-delay={index * 100}
-            />
-            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{item.year}</div>
+            >
+              <div class="absolute inset-0 bg-white/20 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full group-hover:bg-[#6a040f]/10 dark:group-hover:bg-[#ffba08]/20">{item.year}</div>
           </div>
         ))}
       </div>
@@ -186,19 +406,20 @@ const colombiaEvolution = [
   </div>
 
   <!-- Colombia: Evolución Específica -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
     <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+      </svg>
       Migración Venezuela → Colombia (Evolución Anual)
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
-      Colombia es el principal país de acogida con el 41% del total migratorio
+      Colombia es el principal país de acogida con el 41% del total migratorio (2.8 millones)
     </p>
 
     <!-- Gráfico de Área -->
     <div class="relative h-64">
       <svg viewBox="0 0 600 200" class="w-full h-full" preserveAspectRatio="none">
-        <!-- Gradiente -->
         <defs>
           <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color:#6a040f;stop-opacity:0.8" />
@@ -225,12 +446,17 @@ const colombiaEvolution = [
           stroke-dashoffset="1000"
         />
         
-        <!-- Puntos -->
+        <!-- Puntos interactivos -->
         {colombiaEvolution.map((item, index) => {
           const x = index * 55;
           const y = 200 - ((item.count / 3000000) * 190);
           return (
-            <circle cx={x} cy={y} r="4" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="data-point hover:r-6 transition-all" opacity="0" />
+            <g class="data-point-group cursor-pointer">
+              <circle cx={x} cy={y} r="6" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="transition-all duration-300 hover:r-10" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin={`${2 + index * 0.1}s`} fill="freeze" />
+              </circle>
+              <title>{item.year}: {item.count.toLocaleString()} migrantes</title>
+            </g>
           );
         })}
       </svg>
@@ -247,19 +473,21 @@ const colombiaEvolution = [
     <!-- Leyenda -->
     <div class="flex justify-between items-center mt-4 text-sm text-gray-500 dark:text-gray-400">
       <span>2015</span>
-      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold bg-[#6a040f]/10 dark:bg-[#ffba08]/10 px-3 py-1 rounded-full">2.8M en 2025</span>
+      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold bg-gradient-to-r from-[#6a040f]/10 to-[#ffba08]/10 dark:from-[#ffba08]/20 dark:to-[#6a040f]/20 px-4 py-2 rounded-full shadow-sm">2.8 millones en 2025</span>
       <span>2025</span>
     </div>
   </div>
 
   <!-- Fuentes -->
-  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm" data-aos="fade-up" data-aos-delay="250">
+  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="250">
     <h5 class="font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
       Fuentes de Información:
     </h5>
     <ul class="space-y-1 text-gray-600 dark:text-gray-400">
-      <li>• <strong>Plataforma R4V</strong> (ACNUR/OIM) - Noviembre 2025: 6,9 millones en ALC</li>
+      <li>• <strong>Plataforma R4V</strong> (ACNUR/OIM) - Noviembre 2025: 6.9 millones en ALC</li>
       <li>• <strong>ACNUR</strong> - Tendencias Globales 2024: Mayor crisis de desplazamiento mundial</li>
       <li>• <strong>DANE Colombia</strong> - Estadísticas migratorias</li>
       <li>• <strong>OIM</strong> - Reportes de movimientos trimestrales 2024-2025</li>
@@ -303,6 +531,24 @@ const colombiaEvolution = [
   
   .counter {
     font-variant-numeric: tabular-nums;
+  }
+  
+  .flow-line {
+    stroke-dasharray: 10 5;
+  }
+  
+  @keyframes flowAnimation {
+    to {
+      stroke-dashoffset: -15;
+    }
+  }
+  
+  .country-node {
+    transition: all 0.3s ease;
+  }
+  
+  .country-node:hover circle {
+    filter: drop-shadow(0 0 8px rgba(255, 186, 8, 0.6));
   }
 </style>
 
