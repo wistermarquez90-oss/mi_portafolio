@@ -110,7 +110,52 @@ const calificaciones = [
           ))}
         </div>
 
-        <!-- Documentos del Proyecto -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard de Migración -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Crisis Migratoria Venezolana
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Análisis visual de la distribución de migrantes venezolanos en la región y su evolución temporal.
+            Datos actualizados de la Plataforma R4V (ACNUR/OIM).
+          </p>
+        </div>
+
+        <MigrationDashboard />
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard de Comercio -->
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+            Comercio Bilateral Colombia - Venezuela
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Análisis del intercambio comercial tras la reapertura fronteriza en 2022. 
+            Exportaciones, importaciones y principales productos comercializados.
+          </p>
+        </div>
+
+        <TradeDashboard />
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentación del Proyecto -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
         <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8" data-aos="fade-up">
           Documentación del Proyecto
         </h3>
@@ -166,7 +211,7 @@ const calificaciones = [
               data-aos-delay={index * 150}
             >
               <div class="absolute left-2 w-4 h-4 bg-[#6a040f] rounded-full border-4 border-white dark:border-gray-900 shadow group-hover:scale-125 transition-transform"></div>
-              <div class="ml-12 bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex-1 transition-colors hover:shadow-md transition-all">
+              <div class="ml-12 bg-white dark:bg-gray-800 p-4 rounded-xl flex-1 transition-colors hover:shadow-md transition-all">
                 <span class="text-sm font-semibold text-[#6a040f] dark:text-[#ffba08]">{hito.date}</span>
                 <h4 class="font-bold text-gray-900 dark:text-white mt-1 transition-colors">{hito.title}</h4>
                 <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors">{hito.desc}</p>
@@ -178,47 +223,9 @@ const calificaciones = [
       </div>
     </div>
   </section>
-
-  <!-- Dashboard de Migración -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
-            Crisis Migratoria Venezolana
-          </h3>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Análisis visual de la distribución de migrantes venezolanos en la región y su evolución temporal.
-            Datos actualizados de la Plataforma R4V (ACNUR/OIM).
-          </p>
-        </div>
-
-        <MigrationDashboard />
-      </div>
-    </div>
-  </section>
-
-  <!-- Dashboard de Comercio -->
-  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
-            Comercio Bilateral Colombia - Venezuela
-          </h3>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Análisis del intercambio comercial tras la reapertura fronteriza en 2022. 
-            Exportaciones, importaciones y principales productos comercializados.
-          </p>
-        </div>
-
-        <TradeDashboard />
-      </div>
-    </div>
-  </section>
   
   <!-- Sistema de Control de Calidad -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
         <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8 text-center" data-aos="fade-up">
@@ -269,7 +276,7 @@ const calificaciones = [
   </section>
   
   <!-- Signature Footer -->
-  <section class="py-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <section class="py-12 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <SignatureFooter />
     </div>
