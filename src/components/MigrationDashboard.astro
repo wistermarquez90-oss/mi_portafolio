@@ -144,7 +144,7 @@ const colombiaEvolution = [
     </div>
   </div>
 
-  <!-- Evolución Temporal -->
+  <!-- Evolución Temporal - GRÁFICA GENERADA CON PYTHON -->
   <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="150">
     <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,37 +156,14 @@ const colombiaEvolution = [
       Crecimiento acumulado de migrantes y refugiados en la región - de 700K a 6.9 millones
     </p>
 
-    <!-- Línea de Tiempo Horizontal -->
-    <div class="relative">
-      <div class="flex items-end justify-between h-48 md:h-64 gap-2">
-        {evolutionData.map((item, index) => (
-          <div 
-            class="flex-1 flex flex-col items-center group cursor-pointer" 
-            data-aos="fade-up" 
-            data-aos-delay={index * 80}
-          >
-            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity font-semibold bg-[#6a040f]/10 dark:bg-[#ffba08]/20 px-2 py-1 rounded">
-              {item.label}
-            </div>
-            <div 
-              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar group-hover:brightness-110 relative overflow-hidden"
-              style={`height: 0%;`}
-              data-height={`${(item.count / 8000000) * 100}%`}
-              data-delay={index * 100}
-            >
-              <div class="absolute inset-0 bg-white/20 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full group-hover:bg-[#6a040f]/10 dark:group-hover:bg-[#ffba08]/20">{item.year}</div>
-          </div>
-        ))}
-      </div>
-      
-      <!-- Línea base -->
-      <div class="absolute bottom-8 left-0 right-0 h-0.5 bg-gradient-to-r from-[#6a040f] via-[#ffba08] to-[#6a040f]" />
-    </div>
-
-    <div class="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
-      Fuente: Plataforma R4V, ACNUR, OIM - Noviembre 2025
+    <!-- GRÁFICA PLOTLY -->
+    <div class="relative bg-white rounded-xl overflow-hidden shadow-inner border border-gray-200">
+      <img 
+        src={`${baseUrl}images/evolucion-exodo-venezolano.png`}
+        alt="Evolución del Éxodo Venezolano 2015-2025"
+        class="w-full h-auto"
+        loading="lazy"
+      />
     </div>
   </div>
 
