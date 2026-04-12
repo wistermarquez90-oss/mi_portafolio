@@ -45,20 +45,20 @@ const colombiaEvolution = [
 
 <div class="migration-dashboard">
   <!-- Resumen General -->
-  <div class="bg-gradient-to-br from-[#6a040f] to-[#370617] rounded-2xl p-8 mb-8 text-white">
+  <div class="bg-gradient-to-br from-[#6a040f] to-[#370617] rounded-2xl p-8 mb-8 text-white shadow-2xl" data-aos="fade-up">
     <h3 class="text-2xl font-bold mb-2">Crisis Migratoria Venezolana</h3>
     <p class="text-white/80 mb-6">La mayor crisis de desplazamiento en la historia reciente de América Latina</p>
     
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="0">
         <div class="text-4xl font-bold text-[#ffba08] counter" data-target="7910000">0</div>
         <p class="text-sm text-white/70">Total de migrantes en el mundo</p>
       </div>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="100">
         <div class="text-4xl font-bold text-[#ffba08] counter" data-target="6911757">0</div>
         <p class="text-sm text-white/70">En América Latina y el Caribe</p>
       </div>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center transform hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="200">
         <div class="text-4xl font-bold text-[#ffba08]">17</div>
         <p class="text-sm text-white/70">Países de la Plataforma R4V</p>
       </div>
@@ -66,8 +66,9 @@ const colombiaEvolution = [
   </div>
 
   <!-- Mapa de Distribución Regional -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg">
-    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       Distribución por País de Acogida (2025)
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
@@ -77,9 +78,9 @@ const colombiaEvolution = [
     <!-- Barras Animadas -->
     <div class="space-y-3" id="migration-bars">
       {migrationData.countries.map((country, index) => (
-        <div class="migration-bar-container">
+        <div class="migration-bar-container group cursor-pointer" data-aos="fade-right" data-aos-delay={index * 50}>
           <div class="flex justify-between items-center mb-1">
-            <span class="font-medium text-gray-700 dark:text-gray-300 text-sm">{country.name}</span>
+            <span class="font-medium text-gray-700 dark:text-gray-300 text-sm group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{country.name}</span>
             <span class="text-sm text-gray-500 dark:text-gray-400">
               <span class="font-bold text-[#6a040f] dark:text-[#ffba08]">{country.count.toLocaleString()}</span>
               <span class="ml-1">({country.percent}%)</span>
@@ -87,7 +88,7 @@ const colombiaEvolution = [
           </div>
           <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div 
-              class="h-full rounded-full transition-all duration-1000 ease-out migration-bar"
+              class="h-full rounded-full transition-all duration-1000 ease-out migration-bar group-hover:brightness-110"
               style={`width: 0%; background-color: ${country.color};`}
               data-width={`${country.percent}%`}
               data-delay={index * 100}
@@ -98,11 +99,11 @@ const colombiaEvolution = [
     </div>
 
     <!-- Visualización de Mapa SVG Estilizado -->
-    <div class="mt-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+    <div class="mt-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl" data-aos="zoom-in" data-aos-delay="300">
       <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4 text-center">Mapa Conceptual de Distribución</h5>
       <svg viewBox="0 0 800 400" class="w-full h-auto">
         <!-- Venezuela (origen) -->
-        <circle cx="250" cy="200" r="25" fill="#370617" stroke="#ffba08" stroke-width="3" />
+        <circle cx="250" cy="200" r="25" fill="#370617" stroke="#ffba08" stroke-width="3" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="250" y="205" text-anchor="middle" fill="#ffba08" font-size="12" font-weight="bold">VEN</text>
         
         <!-- Líneas de flujo -->
@@ -114,32 +115,32 @@ const colombiaEvolution = [
         <path d="M 275 190 Q 350 50 550 80" stroke="#e85d04" stroke-width="3" fill="none" opacity="0.4" />
         
         <!-- Colombia -->
-        <circle cx="550" cy="150" r="35" fill="#6a040f" />
+        <circle cx="550" cy="150" r="35" fill="#6a040f" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="550" y="145" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Colombia</text>
         <text x="550" y="160" text-anchor="middle" fill="#ffba08" font-size="14" font-weight="bold">2.8M</text>
         
         <!-- Perú -->
-        <circle cx="580" cy="200" r="28" fill="#9d0208" />
+        <circle cx="580" cy="200" r="28" fill="#9d0208" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="580" y="195" text-anchor="middle" fill="white" font-size="9">Perú</text>
         <text x="580" y="208" text-anchor="middle" fill="#ffba08" font-size="11" font-weight="bold">1.7M</text>
         
         <!-- Brasil -->
-        <circle cx="650" cy="280" r="22" fill="#d00000" />
+        <circle cx="650" cy="280" r="22" fill="#d00000" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="650" y="275" text-anchor="middle" fill="white" font-size="9">Brasil</text>
         <text x="650" y="286" text-anchor="middle" fill="#ffba08" font-size="10" font-weight="bold">732K</text>
         
         <!-- Chile -->
-        <circle cx="550" cy="80" r="20" fill="#e85d04" />
+        <circle cx="550" cy="80" r="20" fill="#e85d04" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="550" y="76" text-anchor="middle" fill="white" font-size="8">Chile</text>
         <text x="550" y="86" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">669K</text>
         
         <!-- Ecuador -->
-        <circle cx="520" cy="220" r="18" fill="#f48c06" />
+        <circle cx="520" cy="220" r="18" fill="#f48c06" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="520" y="217" text-anchor="middle" fill="white" font-size="8">Ecuador</text>
         <text x="520" y="226" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">440K</text>
         
         <!-- Argentina -->
-        <circle cx="600" y="340" r="16" fill="#3d0066" />
+        <circle cx="600" cy="340" r="16" fill="#3d0066" class="hover:scale-110 transition-transform" style="transform-origin: center;" />
         <text x="600" y="336" text-anchor="middle" fill="white" font-size="8">Argentina</text>
         <text x="600" y="345" text-anchor="middle" fill="#ffba08" font-size="9" font-weight="bold">175K</text>
       </svg>
@@ -147,8 +148,9 @@ const colombiaEvolution = [
   </div>
 
   <!-- Evolución Temporal -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg">
-    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="150">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
       Evolución del Éxodo Venezolano (2015-2025)
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
@@ -159,23 +161,23 @@ const colombiaEvolution = [
     <div class="relative">
       <div class="flex items-end justify-between h-48 md:h-64 gap-2">
         {evolutionData.map((item, index) => (
-          <div class="flex-1 flex flex-col items-center group">
-            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="flex-1 flex flex-col items-center group cursor-pointer" data-aos="fade-up" data-aos-delay={index * 80}>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
               {item.label}
             </div>
             <div 
-              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar"
+              class="w-full bg-gradient-to-t from-[#6a040f] to-[#ffba08] rounded-t-md transition-all duration-500 evolution-bar group-hover:brightness-110"
               style={`height: 0%;`}
               data-height={`${(item.count / 8000000) * 100}%`}
               data-delay={index * 100}
             />
-            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">{item.year}</div>
+            <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{item.year}</div>
           </div>
         ))}
       </div>
       
       <!-- Línea base -->
-      <div class="absolute bottom-8 left-0 right-0 h-0.5 bg-gray-200 dark:bg-gray-700" />
+      <div class="absolute bottom-8 left-0 right-0 h-0.5 bg-gradient-to-r from-[#6a040f] via-[#ffba08] to-[#6a040f]" />
     </div>
 
     <div class="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
@@ -184,8 +186,9 @@ const colombiaEvolution = [
   </div>
 
   <!-- Colombia: Evolución Específica -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+    <h4 class="text-xl font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
       Migración Venezuela → Colombia (Evolución Anual)
     </h4>
     <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">
@@ -227,7 +230,7 @@ const colombiaEvolution = [
           const x = index * 55;
           const y = 200 - ((item.count / 3000000) * 190);
           return (
-            <circle cx={x} cy={y} r="4" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="data-point" opacity="0" />
+            <circle cx={x} cy={y} r="4" fill="#ffba08" stroke="#6a040f" stroke-width="2" class="data-point hover:r-6 transition-all" opacity="0" />
           );
         })}
       </svg>
@@ -244,14 +247,17 @@ const colombiaEvolution = [
     <!-- Leyenda -->
     <div class="flex justify-between items-center mt-4 text-sm text-gray-500 dark:text-gray-400">
       <span>2015</span>
-      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold">2.8M en 2025</span>
+      <span class="text-[#6a040f] dark:text-[#ffba08] font-semibold bg-[#6a040f]/10 dark:bg-[#ffba08]/10 px-3 py-1 rounded-full">2.8M en 2025</span>
       <span>2025</span>
     </div>
   </div>
 
   <!-- Fuentes -->
-  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm">
-    <h5 class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Fuentes de Información:</h5>
+  <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-xl text-sm" data-aos="fade-up" data-aos-delay="250">
+    <h5 class="font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Fuentes de Información:
+    </h5>
     <ul class="space-y-1 text-gray-600 dark:text-gray-400">
       <li>• <strong>Plataforma R4V</strong> (ACNUR/OIM) - Noviembre 2025: 6,9 millones en ALC</li>
       <li>• <strong>ACNUR</strong> - Tendencias Globales 2024: Mayor crisis de desplazamiento mundial</li>
