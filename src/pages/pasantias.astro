@@ -156,38 +156,53 @@ const calificaciones = [
   <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-8" data-aos="fade-up">
-          Documentación del Proyecto
-        </h3>
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center justify-center gap-3">
+            <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            Documentación del Proyecto
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Manuales, planes de trabajo y recursos metodológicos desarrollados para el proyecto VENCOLECO
+          </p>
+        </div>
 
         <div class="space-y-6">
           {pasantiasEntries.map((entry, index) => (
             <AnimatedCard delay={index * 100}>
-              <a href={`${baseUrl}pasantias/${entry.slug}`} class="block">
-                <div class="flex items-start justify-between p-6 group">
-                  <div class="flex-1">
-                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">
-                      {entry.data.title}
-                    </h4>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors">{entry.data.description}</p>
+              <a href={`${baseUrl}pasantias/${entry.slug}`} class="block group">
+                <div class="flex items-start justify-between p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div class="flex items-start gap-4">
+                    <!-- Icono del documento -->
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#6a040f] to-[#9d0208] rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
                     
-                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                      <span class="flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        {entry.data.date}
-                      </span>
-                      <span class="flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                        {entry.data.readingTime}
-                      </span>
+                    <div class="flex-1">
+                      <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">
+                        {entry.data.title}
+                      </h4>
+                      <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors">{entry.data.description}</p>
+                      
+                      <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                          </svg>
+                          {entry.data.date}
+                        </span>
+                        <span class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                          </svg>
+                          {entry.data.readingTime}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   
-                  <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors ml-4 flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-gray-400 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors ml-4 flex-shrink-0 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </div>
@@ -197,27 +212,46 @@ const calificaciones = [
         </div>
 
         <!-- Hitos Fronterizos -->
-        <h3 class="text-2xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mt-12 mb-8" data-aos="fade-up">
-          Hitos Documentados
-        </h3>
-
-        <div class="relative" data-aos="fade-up">
-          <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#6a040f] via-[#ffba08] to-[#6a040f]"></div>
-          
-          {hitos.map((hito, index) => (
-            <div 
-              class="relative flex items-start mb-8 last:mb-0 group"
-              data-aos="fade-left"
-              data-aos-delay={index * 150}
-            >
-              <div class="absolute left-2 w-4 h-4 bg-[#6a040f] rounded-full border-4 border-white dark:border-gray-900 shadow group-hover:scale-125 transition-transform"></div>
-              <div class="ml-12 bg-white dark:bg-gray-800 p-4 rounded-xl flex-1 transition-colors hover:shadow-md transition-all">
-                <span class="text-sm font-semibold text-[#6a040f] dark:text-[#ffba08]">{hito.date}</span>
-                <h4 class="font-bold text-gray-900 dark:text-white mt-1 transition-colors">{hito.title}</h4>
-                <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors">{hito.desc}</p>
+        <div class="mt-16" data-aos="fade-up">
+          <div class="text-center mb-12">
+            <h3 class="text-3xl font-display font-bold text-[#6a040f] dark:text-[#ffba08] mb-4 flex items-center justify-center gap-3">
+              <div class="w-12 h-12 bg-[#6a040f] rounded-xl flex items-center justify-center shadow-lg">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </div>
-            </div>
-          ))}
+              Hitos Documentados
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Momentos clave en la historia de las relaciones fronterizas entre Venezuela y Colombia (2015-2022)
+            </p>
+          </div>
+
+          <div class="relative">
+            <!-- Línea central con gradiente -->
+            <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#6a040f] via-[#ffba08] to-[#6a040f] rounded-full"></div>
+            
+            {hitos.map((hito, index) => (
+              <div 
+                class={`relative flex items-center mb-12 last:mb-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+                data-aos-delay={index * 150}
+              >
+                <!-- Punto en la línea -->
+                <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-6 h-6 bg-[#6a040f] rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10 group-hover:scale-125 transition-transform"></div>
+                
+                <!-- Contenido -->
+                <div class={`ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right md:w-1/2' : 'md:pl-12 md:w-1/2'}`}>
+                  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                    <span class="inline-block px-3 py-1 bg-[#6a040f] text-white text-sm font-semibold rounded-full mb-3">{hito.date}</span>
+                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#6a040f] dark:group-hover:text-[#ffba08] transition-colors">{hito.title}</h4>
+                    <p class="text-gray-600 dark:text-gray-300">{hito.desc}</p>
+                  </div>
+                </div>
+                
+                <!-- Espacio vacío para el otro lado -->
+                <div class="hidden md:block md:w-1/2"></div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
